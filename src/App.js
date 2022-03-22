@@ -1,24 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
 
+import "./App.css";
+import React, { Fragment } from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
+import Login from "./Pages/Authentication/Login";
+import Register from "./Pages/Authentication/Register";
+import Admin from "./Routes/Admin";
+import Qec from "./Pages/Index/Qec";
+// import Register from "./Authentication/Register";
+// import LoginPage from "./Authentication/Login";
+// import Admin from "./Admin";
+// import Teacher from "./Teacher";
+// import User from "./User";
+
+// let token = localStorage.getItem("list");
+// let isAdmin = localStorage.getItem("isAdmin");
+// let isTeacher = localStorage.getItem("isTeacher");
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/signup" element={<Register />} />
+          <Route exact path="/qe" element={<Qec />} />
+          <Route exact path="/admin-panel/*" element={<Admin />} />
+        </Routes>
+      </BrowserRouter>
+
+      {/* <Teacher />
+      <User /> */}
+    </>
+    // <div className="App">
+    //   {!token ? (
+    //     <>
+    //       <BrowserRouter>
+    //         <Routes>
+    //           <Route path="/Signup" element={<Register />} />
+    //           <Route exact path="/" element={<LoginPage />} />
+    //         </Routes>
+    //       </BrowserRouter>
+    //     </>
+    //   ) : (
+    //     <>
+    //       {isAdmin ? (
+    //         <>
+    //           <Fragment>
+    //             <Admin />
+    //           </Fragment>
+    //         </>
+    //       ) : (
+    //         <>
+    //           {isTeacher ? (
+    //             <>
+    //               <Teacher />
+    //             </>
+    //           ) : (
+    //             <>
+    //               <User />
+    //             </>
+    //           )}
+    //         </>
+    //       )}
+    //     </>
+    //   )}
+    // </div>
   );
 }
 
