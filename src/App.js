@@ -6,12 +6,12 @@ import { Routes, Route, Link } from "react-router-dom";
 import Login from "./Pages/Authentication/Login";
 import Register from "./Pages/Authentication/Register";
 import Admin from "./Routes/Admin";
+import Teacher from "./Routes/Teacher";
+import User from "./Routes/User";
 import Qec from "./Pages/Index/Qec";
 // import Register from "./Authentication/Register";
 // import LoginPage from "./Authentication/Login";
 // import Admin from "./Admin";
-// import Teacher from "./Teacher";
-// import User from "./User";
 
 // let token = localStorage.getItem("list");
 // let isAdmin = localStorage.getItem("isAdmin");
@@ -25,11 +25,11 @@ function App() {
           <Route exact path="/signup" element={<Register />} />
           <Route exact path="/qe" element={<Qec />} />
           <Route exact path="/admin-panel/*" element={<Admin />} />
+          <Route exact path="/teacher/*" element={<Teacher />} />
+          <Route exact path="/user/*" element={<User />} />
         </Routes>
       </BrowserRouter>
 
-      {/* <Teacher />
-      <User /> */}
     </>
     // <div className="App">
     //   {!token ? (

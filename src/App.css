@@ -110,6 +110,8 @@ hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
+ 
+ 
 }
 h1,
 h2,
@@ -417,7 +419,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid gray;
 }
 .small,
 small {
@@ -11443,9 +11445,9 @@ fieldset[disabled] .form-group .form-control {
   position: absolute;
   width: 100%;
   border-bottom:1px solid gray;
-  padding-left: 243px;
   padding-top: 10px;
   z-index: 1029;
+  color: white;
 }
 .navbar .navbar-wrapper {
   display: inline-flex;
@@ -11650,9 +11652,7 @@ fieldset[disabled] .form-group .form-control {
   .nav-link:hover {
   background: hsla(0, 0%, 78%, 0.2);
 }
-.off-canvas-sidebar .navbar.navbar-transparent {
-  padding-top: 25px !important;
-}
+
 .pagination > .page-item > .page-link,
 .pagination > .page-item > span {
   border: 0;
@@ -24387,7 +24387,7 @@ Button {
   
   transition: background-color 0.3s ease-in-out;
 }
-.btnLogin {
+/* .btnLogin {
   z-index: 1;
   position: relative;
   font-size: inherit;
@@ -24399,8 +24399,8 @@ Button {
   border: none;
  
   background-color: hsl(98, 64%, 42%);
-  transition: background-color 0.3s ease-in-out;
-}
+  
+} */
 Button::before {
   content: "";
   z-index: -1;
@@ -24519,4 +24519,15 @@ Button:hover::before {
   .offNow {
     display: none;
   }
+}
+.btnLogin {
+  display: inline-block;
+  text-align: center;
+  border: 1px solid gray;
+  width: 100%;
+  padding: 0.46875rem 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 30px;
+  transition: background-color 0.3s ease-in-out;
 }

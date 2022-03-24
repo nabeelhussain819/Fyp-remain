@@ -1,43 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Container, Accordion } from "react-bootstrap";
 
-function Dashboard() {
+function Semester() {
+    //   const [depart, setDepart] = useState([]);
+    //   const getData = async () => {
+    //     const response = await fetch("http://localhost:5000/departments");
+    //     setDepart(await response.json());
+    //   };
+    //   useEffect(() => {
+    //     getData();
+    //   }, []);
     return (
         <>
             <div className="wrapper ">
                 <div className="main-panel">
                     <div className="content">
-
                         <div className="container-fluid">
-                            <div className="col-md-12">
-
-                                <div className="card ">
-                                    <div className="card-header card-header-success card-header-icon">
-                                        <div className="card-icon">
-                                            <i className="material-icons"></i>
-                                        </div>
-                                        <h4 className="card-title">
-                                            Global Sales by Top Locations
-                                        </h4>
-                                    </div>
-                                    <div className="card-body ">
-                                        <div className="row">
-                                            <div className="col-md-6">
-                                                <div className="table-responsive table-sales"></div>
-                                            </div>
-                                            <div className="col-md-6 ml-auto mr-auto"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="col-md-6 ">
+                                <h3> Semesters</h3>
+                                <p><small ><a href="">Home</a>  / <small> Semesters</small></small></p>
                             </div>
                         </div>
                         <div className="row">
                             {Array.from({ length: 3 }).map((_, idx) => (
                                 <div className="col-md-4">
                                     <div className="card card-chart" data-count="0">
-                                        <div
-                                            className="card-header card-header-success"
-                                            data-header-animation="true"
-                                        ></div>
                                         <div className="card-body">
                                             <h4 className="card-title">Daily Sales</h4>
                                             <p className="card-category">
@@ -64,4 +51,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Semester;

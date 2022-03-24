@@ -87,141 +87,80 @@ const Register = () => {
             filter-color="black"
           >
             <div className="container">
-              <div className="row">
-                <div className="col-md-10 ml-auto mr-auto">
-                  <div className="card card-signup">
-                    <h2 className="card-title text-center">SIGN UP</h2>
-                    <div className="card-body">
-                      <div className="row">
-                        <div className="col-md-5 ml-auto offNow">
-                          <div className="info info-horizontal">
-                            <img
-                              src={vector}
-                              style={{ width: "100%", height: "100%" }}
+              <div className="col-md-6 ml-auto mr-auto">
+                <div className="card card-signup">
+                  <h2 className="card-title text-center">SIGN UP</h2>
+                  <div className="card-body">
+
+                    <div className="col-md-12 mr-auto">
+                      <div className="social text-center">
+                        <h4 className="mt-3 ml-4">Create New Account</h4>
+                      </div>
+                      <form className="form" method="POST" action="">
+
+                        <div className="form-group has-default bmd-form-group ">
+                          <div className="input-group">
+                            <div className="input-group-prepend ">
+                              <span className="input-group-text pr-6">
+                                step : {nextField + 1}
+                              </span>
+                            </div>
+                            <input
+                              type={myData[nextField].type}
+                              className="form-control text-center mr-4 "
+                              id="exampleInputEmail1"
+                              aria-describedby="emailHelp"
+                              required
+                              onChange={Data}
+                              // value={email}
+                              // onChange={(e) =>
+                              //   setEmail(e.target.value)
+                              // }
+                              value={apendState}
+                              placeholder={
+                                myData[nextField].placeholder
+                              }
                             />
                           </div>
                         </div>
-                        <div className="col-md-5 mr-auto">
-                          <div className="social text-center">
-                            <button className="btn btn-just-icon btn-round btn-twitter">
-                              <i className="fa fa-twitter"></i>
-                            </button>
-                            <button className="btn btn-just-icon btn-round btn-dribbble">
-                              <i className="fa fa-dribbble"></i>
-                            </button>
-                            <button className="btn btn-just-icon btn-round btn-facebook">
-                              <i className="fa fa-facebook"> </i>
-                            </button>
-                            <h4 className="mt-3">Create New Account</h4>
-                          </div>
-                          <form className="form" method="POST" action="">
-                            <>
-                              {myData[nextField].type === "select" ? (
-                                <>
-                                  <div className="col-lg-5 col-md-6 col-sm-3">
-                                    <div className="dropdown bootstrap-select show-tick">
-                                      <div className="form-group has-default">
-                                        <div className="input-group-prepend">
-                                          <span className="input-group-text">
-                                            <FaRegEnvelope size={30} />
-                                          </span>
-                                        </div>
-                                        <select
-                                          className="form-control  text-center"
-                                          // onChange={(e) =>
-                                          //   setDeptId(e.target.value)
-                                          // }
-                                          style={{
-                                            marginLeft: "60px",
-                                          }}
-                                          type={myData[nextField].type}
-                                          required
-                                        >
-                                          <option>4545454</option>
-                                          {/* {Object.entries(depart).map(
-                                            ([key, option]) => {
-                                              return (
-                                                <option value={option._id}>
-                                                  {option.department}
-                                                </option>
-                                              );
-                                            }
-                                          )} */}
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </>
-                              ) : (
-                                <>
-                                  <div className="form-group has-default bmd-form-group">
-                                    <div className="input-group">
-                                      <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                          <FaRegEnvelope size={30} />
-                                        </span>
-                                      </div>
-                                      <input
-                                        type={myData[nextField].type}
-                                        className="form-control text-center"
-                                        id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"
-                                        required
-                                        onChange={Data}
-                                        // value={email}
-                                        // onChange={(e) =>
-                                        //   setEmail(e.target.value)
-                                        // }
-                                        value={apendState}
-                                        placeholder={
-                                          myData[nextField].placeholder
-                                        }
-                                      />
-                                    </div>
-                                  </div>
-                                </>
-                              )}
-                            </>
 
-                            <div className="form-check">
-                              <label className="form-check-label">
-                                Already have an{" "}
-                                <Link
-                                  to="/"
-                                  style={{
-                                    textDecoration: "none",
-                                  }}
-                                >
-                                  {" "}
-                                  Account ?
-                                </Link>
-                              </label>
-                            </div>
-                            <div className="text-center">
-                              {submitButton && (
-                                <a
-                                  type="submit"
-                                  className="btn btn-primary btn-round mt-4"
-                                //   onClick={registerUser}
-                                >
-                                  Get Started
-                                </a>
-                              )}
-                              {nextButton && (
-                                <>
-                                  <a
-                                    type="submit"
-                                    className="btn btn-primary btn-round mt-4"
-                                    onClick={Handle}
-                                  >
-                                    NExt
-                                  </a>
-                                </>
-                              )}
-                            </div>
-                          </form>
+                        <div className="form-check text-center mr-4">
+                          <label className="form-check-label">
+                            Already have an{" "}
+                            <Link
+                              to="/"
+                              style={{
+                                textDecoration: "none",
+                              }}
+                            >
+                              {" "}
+                              Account ?
+                            </Link>
+                          </label>
                         </div>
-                      </div>
+                        <div className="text-center">
+                          {submitButton && (
+                            <a
+                              type="submit"
+                              className="btnLogin btn-primary btn-round mt-4 ml-2"
+                            //   onClick={registerUser}
+                            >
+                              Get Started
+                            </a>
+                          )}
+                          {nextButton && (
+                            <>
+                              <a
+                                type="submit"
+                                className="btnLogin btn-primary btn-round mt-4"
+                                onClick={Handle}
+                              >
+                                Next
+                              </a>
+                            </>
+                          )}
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>

@@ -33,10 +33,6 @@ const Qec = () => {
                     <div
                         className="page-header register-page header-filter"
                         filter-color="black"
-                        style={{
-                            backgroundImage:
-                                "url('https://www.gannett-cdn.com/presto/2018/08/14/PTAL/6e4fff76-595d-4069-9112-cfe15dbfaa43-IMG_Stadium.jpeg?width=660&height=319&fit=crop&format=pjpg&auto=webp')",
-                        }}
                     >
                         <div className="container">
                             <div className="row">

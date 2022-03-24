@@ -85,96 +85,75 @@ const Login = () => {
                         filter-color="black"
                     >
                         <div className="container">
-                            <div className="row">
-                                <div className="col-md-10 ml-auto mr-auto">
-                                    <div className="card card-signup">
-                                        <h2 className="card-title text-center">LOG IN</h2>
-                                        <div className="card-body">
-                                            <div className="row">
-                                                <div className="col-md-5 ml-auto offNow">
-                                                    <div className="info info-horizontal">
-                                                        <img
-                                                            src={vector}
-                                                            style={{ width: "100%", height: "100%" }}
+                            <div className="col-md-6 ml-auto mr-auto">
+                                <div className="card card-signup border-0">
+                                    <h2 className="card-title text-center">LOG IN</h2>
+                                    <div className="card-body">
+                                        <div className="col-md-12">
+                                            <div className=" text-center ml-4">
+                                                <h4 className="mt-3">Sign In to Your Account</h4>
+                                            </div>
+                                            <form className="form " method="POST" action="">
+                                                <div className="form-group has-default bmd-form-group">
+                                                    <div className="input-group">
+                                                        <div className="input-group-prepend">
+                                                            <span className="input-group-text">
+                                                                <FaRegEnvelope size={30} />
+                                                            </span>
+                                                        </div>
+                                                        <input
+                                                            type="email"
+                                                            className="form-control text-center pr-2"
+                                                            id="exampleInputEmail1"
+                                                            aria-describedby="emailHelp"
+                                                            required
+                                                            //   value={email}
+                                                            //   onChange={(e) => setEmail(e.target.value)}
+                                                            placeholder="Enter email Address Here"
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="col-md-5 mr-auto">
-                                                    <div className="social text-center">
-                                                        <button className="btn btn-just-icon btn-round btn-twitter">
-                                                            <i className="fa fa-twitter"></i>
-                                                        </button>
-                                                        <button className="btn btn-just-icon btn-round btn-dribbble">
-                                                            <i className="fa fa-dribbble"></i>
-                                                        </button>
-                                                        <button className="btn btn-just-icon btn-round btn-facebook">
-                                                            <i className="fa fa-facebook"> </i>
-                                                        </button>
-                                                        <h4 className="mt-3">Sign In to Your Account</h4>
+                                                <div className="form-group has-default bmd-form-group">
+                                                    <div className="input-group ">
+                                                        <div className="input-group-prepend">
+                                                            <span className="input-group-text">
+                                                                <FaUnlockAlt size={30} />
+                                                            </span>
+                                                        </div>
+                                                        <input
+                                                            type="password"
+                                                            required
+                                                            className="form-control text-center pr-2"
+                                                            //   value={password}
+                                                            //   onChange={(e) => setPassword(e.target.value)}
+                                                            placeholder="Add Password Here"
+                                                        />
                                                     </div>
-                                                    <form className="form" method="POST" action="">
-                                                        <div className="form-group has-default bmd-form-group">
-                                                            <div className="input-group">
-                                                                <div className="input-group-prepend">
-                                                                    <span className="input-group-text">
-                                                                        <FaRegEnvelope size={30} />
-                                                                    </span>
-                                                                </div>
-                                                                <input
-                                                                    type="email"
-                                                                    className="form-control text-center"
-                                                                    id="exampleInputEmail1"
-                                                                    aria-describedby="emailHelp"
-                                                                    required
-                                                                    //   value={email}
-                                                                    //   onChange={(e) => setEmail(e.target.value)}
-                                                                    placeholder="Enter email Address Here"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-group has-default bmd-form-group">
-                                                            <div className="input-group">
-                                                                <div className="input-group-prepend">
-                                                                    <span className="input-group-text">
-                                                                        <FaUnlockAlt size={30} />
-                                                                    </span>
-                                                                </div>
-                                                                <input
-                                                                    type="password"
-                                                                    required
-                                                                    className="form-control text-center"
-                                                                    //   value={password}
-                                                                    //   onChange={(e) => setPassword(e.target.value)}
-                                                                    placeholder="Add Password Here"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-check">
-                                                            <label className="form-check-label">
-                                                                Don't have any Account ?
-                                                                <Link
-                                                                    to="/signup"
-                                                                    style={{
-                                                                        textDecoration: "none",
-                                                                    }}
-                                                                >
-                                                                    {" "}
-                                                                    <b> Register Now</b>
-                                                                </Link>
-                                                            </label>
-                                                        </div>
-                                                        <div className="text-center">
-                                                            <a
-                                                                type="submit"
-                                                                className="btn btn-primary btn-round mt-4"
-                                                            // onClick={loginUser}
-                                                            >
-                                                                Get Started
-                                                            </a>
-                                                        </div>
-                                                    </form>
                                                 </div>
-                                            </div>
+                                                <div className="form-check text-center">
+                                                    <label className="form-check-label">
+                                                        Don't have any Account ?
+                                                        <Link
+                                                            to="/signup"
+                                                            style={{
+                                                                textDecoration: "none",
+                                                            }}
+                                                        >
+                                                            {" "}
+                                                            <b> Register Now</b>
+                                                        </Link>
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <a
+                                                        type="submit"
+                                                        className="btnLogin btn-primary ml-4 btn-round mt-4"
+                                                    // onClick={loginUser}
+                                                    >
+                                                        Get Started
+                                                    </a>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

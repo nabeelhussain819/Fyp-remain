@@ -34,7 +34,7 @@ function SideBar() {
                             </a>
                         </li>
                         <li className="nav-item ">
-                            <a className="nav-link" href="/ReadProgram">
+                            <a className="nav-link" href="program">
                                 <i className="material-icons">
                                     <FaListOl />
                                 </i>
@@ -42,7 +42,7 @@ function SideBar() {
                             </a>
                         </li>
                         <li className="nav-item ">
-                            <a className="nav-link" href="/ReadCourse">
+                            <a className="nav-link" href="course">
                                 <i className="material-icons">
                                     <FaBook />
                                 </i>
@@ -50,7 +50,7 @@ function SideBar() {
                             </a>
                         </li>
                         <li className="nav-item ">
-                            <a className="nav-link" href="/ReadDept">
+                            <a className="nav-link" href="department">
                                 <i className="material-icons">
                                     <FaArchway />
                                 </i>
@@ -58,15 +58,16 @@ function SideBar() {
                             </a>
                         </li>
                         <li className="nav-item ">
-                            <a className="nav-link" href="/ReadSemes">
+                            <a className="nav-link" href="semester">
                                 <i className="material-icons">
                                     <FaTasks />
                                 </i>
                                 <p> SEMESTERS</p>
                             </a>
                         </li>
+
                         <li className="nav-item ">
-                            <a className="nav-link" href="#0">
+                            <a className="nav-link" href="rating">
                                 <i className="material-icons">
                                     <FaCalendarCheck />
                                 </i>

@@ -1,37 +1,28 @@
 import React, { Fragment } from "react";
-import { BrowserRouter } from "react-router-dom";
 import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar";
 import SideBar from "../Components/Header/Sidebar";
 import Dashboard from "../Pages/Dashboard/User";
-// import CreateProgram from "./components/program/Create";
-// import CreateDept from "./components/department/Create";
-// import CreateSemes from "./components/semester/Create";
-// import CreateCourse from "./components/course/Create";
-// import Dashboard from "./admin/Dashboard";
-// import ReadProgram from "./components/program/Index";
-// import ReadDept from "./components/department/Index";
-// import ReadSemes from "./components/semester/Index";
-// import ReadCourse from "./components/course/Index";
-// import Index from "./components/Qec/Index";
+import Course from "../Pages/Index/Course";
+import Department from "../Pages/Index/Department";
+import Program from "../Pages/Index/Program";
+import Semester from "../Pages/Index/Semester";
+import Teachers from "../Pages/Index/Teacher";
 function User() {
     return (
         <>
             <Navbar />
             <SideBar />
-            <BrowserRouter>
-                <Fragment>
-                    <Routes>
-                        <Route path="/user" element={<Dashboard />} />
-                        {/* 
-          <Route path="/ReadProgram" element={<ReadProgram />} />
-          <Route path="/ReadDept" element={<ReadDept />} />
-          <Route path="/ReadSemes" element={<ReadSemes />} />
-          <Route path="/ReadCourse" element={<ReadCourse />} />
-          <Route path="/Qec" element={<Index />} /> */}
-                    </Routes>
-                </Fragment>
-            </BrowserRouter>
+            <Fragment>
+                <Routes>
+                    <Route path="/user-panel" element={<Dashboard />} />
+                    <Route path="/department" element={<Department />} />
+                    <Route path="/program" element={<Program />} />
+                    <Route path="/semester" element={<Semester />} />
+                    <Route path="/course" element={<Course />} />
+                    <Route path="/teacher" element={<Teachers />} />
+                </Routes>
+            </Fragment>
         </>
     );
 }

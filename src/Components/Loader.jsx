@@ -21,7 +21,7 @@ function Example() {
             {values.map((v, idx) => (
                 <a
                     key={idx}
-                    className="me-2 text-dark "
+                    className="me-2 text-white "
                     style={{ textDecoration: "none" }}
                     onClick={() => handleShow(v)}
                 >
