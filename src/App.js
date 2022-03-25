@@ -9,6 +9,7 @@ import Admin from "./Routes/Admin";
 import Teacher from "./Routes/Teacher";
 import User from "./Routes/User";
 import Qec from "./Pages/Index/Qec";
+import ExtendedRegisterForm from "./Pages/Authentication/ExtendedRegisterForm";
 // import Register from "./Authentication/Register";
 // import LoginPage from "./Authentication/Login";
 // import Admin from "./Admin";
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/signup" element={<Register />} />
+          <Route exact path="/extendedForm" element={<ExtendedRegisterForm />} />
           <Route exact path="/qe" element={<Qec />} />
           <Route exact path="/admin-panel/*" element={<Admin />} />
           <Route exact path="/teacher/*" element={<Teacher />} />

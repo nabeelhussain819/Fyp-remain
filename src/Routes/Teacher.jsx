@@ -15,7 +15,7 @@ function Teacher() {
             <SideBar />
             <Fragment>
                 <Routes>
-                    <Route path="/teacher-panel" element={<Dashboard />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/department" element={<Department />} />
                     <Route path="/program" element={<Program />} />
                     <Route path="/semester" element={<Semester />} />

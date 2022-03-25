@@ -17,7 +17,7 @@ function Admin() {
       <SideBar />
       <Fragment>
         <Routes>
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
           <Route path="/program" element={<Program />} />
           <Route path="/semester" element={<Semester />} />
           <Route path="/course" element={<Course />} />

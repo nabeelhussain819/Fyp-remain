@@ -8,9 +8,8 @@ import NavBarLogin from "../../Components/Header/LoginNavbar";
 import myData from "../../Components/Authentication/RegisterForm";
 
 const Register = () => {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [nextField, setNextFeild] = useState(0);
-  const [submitButton, setSubmitButton] = useState(false);
   const [nextButton, setNextButton] = useState(true);
   const [apendState, setApendState] = useState([]);
   const [newData, setNewData] = useState([]);
@@ -33,9 +32,8 @@ const Register = () => {
     setNextFeild(Change);
     setApendState("");
     if (nextField === myData.length - 1) {
-      setSubmitButton(true);
       setNextButton(false);
-      setNextFeild(0);
+      navigate("/extendedForm")
     }
   }
   function Data(e) {
@@ -96,6 +94,19 @@ const Register = () => {
                       <div className="social text-center">
                         <h4 className="mt-3 ml-4">Create New Account</h4>
                       </div>
+
+                      <div className="center">
+                        <div className="pagination">
+                          <a href="#">1</a>
+                          <a href="#">2</a>
+                          <a href="#">3</a>
+                          <a href="#">4</a>
+                          <a href="#">5</a>
+                          <a href="#">6</a>
+                          <a href="#">7</a>
+                          <a href="#">8</a>
+                        </div>
+                      </div>
                       <form className="form" method="POST" action="">
 
                         <div className="form-group has-default bmd-form-group ">
@@ -139,15 +150,6 @@ const Register = () => {
                           </label>
                         </div>
                         <div className="text-center">
-                          {submitButton && (
-                            <a
-                              type="submit"
-                              className="btnLogin btn-primary btn-round mt-4 ml-2"
-                            //   onClick={registerUser}
-                            >
-                              Get Started
-                            </a>
-                          )}
                           {nextButton && (
                             <>
                               <a

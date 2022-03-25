@@ -3251,7 +3251,7 @@ tbody.collapse.show {
 .nav-link:focus,
 .nav-link:hover {
   text-decoration: none;
-  color: white;
+  color: rgb(238, 25, 25);
 }
 .nav-link.disabled {
   color: #6c757d;
@@ -4481,13 +4481,10 @@ button.close {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  pointer-events: auto;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.5);
+  width: auto;
+  background-color: transparent;
+  border: none;
+  border-radius: none;
   outline: 0;
 }
 .modal-backdrop {
@@ -5092,6 +5089,10 @@ button.bg-dark:hover {
 }
 .bg-transparent {
   background-color: transparent !important;
+}
+.bg-opacity {
+  background-color: #0c0c0c9c !important;
+
 }
 .border {
   border: 1px solid #dee2e6 !important;
@@ -12117,8 +12118,7 @@ h2.title {
   color: #555;
 }
 .modal-dialog .modal-content {
-  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2),
-    0 40px 77px 0 rgba(0, 0, 0, 0.22);
+  box-shadow: none;
   border-radius: 6px;
   border: none;
 }
@@ -12248,9 +12248,10 @@ h2.title {
 body {
   background-image: url("https://wallpaperaccess.com/full/1372703.jpg");
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-size: auto;
+  background-attachment: fixed;
   font-weight: 300;
+  height: 100%;
   color: white;
 } 
 legend {
@@ -15525,8 +15526,9 @@ a .material-icons {
 }
 .sidebar .nav li > a:focus,
 .sidebar .nav li > a:hover {
-  background-color: red;
+  background-color: black;
   outline: none;
+  
 }
 .sidebar .nav li:first-child > a {
   margin: 0 15px;
@@ -15535,8 +15537,9 @@ a .material-icons {
 .sidebar .nav li .dropdown-menu a:focus,
 .sidebar .nav li .dropdown-menu a:hover,
 .sidebar .nav li:hover > a {
-  background-color: hsla(0, 0%, 78%, 0.2);
+  background-image:linear-gradient(to bottom right, #6259ca 0% , rgb(58 52 124 / 60%) 100%);
   color: #3c4858;
+  padding-left: 50px;
   box-shadow: none;
 }
 .sidebar .nav li.active > [data-toggle="collapse"] i {
@@ -15562,7 +15565,6 @@ a .material-icons {
 }
 .sidebar .nav p {
   margin: 0;
-  line-height: 30px;
   font-size: 14px;
   position: relative;
   display: block;
@@ -15614,21 +15616,21 @@ a .material-icons {
   padding: 15px 0;
   margin: 0;
   background-color: #00000054 !important;
-  
   display: block;
-  position: relative;
   z-index: 4;
 }
 .sidebar .logo a.logo-mini {
   opacity: 1;
   float: left;
   width: 30px;
+  color: white;
   text-align: center;
   margin-left: 23px;
   margin-right: 15px;
 }
 .sidebar .logo a.logo-normal {
   display: block;
+  color: white;
   opacity: 1;
   transform: translateZ(0);
 }
@@ -15673,9 +15675,9 @@ a .material-icons {
   height: 60px;
 }
 .sidebar .user {
-  padding-bottom: 20px;
-  margin: 20px auto 0;
-  position: relative;
+  padding-bottom: 1px;
+  padding-top: 2px;
+  background:#a19c9c63;
 }
 .sidebar .user:after {
   content: "";
@@ -15687,8 +15689,8 @@ a .material-icons {
   background-color: hsla(0, 0%, 71%, 0.3);
 }
 .sidebar .user .photo {
-  width: 34px;
-  height: 34px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   float: left;
   z-index: 5;
@@ -15702,14 +15704,13 @@ a .material-icons {
   width: 100%;
 }
 .sidebar .user a {
-  color: #3c4858;
-  padding: 0.5rem 15px;
+  color: white;
+  padding: 19px 15px;
   white-space: nowrap;
 }
 .sidebar .user .user-info > a {
   display: block;
   line-height: 18px;
-  font-size: 14px;
 }
 .sidebar .user .user-info > a > span {
   display: block;
@@ -15735,7 +15736,7 @@ a .material-icons {
   .nav
   .nav-item:hover
   [data-toggle="collapse"] {
-  color: #fff;
+  color: red;
 }
 .sidebar[data-background-color="black"]
   .nav
@@ -15955,7 +15956,7 @@ a .material-icons {
     transform: translate3d(-25px, 0, 0);
   }
   .sidebar-mini .sidebar:hover {
-    width: 260px;
+    width: 160px;
   }
   .sidebar-mini .sidebar:hover .logo a.logo-normal {
     opacity: 1;
@@ -22710,9 +22711,7 @@ a.fc-more:hover {
  * Licensed under MIT (https://github.com/snapappointments/bootstrap-select/blob/master/LICENSE)
  */
 select.bs-select-hidden,
-select.selectpicker {
-  display: none !important;
-}
+
 .bootstrap-select > .dropdown-toggle {
   padding-right: 25px;
 }
@@ -22827,9 +22826,7 @@ select.selectpicker {
 }
 .bootstrap-select > select.bs-select-hidden,
 select.bs-select-hidden,
-select.selectpicker {
-  display: none !important;
-}
+
 .bootstrap-select {
   width: 220px \0;
 }
@@ -24010,7 +24007,7 @@ select.selectpicker {
   }
   .off-canvas-sidebar nav .navbar-collapse .logo,
   .sidebar .logo {
-    position: relative;
+  
     z-index: 4;
   }
   .off-canvas-sidebar nav .navbar-collapse .navbar-form,
@@ -24429,37 +24426,40 @@ Button:hover::before {
   position: relative;
 }
 
+@media screen and (max-width:585px) {
+       
+}
 .outer,
 .middle,
 .inner {
-  border: 3px solid transparent;
+  border: 5px solid transparent;
   border-top-color: #c83cff;
   border-right-color: #931b9e;
   border-radius: 50%;
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
 }
 
 .outer {
-  width: 3.5em;
-  height: 3.5em;
+  width: 6.5em;
+  height: 6.5em;
   margin-left: -1.75em;
   margin-top: -1.75em;
   animation: spin 2s linear infinite;
 }
 
 .middle {
-  width: 2.1em;
-  height: 2.1em;
+  width: 5.1em;
+  height: 5.1em;
   margin-left: -1.05em;
   margin-top: -1.05em;
   animation: spin 1.75s linear reverse infinite;
 }
 
 .inner {
-  width: 0.8em;
-  height: 0.8em;
+  width: 3.8em;
+  height: 3.8em;
   margin-left: -0.4em;
   margin-top: -0.4em;
   animation: spin 1.5s linear infinite;
@@ -24531,3 +24531,28 @@ Button:hover::before {
   border-radius: 30px;
   transition: background-color 0.3s ease-in-out;
 }
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

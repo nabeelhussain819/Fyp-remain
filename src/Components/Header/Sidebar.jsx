@@ -10,11 +10,11 @@ import {
     FaTasks,
     FaArchway,
 } from "react-icons/fa";
-
+import user from '../../Assets/user.png'
 function SideBar() {
     return (
         <>
-            <div className="sidebar " data-color="rose" data-background-color="white">
+            <div className="sidebar " data-color="green" data-background-color="white">
                 <div className="logo">
                     <a href="/" className="simple-text logo-mini">
                         TSE
@@ -23,16 +23,34 @@ function SideBar() {
                         Evaluate NOW!
                     </a>
                 </div>
+
                 <div className="sidebar-wrapper ">
+                    <div class="user">
+                        <div class="photo">
+                            <img src={user} />
+                        </div>
+                        <div class="user-info">
+                            <a href="profile" class="username">
+
+                                Tania Andrew
+
+                            </a>
+                        </div>
+                    </div>
+
                     <ul className="nav">
+
+                        <p style={{ marginLeft: "30px" }} className="m-4 text-gray">Main </p>
                         <li className="nav-item ">
-                            <a className="nav-link" href="/">
+                            <a className="nav-link" href="dashboard">
                                 <i className="material-icons">
                                     <FaThLarge />
                                 </i>
                                 <p> DASHBOARD</p>
                             </a>
-                        </li>
+                        </li>    <hr />
+                        <p style={{ marginLeft: "30px" }} className="m-4 text-gray" >Features </p>
+
                         <li className="nav-item ">
                             <a className="nav-link" href="program">
                                 <i className="material-icons">
@@ -41,6 +59,7 @@ function SideBar() {
                                 <p> PROGRAMS</p>
                             </a>
                         </li>
+
                         <li className="nav-item ">
                             <a className="nav-link" href="course">
                                 <i className="material-icons">
@@ -74,8 +93,10 @@ function SideBar() {
                                 <p> QEC RESULTS</p>
                             </a>
                         </li>
+                        <hr />
+                        <p style={{ marginLeft: "30px" }} className="m-4 text-gray" >Users </p>
                         <li className="nav-item ">
-                            <a className="nav-link" href="#0">
+                            <a className="nav-link" href="teacher">
                                 <i className="material-icons">
                                     <FaUserTie />
                                 </i>
@@ -83,7 +104,7 @@ function SideBar() {
                             </a>
                         </li>
                         <li className="nav-item ">
-                            <a className="nav-link" href="#0">
+                            <a className="nav-link" href="user">
                                 <i className="material-icons">
                                     <FaUserGraduate />
                                 </i>

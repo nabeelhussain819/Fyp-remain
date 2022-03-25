@@ -32,21 +32,20 @@ function Example() {
             ))}
             <Modal
                 show={show}
-                className="bg-primary"
+                className="bg-opacity"
                 fullscreen={fullscreen}
                 onHide={() => setShow(false)}
             >
-                <Modal.Body className="bg-transparent">
-                    <div style={{ marginTop: "500px" }}>
-                        <Container>
-                            <div>
-                                <div class="loader">
-                                    <div class="outer"></div>
-                                    <div class="middle"></div>
-                                    <div class="inner"></div>
-                                </div>
-                            </div>
-                        </Container>
+                <Modal.Body >
+
+                    <div style={{ marginTop: "300px" }}>
+
+                        <div className="loader">
+
+                            <div className="outer"></div>
+                            <div className="middle"></div>
+                            <div className="inner"></div>
+                        </div>
                     </div>
                 </Modal.Body>
             </Modal>

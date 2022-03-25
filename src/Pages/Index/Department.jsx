@@ -46,85 +46,85 @@ function Department() {
                                 </div>
                             ))}
                         </div>
-                        <div class="row">
-                            <div class="table-responsive table-sales">
-                                <table class="table">
+                        <div className="row">
+                            <div className="table-responsive table-sales">
+                                <table className="table">
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>USA</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 2.920
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 53.23%
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>Germany</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 1.300
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 20.43%
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>Australia</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 760
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 10.35%
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>United Kingdom</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 690
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 7.87%
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>Romania</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 600
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 5.94%
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <div class="flag">
+                                                <div className="flag">
                                                 </div>
                                             </td>
                                             <td>Brasil</td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 550
                                             </td>
-                                            <td class="text-right">
+                                            <td className="text-right">
                                                 4.34%
                                             </td>
                                         </tr>
