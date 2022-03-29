@@ -8,15 +8,19 @@ const Qec = () => {
     const [question, setQuestion] = useState(0);
     const [show, setShow] = useState(false);
     const [score, setScore] = useState(1);
+    const [button, setButton] = useState([])
     console.log(show)
     const answerClick = () => {
         const nextQuestion = question + 1;
-        if (nextQuestion < myData.length) {
+
+        if(button === "agree"){
+            setScore(20)
+            console.log(score)
+        }
+        if (nextQuestion <= myData.length) {
             setShow(false);
             setQuestion(nextQuestion);
-        } else {
-            setQuestion(20);
-        }
+        } 
     };
     const result = (isCorrect) => {
         if (!isCorrect) {
@@ -51,7 +55,7 @@ const Qec = () => {
                                                     <div className="social text-center">
                                                         {myData[question].answer.map((data) => {
                                                             return (
-                                                                <button className="btn btn-round btn-twitter" onClick={result}
+                                                                <button className="btn btn-round btn-twitter" onClick={(e)=>setButton(e.target.value)}
                                                                     value={data}
                                                                 >
                                                                     {data}

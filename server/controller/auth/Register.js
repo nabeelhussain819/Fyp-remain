@@ -47,8 +47,49 @@ exports.register = async (req, res, next) => {
   } else if (student.test(term)) {
     const User = new user(req.body);
     await User.save();
-    res.status(200).json({ message: "registerd" });
+    res.send(User);
   } else {
     return res.status(400).json({ error: "ID isnot valid" });
+  }
+};
+exports.addDepartment = async (req, res, next) => {
+  const { deptId, userId } = req.body;
+  if (!deptId || !userId) {
+    return res
+      .status(400)
+      .json({ error: "An account with this email already exists." });
+  } else {
+    res.status(200).json({ message: "registerd" });
+    const User = await user.findById({ _id: userId });
+    User.deptId.push(req.body.deptId);
+    await User.save();
+  }
+};
+exports.addProgram = async (req, res, next) => {
+  const { programId, userId } = req.body;
+  if (!programId || !userId) {
+    return res
+      .status(400)
+      .json({ error: "An account with this email already exists." });
+  } else {
+    res.status(200).json({ message: "registerd" });
+    const User = await user.findById({ _id: userId });
+    User.programId.push(programId);
+
+    await User.save();
+  }
+};
+exports.addSemester = async (req, res, next) => {
+  const { semesterId, userId } = req.body;
+  if (!semesterId || !userId) {
+    return res
+      .status(400)
+      .json({ error: "An account with this email already exists." });
+  } else {
+    res.status(200).json({ message: "registerd" });
+    const User = await user.findById({ _id: userId });
+    User.semesterId.push(semesterId);
+
+    await User.save();
   }
 };

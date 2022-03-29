@@ -12,29 +12,7 @@
   },
   {
     "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
-    "question": "Individual class meetings were well prepared",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
     "question": "The instructor used class time effectively",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
-    "question": "The instructor was organized, well prepared, and used class time efficiently",
     "answer": [
       "Strongly Agree",
       "Agree",
@@ -78,40 +56,7 @@
   },
   {
     "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
-    "question": "The instructor effectively organized and facilitated well-run learning activities",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
     "question": "The instructor’s teaching methods were effective",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
-    "question": "The instructor’s teaching methods aided my learning",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Teaching methods, Strategies practices and clarity",
-    "question": "The instructor stimulated my interest in the subject matter",
     "answer": [
       "Strongly Agree",
       "Agree",
@@ -265,28 +210,6 @@
   },
   {
     "category": "Instructor Specific Personal/Connection -Clarity and Engagement",
-    "question": "The instructional materials (i.e., books, readings, handouts, study guides, lab manuals, multimedia, software) increased my knowledge and skills in the subject matter",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Personal/Connection -Clarity and Engagement",
-    "question": "The text and assigned readings were valuable.The workload consisted of less than two hours outside of the classroom for each hour in class",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Personal/Connection -Clarity and Engagement",
     "question": "The course workload and requirements were appropriate for the course level",
     "answer": [
       "Strongly Agree",
@@ -299,17 +222,6 @@
   {
     "category": "Instructor Specific Personal/Connection -Clarity and Engagement",
     "question": "The course was organized in a manner that helped me understand underlying concepts",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Instructor Specific Personal/Connection -Clarity and Engagement",
-    "question": "The course assignments (readings, assigned problems, laboratory experiments, videos, etc.) facilitated my learning",
     "answer": [
       "Strongly Agree",
       "Agree",
@@ -474,28 +386,6 @@
   },
   {
     "category": "Student Engagement and Involvement",
-    "question": "This course gave me confidence to do more advanced work in the subject",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
-    "question": "I believe that what I am being asked to learn in this course is important",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
     "question": "The readings were appropriate to the goals of the course",
     "answer": [
       "Strongly Agree",
@@ -507,40 +397,7 @@
   },
   {
     "category": "Student Engagement and Involvement",
-    "question": "The written assignments contributed to my knowledge of the course material and understanding of the subject",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
     "question": "Expectations for student learning were clearly defined",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
-    "question": "Student learning was fairly assessed (e.g., through quizzes, exams, projects, and other graded work)",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
-    "question": "Exams/assignments were a fair assessment of my knowledge of the course material",
     "answer": [
       "Strongly Agree",
       "Agree",
@@ -573,249 +430,7 @@
   },
   {
     "category": "Student Engagement and Involvement",
-    "question": "The examinations/projects measured my knowledge of the course material.This course was challenging",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Engagement and Involvement",
     "question": "This course made me think",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "This course helped me {develop intellectual and critical thinking skill}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "This course improved my ability to {evaluate arguments}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "This course helped me {argue effectively}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "My ability to {identify, formulate, and solve problems} has increased",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "My understanding of {basic chemical transformations, reactivity, and properties} has increased",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "My ability to {recognize the relationship between structure, bonding, and the properties of molecules and materials} has increased",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "I am capable of {locating, evaluating, and using information in the literature}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "I am confident in my ability to {communicate chemical knowledge effectively}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "I understand {professional and ethical responsibility related to data storage}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "This course helped me analyze {relations among individual, civil society, political institution, and countries}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "The coursed helped me {further develop my writing ability}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "The course improved my {verbal communication skills}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "The course increased my ability to {collaborate and work in teams}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "Student Learning and Course Learning Outcomes",
-    "question": "The course increased my {intercultural knowledge and awareness to help me become a global citizen}",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "Do you have any specific recommendations for improving this course?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What are one to three specific things about the course or instructor that especially helped to support student learning?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What are the strengths of this course?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What parts of the course aided your learning the most?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What are one to three specific things about the course that could be improved to better support student learning?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What parts of the class were obstacles to your learning?",
-    "answer": [
-      "Strongly Agree",
-      "Agree",
-      "Neutral",
-      "Disagree",
-      "Strongly Disagree"
-    ]
-  },
-  {
-    "category": "General/Overall Rating",
-    "question": "What changes might improve your learning?",
     "answer": [
       "Strongly Agree",
       "Agree",

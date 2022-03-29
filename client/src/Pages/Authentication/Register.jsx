@@ -46,6 +46,8 @@ const Register = () => {
     if (res.status === 400 || !data) {
       toast.error("Invalid Credentials!");
     } else {
+      console.log(data)
+      localStorage.setItem("data", data._id)
       toast("register Successfully");
       navigate("/extendedForm");
     }

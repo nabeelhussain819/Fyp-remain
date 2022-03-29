@@ -11,6 +11,13 @@ const SemesterSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
+      required: false,
+    },
+  ],
+  programId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Program",
     },
   ],
   userId: [

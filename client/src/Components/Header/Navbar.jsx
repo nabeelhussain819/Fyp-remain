@@ -1,6 +1,7 @@
 import React from "react";
 import { FaSearch, FaThLarge, FaUserAlt } from "react-icons/fa";
 import Offcanvas from "./Offcanvas";
+import { Link } from "react-router-dom";
 import Example from "../Loader";
 
 function Navbar() {
@@ -10,9 +11,11 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
           <div className="container-fluid">
             <div className="navbar-wrapper">
-              <a className="navbar-brand" href="dashboard">
-                <FaThLarge /> Dashboard
-              </a>
+              <Link to="dashboard" >
+                <a className="navbar-brand text-white" href="">
+                  <FaThLarge /> Dashboard
+                </a>
+              </Link>
             </div>
             <button className="navbar-toggler">
               <Offcanvas />
@@ -26,22 +29,20 @@ function Navbar() {
                     className="form-control"
                     placeholder="Search..."
                   />
-                  <a className="nav-link" href="/">
-                    <i className="material-icons">
-                      <FaSearch />
-                    </i>
-                  </a>
                 </div>
               </form>
               <ul className="navbar-nav">
-                <li className="nav-item ">
-                  <a className="nav-link" href="profile">
-                    <i className="material-icons">
-                      <FaUserAlt />{" "}
-                    </i>
-                    Profile
-                  </a>
-                </li>
+                <Link to="profile" >
+                  <li className="nav-item ">
+                    <a className="nav-link text-white" href="">
+                      <i className="material-icons">
+                        <FaUserAlt />
+                      </i>
+                      Profile
+                    </a>
+                  </li>
+                </Link>
+
                 <li className="nav-item dropdown">
                   <Example />
                 </li>

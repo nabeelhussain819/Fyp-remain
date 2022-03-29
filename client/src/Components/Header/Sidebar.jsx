@@ -10,6 +10,7 @@ import {
   FaTasks,
   FaArchway,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import user from "../../Assets/user.png";
 function SideBar() {
   return (
@@ -19,14 +20,7 @@ function SideBar() {
         data-color="green"
         data-background-color="white"
       >
-        <div className="logo">
-          {/* <a href="/" className="simple-text logo-mini">
-            TSE
-          </a>
-          <a href="/" className="simple-text logo-normal">
-            Evaluate NOW!
-          </a> */}
-        </div>
+        <div className="logo"></div>
 
         <div className="sidebar-wrapper ">
           <div className="user">
@@ -34,88 +28,104 @@ function SideBar() {
               <img src={user} />
             </div>
             <div className="user-info">
-              <a href="profile" className="username">
-                Tania Andrew
+              <a href="" className="username">
+                <Link to="profile"> Tania Andrew</Link>
               </a>
             </div>
           </div>
 
           <ul className="nav">
             <p style={{ marginLeft: "30px" }} className="m-4 text-gray">
-              Main{" "}
+              Main
             </p>
-            <li className="nav-item ">
-              <a className="nav-link" href="dashboard">
-                <i className="material-icons">
-                  <FaThLarge />
-                </i>
-                <p> DASHBOARD</p>
-              </a>
-            </li>{" "}
+            <Link to="dashboard">
+              <li className="nav-item mb-4">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaThLarge />
+                  </i>
+                  <p> DASHBOARD</p>
+                </a>
+              </li>
+            </Link>
             <hr />
             <p style={{ marginLeft: "30px" }} className="m-4 text-gray">
-              Features{" "}
+              Feature
             </p>
-            <li className="nav-item ">
-              <a className="nav-link" href="program">
-                <i className="material-icons">
-                  <FaListOl />
-                </i>
-                <p> PROGRAMS</p>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="course">
-                <i className="material-icons">
-                  <FaBook />
-                </i>
-                <p> COURSES</p>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="department">
-                <i className="material-icons">
-                  <FaArchway />
-                </i>
-                <p> DEPARTMENTS</p>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="semester">
-                <i className="material-icons">
-                  <FaTasks />
-                </i>
-                <p> SEMESTERS</p>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="rating">
-                <i className="material-icons">
-                  <FaCalendarCheck />
-                </i>
-                <p> QEC RESULTS</p>
-              </a>
-            </li>
+            <Link to="program">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaListOl />
+                  </i>
+                  <p> PROGRAMS</p>
+                </a>
+              </li>
+            </Link>
+            <Link to="course">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaBook />
+                  </i>
+                  <p> COURSES</p>
+                </a>
+              </li>
+            </Link>
+            <Link to="department">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaArchway />
+                  </i>
+                  <p> DEPARTMENTS</p>
+                </a>
+              </li>
+            </Link>
+            <Link to="semester">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaTasks />
+                  </i>
+                  <p> SEMESTERS</p>
+                </a>
+              </li>
+            </Link>
+            <Link to="rating">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaCalendarCheck />
+                  </i>
+                  <p> QEC RESULTS</p>
+                </a>
+              </li>
+            </Link>
             <hr />
             <p style={{ marginLeft: "30px" }} className="m-4 text-gray">
-              Users{" "}
+              Users
             </p>
-            <li className="nav-item ">
-              <a className="nav-link" href="teacher">
-                <i className="material-icons">
-                  <FaUserTie />
-                </i>
-                <p> TEACHERS</p>
-              </a>
-            </li>
-            <li className="nav-item ">
-              <a className="nav-link" href="user">
-                <i className="material-icons">
-                  <FaUserGraduate />
-                </i>
-                <p> STUDENTS</p>
-              </a>
-            </li>
+            <Link to="teacher">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaUserTie />
+                  </i>
+                  <p> TEACHERS</p>
+                </a>
+              </li>
+            </Link>
+            <Link to="user">
+              <li className="nav-item mb-3 ">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaUserGraduate />
+                  </i>
+                  <p> STUDENTS</p>
+                </a>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>

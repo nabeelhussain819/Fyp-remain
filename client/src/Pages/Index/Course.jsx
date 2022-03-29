@@ -4,8 +4,9 @@ import { Container, Accordion } from "react-bootstrap";
 function Course() {
   const [courses, setCourses] = useState([]);
   const getData = async () => {
-    const response = await fetch("http://localhost:5000/courses");
-    setCourses(await response.json());
+
+    const response = await( await fetch("http://localhost:5000/courses")).json();
+    setCourses(response);
   };
   useEffect(() => {
     getData();
@@ -16,8 +17,13 @@ function Course() {
         <div className="main-panel">
           <div className="content">
             <div className="container-fluid">
-              <div className="col-md-6 ">
-                <h3> Courses</h3>
+              <div className="col-md-12 ">
+              <h3>
+                  Courses
+                  <a href="courseCreate" style={{ float: "right" }}>
+                    Add Course
+                  </a>
+                </h3>
                 <p>
                   <small>
                     <a href="">Home</a> / <small> Courses</small>
@@ -26,13 +32,13 @@ function Course() {
               </div>
             </div>
             <div className="row">
-              {Object.entries(Course).map((data) => {
+              {courses.map((data) => {
                 return (
                   <>
                     <div className="col-md-4">
                       <div className="card card-chart" data-count="0">
                         <div className="card-body">
-                          <h4 className="card-title">Daily Sales</h4>
+                          <h4 className="card-title">{data.subjects}</h4>
                           <p className="card-category">
                             <span className="text-success">
                               <i className="fa fa-long-arrow-up"></i> 55%{" "}

@@ -36,23 +36,23 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  deptId: {
+  deptId: [{
     type: Schema.Types.ObjectId,
     ref: "Depart",
-    default: null,
-  },
+    required: false,
+  }],
   semesterId: [
     {
       type: Schema.Types.ObjectId,
       ref: "Semester",
-      default: null,
+      required: false,
     },
   ],
-  programId: {
+  programId: [{
     type: Schema.Types.ObjectId,
     ref: "Program",
-    default: null,
-  },
+    required: false,
+  },],
   tokens: [
     {
       token: {

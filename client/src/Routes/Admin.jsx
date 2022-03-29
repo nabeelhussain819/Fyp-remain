@@ -8,8 +8,11 @@ import Department from "../Pages/Index/Department";
 import Program from "../Pages/Index/Program";
 import Semester from "../Pages/Index/Semester";
 import Teachers from "../Pages/Index/Teacher";
-import AllCreate from "../Pages/Create/AllCreate";
 import { Profile } from "../Pages/Profile/Profile";
+import DepartmentCreate from "../Pages/Create/Department";
+import CourseCreate from "../Pages/Create/Course";
+import ProgramCreate from "../Pages/Create/Program";
+import SemesterCreate from "../Pages/Create/Semester";
 
 function Admin() {
   return (
@@ -24,8 +27,11 @@ function Admin() {
           <Route path="/course" element={<Course />} />
           <Route path="/teacher" element={<Teachers />} />
           <Route path="/department" element={<Department />} />
-          <Route path="/create" element={<AllCreate />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/departmentCreate" element={<DepartmentCreate />} />
+          <Route path="/programCreate" element={<ProgramCreate />} />
+          <Route path="/courseCreate" element={<CourseCreate />} />
+          <Route path="/semesterCreate" element={<SemesterCreate />} />
         </Routes>
       </Fragment>
     </>

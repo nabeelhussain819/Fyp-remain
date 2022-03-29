@@ -26,6 +26,7 @@ const Login = () => {
     } else if (res.status === 401) {
       toast.warning("Your Email is not verified");
     } else {
+      console.log(data)
       toast.success("Logged In Successfully");
       const name = data.name.name;
       const id = data.name._id;

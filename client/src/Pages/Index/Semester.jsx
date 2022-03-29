@@ -16,8 +16,12 @@ function Semester() {
         <div className="main-panel">
           <div className="content">
             <div className="container-fluid">
-              <div className="col-md-6 ">
-                <h3> Semesters</h3>
+              <div className="col-md-12 ">
+                <h3> Semesters
+                <a href="semesterCreate" style={{ float: "right" }}>
+                    Add Semester
+                  </a>
+                  </h3>
                 <p>
                   <small>
                     <a href="">Home</a> / <small> Semesters</small>

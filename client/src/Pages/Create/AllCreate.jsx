@@ -93,7 +93,7 @@ export default function Allcreate() {
 function ProgramCreate(props) {
   const [data, setdata] = useState([]);
   const [result, setResult] = useState([]);
-  const [isSemester, setIsSemester] = useState(false);
+  const [isCourse, setIsCourse] = useState(false);
   const [prog, setProg] = useState([]);
   const registerProgram = async (e) => {
     e.preventDefault();
@@ -110,7 +110,7 @@ function ProgramCreate(props) {
     } else if (res.status === 401) {
       toast.warning("Invalid entry!");
     } else {
-      setIsSemester(true);
+      setIsCourse(true);
       toast.success("Department Created Successfully");
     }
   };
@@ -135,8 +135,8 @@ function ProgramCreate(props) {
   console.log(props.data);
   return (
     <>
-      {isSemester === true ? (
-        <SemesterCreate data={prog} department={props.data} />
+      {isCourse === true ? (
+        <CourseCreate data={prog} department={props.data} />
       ) : (
         <>
           <div className="container mb-4">
@@ -217,132 +217,7 @@ function ProgramCreate(props) {
     </>
   );
 }
-function SemesterCreate(props) {
-  const [isCourse, setIsCourse] = useState(false);
-  const [data, setdata] = useState([]);
-  const [result, setResult] = useState([]);
-  const [formValues, setFormValues] = useState([{ subject: "" }]);
 
-  const [semester, setSemester] = useState([]);
-  const registerSemester = async (e) => {
-    e.preventDefault();
-    const res = await fetch("http://localhost:5000/createSemester", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        semester,
-      }),
-    });
-    const data = await res.json();
-    if (res.status === 400 || !data) {
-      toast.warning("Invalid Credentials");
-    } else if (res.status === 401) {
-      toast.warning("Invalid entry!");
-    } else {
-      setIsCourse(true);
-      toast.success("Department Created Successfully");
-    }
-  };
-  let addFormFields = () => {
-    const obj = {};
-    setResult(data, obj);
-    console.log(result);
-    setFormValues([...formValues, { subject: "" }]);
-  };
-
-  let removeFormFields = (i) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(i, 1);
-    setFormValues(newFormValues);
-  };
-  let handleSubmit = (event) => {
-    event.preventDefault();
-    alert(JSON.stringify(formValues));
-  };
-  return (
-    <>
-      {isCourse === true ? (
-        <CourseCreate />
-      ) : (
-        <>
-          <div className="container">
-            <div className="table-responsive table-sales">
-              <table className="table">
-                <tbody>
-                  <tr>
-                    <td>
-                      <div className="flag"></div>
-                    </td>
-                    <td>Department</td>
-                    <td className="text-right">{props.department}</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="flag"></div>
-                    </td>
-                    <td>Program</td>
-                    <td className="text-right">{props.data}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <h2 className="card-title text-center">Add Semester</h2>
-          <div className="card">
-            <form className="" method="POST">
-              {formValues.map((element, index) => (
-                <>
-                  <div className="input-group">
-                    <div className="input-group-prepend ">
-                      <span className="input-group-text">Add Semester :</span>
-                    </div>
-
-                    <input
-                      type="text"
-                      name="subject"
-                      className="form-control text-center"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      required
-                      value={semester}
-                      onChange={(e) => setSemester(e.target.value)}
-                    />
-                    {index ? (
-                      <a
-                        type="button"
-                        className="mt-2 ml-2"
-                        onClick={() => removeFormFields(index)}
-                      >
-                        <FaTimesCircle size={22} className="text-danger" />
-                      </a>
-                    ) : null}
-
-                    <a
-                      className="mt-2 ml-2 text-success"
-                      type="button"
-                      onClick={() => addFormFields()}
-                    >
-                      <FaPlusCircle size={22} />
-                    </a>
-                  </div>
-                </>
-              ))}
-              <div className="text-center mb-4 ml-4 mr-4">
-                <a
-                  type="submit"
-                  className="btnLogin btn-primary btn-round mt-4"
-                  onClick={registerSemester}
-                >
-                  Get Started
-                </a>
-              </div>
-            </form>
-          </div>
-        </>
-      )}
-    </>
-  );
-}
 function CourseCreate(props) {
   const [formValues, setFormValues] = useState([{ subjects: "" }]);
   const [subjects, setSubjects] = useState([]);

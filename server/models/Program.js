@@ -6,12 +6,17 @@ const ProgramSchema = new Schema({
     type: String,
     required: true,
   },
-  semesterId: [
+  departmentId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Semes",
+      ref: "Depart",
     },
-  ],
+  ], 
+  semesterId:[{
+    type: Schema.Types.ObjectId,
+    ref: "Semes",
+    required: false,
+  }], 
   userId: [
     {
       type: Schema.Types.ObjectId,

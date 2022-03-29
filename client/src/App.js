@@ -29,7 +29,7 @@ function App() {
             </>
           ) : isAdmin ? (
             <>
-              {/* <Route exact path="/admin-panel/*" element={<Admin />} /> */}
+              <Route exact path="/admin-panel/*" element={<Admin />} />
             </>
           ) : isTeacher ? (
             <>
@@ -42,7 +42,8 @@ function App() {
               <Route exact path="/user/*" element={<User />} />
             </>
           )}
-          <Route exact path="/admin-panel/*" element={<Admin />} />
+
+
         </Routes>
       </BrowserRouter>
     </>

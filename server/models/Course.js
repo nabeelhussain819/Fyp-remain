@@ -5,6 +5,13 @@ const CoursestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  semesterId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Semes",
+      required: true,
+    },
+  ],
   code: {
     type: String,
     required: true,

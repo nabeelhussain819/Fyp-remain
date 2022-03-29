@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const app = express();
-const { register } = require("../controller/auth/Register");
+const { register, addDepartment, addProgram, addSemester } = require("../controller/auth/Register");
 const { login } = require("../controller/auth/Login");
 const { data } = require("../controller/auth/data/Student");
 const cors = require("cors");
@@ -40,5 +40,7 @@ router.route("/readProgram").get(readProgram);
 router.route("/semesters").get(readSemes);
 router.route("/courses").get(readCourse);
 router.route("/teacher").get(teacher);
-
+router.route("/addDepartment").post(addDepartment);
+router.route("/addProgram").post(addProgram);
+router.route("/addSemester").post(addSemester);
 module.exports = router;

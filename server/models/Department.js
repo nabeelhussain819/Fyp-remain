@@ -11,6 +11,7 @@ const DepartmentSchema = new mongoose.Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Program",
+        required: false,
       },
     ],
     userId: [

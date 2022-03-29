@@ -18,9 +18,8 @@ function Department() {
             <div className="container-fluid">
               <div className="col-md-12 ">
                 <h3>
-                  {" "}
-                  Departments{" "}
-                  <a href="create" style={{ float: "right" }}>
+                  Departments
+                  <a href="departmentCreate" style={{ float: "right" }}>
                     Add Department
                   </a>
                 </h3>
