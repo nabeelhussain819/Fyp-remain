@@ -17,35 +17,34 @@ function Semester() {
           <div className="content">
             <div className="container-fluid">
               <div className="col-md-12 ">
-                <h3> Semesters
-                <a href="semesterCreate" style={{ float: "right" }}>
+                <h3>
+                  {" "}
+                  Semesters
+                  <a href="semesterCreate" style={{ float: "right" }}>
                     Add Semester
                   </a>
-                  </h3>
+                </h3>
                 <p>
                   <small>
-                    <a href="">Home</a> / <small> Semesters</small>
+                    <a href="dashboard">Home</a> / <small> Semesters</small>
                   </small>
                 </p>
               </div>
             </div>
             <div className="row">
-              {Array.from({ length: 3 }).map((_, idx) => (
+              {semester.map((data) => (
                 <div className="col-md-4">
                   <div className="card card-chart" data-count="0">
                     <div className="card-body">
-                      <h4 className="card-title">Daily Sales</h4>
+                      <h4 className="card-title">semester-{data.semester}</h4>
                       <p className="card-category">
-                        <span className="text-success">
-                          <i className="fa fa-long-arrow-up"></i> 55%{" "}
-                        </span>{" "}
-                        increase in today sales.
+                        <span className="text-success">Program Name :</span>
+                        {data.programId.prog}
                       </p>
                     </div>
                     <div className="card-footer">
                       <div className="stats">
-                        <i className="material-icons">access_time</i> updated 4
-                        minutes ago
+                        <p>Total Number Of Courses {data.courseId.length}</p>
                       </div>
                     </div>
                   </div>
@@ -55,17 +54,27 @@ function Semester() {
             <div className="row">
               <div className="table-responsive table-sales">
                 <table className="table">
+                  <thead>
+                    <tr>
+                      <td></td>
+                      <td>Semester</td>
+                      <td className="text-right">total Courses</td>
+                      <td className="text-right">total Students</td>
+                    </tr>
+                  </thead>
                   <tbody>
-                    {Object.entries(semester).map((data) => {
+                    {semester.map((data) => {
                       return (
                         <>
                           <tr>
                             <td>
                               <div className="flag"></div>
                             </td>
-                            <td>USA</td>
-                            <td className="text-right">2.920</td>
-                            <td className="text-right">53.23%</td>
+                            <td>semester-{data.semester}</td>
+                            <td className="text-right">
+                              {data.courseId.length}
+                            </td>
+                            <td className="text-right">{data.userId.length}</td>
                           </tr>
                         </>
                       );

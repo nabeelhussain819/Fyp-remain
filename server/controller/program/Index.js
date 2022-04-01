@@ -4,6 +4,7 @@ exports.readProgram = async (req, res) => {
   program
     .find({})
     .populate("semesterId")
+    .populate("departmentId")
     .populate("userId")
     .populate("teacherId")
     .exec((err, data) => {

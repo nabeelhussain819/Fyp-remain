@@ -7,7 +7,7 @@ export default function ProgramCreate() {
   const [prog, setProg] = useState([]);
   const [departmentId, setDepartmentId] = useState("");
   const [depart, setDepart] = useState([]);
-  
+
   const registerProgram = async (e) => {
     e.preventDefault();
     const res = await fetch("http://localhost:5000/createProgram", {
@@ -62,29 +62,24 @@ export default function ProgramCreate() {
                       <div className="form-group has-default bmd-form-group ">
                         <div className="input-group">
                           <div className="col-md-12 text-center mb-3">
-                            <span className=" pr-6  ">
-                              Select Department :
-                            </span>  
-                            </div>     
-                              <select
-                                className="form-select text-center mb-4"
-                                value={departmentId}
-                                onChange={(e) =>
-                                  setDepartmentId(e.target.value)
-                                }
-                              >     
-                              <option disabled>----select-one----</option>                          
-                                {depart.map((data) => {
-                                  return (
-                                    <>
-                                      <option value={data._id}>
-                                        {data.department}
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                              </select>
-                              
+                            <span className=" pr-6  ">Select Department :</span>
+                          </div>
+                          <select
+                            className="form-select text-center mb-4"
+                            value={departmentId}
+                            onChange={(e) => setDepartmentId(e.target.value)}
+                          >
+                            <option disabled>----select-one----</option>
+                            {depart.map((data) => {
+                              return (
+                                <>
+                                  <option className="option" value={data._id}>
+                                    {data.department}
+                                  </option>
+                                </>
+                              );
+                            })}
+                          </select>
                         </div>
                         <div className="input-group">
                           <div className="input-group-prepend ">

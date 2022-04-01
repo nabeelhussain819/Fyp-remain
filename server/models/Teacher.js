@@ -31,11 +31,7 @@ const TeacherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  verify: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+
   deptId: {
     type: Schema.Types.ObjectId,
     ref: "Depart",
@@ -44,11 +40,24 @@ const TeacherSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "Program",
   },
+  sessionId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Session",
+    },
+  ],
   courseId: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course",
-      default: false,
+      required: false,
+    },
+  ],
+  rating: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "TeacherRating",
+      required: false,
     },
   ],
   tokens: [

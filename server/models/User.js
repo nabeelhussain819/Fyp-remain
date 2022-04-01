@@ -27,20 +27,36 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  verify: {
-    type: Boolean,
-    required: true,
-    default: false,
+
+  cgpa: {
+    type: String,
+    required: false,
   },
+  sessionId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Session",
+      required: false,
+    },
+  ],
+  rating: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "StudentRating",
+      required: false,
+    },
+  ],
   isTeacher: {
     type: Boolean,
     default: false,
   },
-  deptId: [{
-    type: Schema.Types.ObjectId,
-    ref: "Depart",
-    required: false,
-  }],
+  deptId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Depart",
+      required: false,
+    },
+  ],
   semesterId: [
     {
       type: Schema.Types.ObjectId,
@@ -48,11 +64,13 @@ const UserSchema = new mongoose.Schema({
       required: false,
     },
   ],
-  programId: [{
-    type: Schema.Types.ObjectId,
-    ref: "Program",
-    required: false,
-  },],
+  programId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Program",
+      required: false,
+    },
+  ],
   tokens: [
     {
       token: {

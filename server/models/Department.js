@@ -3,10 +3,17 @@ const { Schema } = require("mongoose");
 
 const DepartmentSchema = new mongoose.Schema(
   {
-    department: {
+    name: {
       type: String,
       required: true,
     },
+    sessionId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Session",
+        required: false,
+      },
+    ],
     programId: [
       {
         type: Schema.Types.ObjectId,
@@ -32,6 +39,6 @@ const DepartmentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const depart = mongoose.model("Depart", DepartmentSchema);
+const department = mongoose.model("Department", DepartmentSchema);
 
-module.exports = depart;
+module.exports = department;

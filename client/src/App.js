@@ -42,8 +42,6 @@ function App() {
               <Route exact path="/user/*" element={<User />} />
             </>
           )}
-
-
         </Routes>
       </BrowserRouter>
     </>

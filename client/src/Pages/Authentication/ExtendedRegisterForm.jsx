@@ -128,10 +128,15 @@ function Program(props) {
       await fetch("http://localhost:5000/departments")
     ).json();
     setProgram(response);
+    // const red = program.map((data) => {
+    //   return data._id;
+    // });
+    // const purple = red.map((data) => {
+    //   return data === props.data ? data : null;
+    // });
     setUserId(localStorage.getItem("data"));
   };
   const next = async () => {
-    console.log(programId);
     const res = await fetch("http://localhost:5000/addProgram", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -181,7 +186,14 @@ function Program(props) {
                                     <td>
                                       <div className="flag"></div>
                                     </td>
-                                    <td>Program : </td>
+                                    <td>
+                                      Program : {data.department}
+                                      {/* {Object.entries(data.departmentId).map(
+                                        ([data, i]) => {
+                                          return console.log(i.department);
+                                        }
+                                      )} */}
+                                    </td>
                                     <td className="text-right">
                                       <button
                                         type="submit"

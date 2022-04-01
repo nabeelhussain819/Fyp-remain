@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Accordion } from "react-bootstrap";
 
 function Department() {
-  const [depart, setDepart] = useState("");
+  const [depart, setDepart] = useState([]);
   const getData = async () => {
     const response = await fetch("http://localhost:5000/departments");
     setDepart(await response.json());
@@ -25,28 +25,27 @@ function Department() {
                 </h3>
                 <p>
                   <small>
-                    <a href="">Home</a> / <small> Departments</small>
+                    <a href="dashboard">Home</a> / <small> Departments</small>
                   </small>
                 </p>
               </div>
             </div>
             <div className="row">
-              {Array.from({ length: 3 }).map((_, idx) => (
+              {depart.map((data) => (
                 <div className="col-md-4">
                   <div className="card card-chart" data-count="0">
                     <div className="card-body">
-                      <h4 className="card-title ">Daily Sales</h4>
+                      <h4 className="card-title ">
+                        Department : {data.department}
+                      </h4>
                       <p className="card-category">
-                        <span className="text-success">
-                          <i className="fa fa-long-arrow-up"></i> 55%{" "}
-                        </span>{" "}
-                        increase in today sales.
+                        <span className="text-success">Total Programs</span>{" "}
+                        {data.programId.length}
                       </p>
                     </div>
                     <div className="card-footer">
                       <div className="stats">
-                        <i className="material-icons">access_time</i> updated 4
-                        minutes ago
+                        <p>Total Students {data.userId.length}</p>
                       </div>
                     </div>
                   </div>
@@ -65,7 +64,7 @@ function Department() {
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(depart).map(([i, item]) => {
+                    {depart.map((item) => {
                       return (
                         <>
                           <tr>

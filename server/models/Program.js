@@ -2,21 +2,29 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ProgramSchema = new Schema({
-  prog: {
+  name: {
     type: String,
     required: true,
   },
+  sessionId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Session",
+    },
+  ],
   departmentId: [
     {
       type: Schema.Types.ObjectId,
       ref: "Depart",
     },
-  ], 
-  semesterId:[{
-    type: Schema.Types.ObjectId,
-    ref: "Semes",
-    required: false,
-  }], 
+  ],
+  semesterId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Semes",
+      required: false,
+    },
+  ],
   userId: [
     {
       type: Schema.Types.ObjectId,

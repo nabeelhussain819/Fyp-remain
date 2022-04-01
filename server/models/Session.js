@@ -1,21 +1,25 @@
 const mongoose = require("mongoose");
-const { Schema } = require("mongoose");
-const CoursestSchema = new mongoose.Schema({
+const Schema = mongoose.Schema;
+
+const SessionSchema = new Schema({
   name: {
-    type: String,
+    type: text,
     required: true,
   },
-  semesterId: [
+  departmentId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Semes",
-      required: true,
+      ref: "Department",
+      required: false,
     },
   ],
-  code: {
-    type: String,
-    required: true,
-  },
+  programId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Program",
+      required: false,
+    },
+  ],
   userId: [
     {
       type: Schema.Types.ObjectId,
@@ -31,6 +35,7 @@ const CoursestSchema = new mongoose.Schema({
     },
   ],
 });
-const course = mongoose.model("Course", CoursestSchema);
 
-module.exports = course;
+const sessions = mongoose.model("Session", SessionSchema);
+
+module.exports = sessions;

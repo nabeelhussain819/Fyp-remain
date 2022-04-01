@@ -38,18 +38,20 @@ function Program() {
                   <div className="col-md-4">
                     <div className="card card-chart" data-count="0">
                       <div className="card-body">
-                        <h4 className="card-title">{item.prog}</h4>
+                        <h4 className="card-title">
+                          Program Name : {item.prog}
+                        </h4>
                         <p className="card-category">
-                          <span className="text-success">
-                            <i className="fa fa-long-arrow-up"></i> 55%{" "}
-                          </span>{" "}
-                          increase in today sales.
+                          <span className="text-success">Department </span>
+                          {item.departmentId.department}
                         </p>
                       </div>
                       <div className="card-footer">
                         <div className="stats">
-                          <i className="material-icons">access_time</i> updated
-                          4 minutes ago
+                          <p>
+                            Total Students in {item.prog} is{" "}
+                            {item.userId.length}
+                          </p>
                         </div>
                       </div>
                     </div>

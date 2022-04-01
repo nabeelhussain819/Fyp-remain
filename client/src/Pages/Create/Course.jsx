@@ -7,6 +7,7 @@ export default function CourseCreate() {
   const [subjects, setSubjects] = useState([]);
   const [semesterId, setSemesterId] = useState("");
   const [semester, setSemester] = useState([]);
+  const [formValues, setFormValues] = useState([{ subject: "" }]);
 
   const registerCourse = async (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ export default function CourseCreate() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         subjects,
-        semesterId
+        semesterId,
       }),
     });
     const data = await res.json();
@@ -24,8 +25,19 @@ export default function CourseCreate() {
     } else if (res.status === 401) {
       toast.warning("Invalid entry!");
     } else {
+      setFormValues([...formValues, { subject: "" }]);
       toast.success("Course Created Successfully");
     }
+  };
+
+  let removeFormFields = (i) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(i, 1);
+    setFormValues(newFormValues);
+  };
+  let handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(formValues));
   };
   const getData = async () => {
     const response = await (
@@ -51,74 +63,87 @@ export default function CourseCreate() {
                 </p>
               </div>
             </div>
-              <div className="col-md-12">
-                <h2 className="card-title text-center">Add Course</h2>
-                <div className="card card-signup">
-                  <div className="card-body">
-                    <div className="col-md-12">
-                      <form className="form">
-                        <div className="form-group has-default bmd-form-group ">
-                        <div className="input-group">
-                          <div className="col-md-12 text-center mb-3">
-                            <span className=" pr-6  ">
-                              Select Semester :
-                            </span>  
-                            </div>     
+            <div className="col-md-12">
+              <h2 className="card-title text-center">Add Course</h2>
+              <div className="card card-signup">
+                <div className="card-body">
+                  <div className="col-md-12">
+                    <form className="form">
+                      <div className="form-group has-default bmd-form-group ">
+                        {formValues.map((element, index) => (
+                          <>
+                            <div className="input-group">
+                              <div className="col-md-12 text-center mb-3">
+                                <span className=" pr-6  ">
+                                  Select Semester :
+                                </span>
+                              </div>
                               <select
                                 className="form-select text-center mb-4"
                                 value={semesterId}
-                                onChange={(e) =>
-                                  setSemesterId(e.target.value)
-                                }
-                              >     
-                              <option disabled>----select-one----</option>                          
+                                onChange={(e) => setSemesterId(e.target.value)}
+                              >
+                                <option disabled>----select-one----</option>
                                 {semester.map((data) => {
                                   return (
                                     <>
-                                      <option className="option" value={data._id}>
+                                      <option
+                                        className="option"
+                                        value={data._id}
+                                      >
                                         {data.programId.prog}--{data.semester}
                                       </option>
                                     </>
                                   );
                                 })}
                               </select>
-                              
-                        </div>
-                          <div className="input-group">
-                            <div className="input-group-prepend ">
-                              <span className="input-group-text pr-6 ">
-                                Course Name :
-                              </span>
                             </div>
-                            <input
-                              type="text"
-                              name="subject"
-                              className="form-control text-center mr-4 "
-                              id="exampleInputEmail1"
-                              aria-describedby="emailHelp"
-                              required
-                              value={subjects}
-                              onChange={(e) => setSubjects(e.target.value)}
-                            />
-                          </div>
-                          <div className="text-center mb-4 ml-4 mr-4">
-                            <a
-                              type="submit"
-                              className="btnLogin btn-primary btn-round mt-4"
-                              onClick={registerCourse}
-                            >
-                              Get Started
-                            </a>
-                            <hr/>
-                            <p>Want to Add 
-                            <Link to="programCreate"> Program? </Link></p>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                            <div className="input-group">
+                              <div className="input-group-prepend ">
+                                <span className="input-group-text pr-6 ">
+                                  Course Name :
+                                </span>
+                              </div>
+                              <input
+                                type="text"
+                                name="subject"
+                                className="form-control text-center mr-4 "
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                required
+                                value={subjects}
+                                onChange={(e) => setSubjects(e.target.value)}
+                              />
+                              {index ? (
+                                <button
+                                  type="button"
+                                  className="btn-danger btn-round mt-4"
+                                  onClick={() => removeFormFields(index)}
+                                >
+                                  remove
+                                </button>
+                              ) : null}
+                              <button
+                                type="submit"
+                                className="btn-success btn-round mt-4"
+                                onClick={registerCourse}
+                              >
+                                Add!
+                              </button>
+                            </div>
+                          </>
+                        ))}
+                        <hr />
+                        <p className="text-center">
+                          Want to Add
+                          <Link to="programCreate"> Program? </Link>
+                        </p>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>

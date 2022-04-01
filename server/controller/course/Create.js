@@ -1,14 +1,14 @@
-const semes = require("../../models/Semester")
+const semes = require("../../models/Semester");
 const course = require("../../models/Course");
 
-
 exports.createCourse = async (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
   try {
     const data = {
-      subjects: req.body.subjects,
+      name: req.body.name,
       semesterId: req.body.semesterId,
       teacherId: req.body.teacherId,
+      userId: req.body.userId,
       code: (Math.random() + 1).toString(36).substring(5),
     };
     const Course = new course(data);
