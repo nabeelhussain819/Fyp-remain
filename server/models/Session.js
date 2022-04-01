@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const SessionSchema = new Schema({
   name: {
-    type: text,
+    type: String,
     required: true,
   },
   departmentId: [

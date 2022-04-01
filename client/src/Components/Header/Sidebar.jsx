@@ -82,6 +82,16 @@ function SideBar() {
                 </a>
               </li>
             </Link>
+            <Link to="sessionCreate">
+              <li className="nav-item mb-3">
+                <a className="nav-link" href="">
+                  <i className="material-icons">
+                    <FaArchway />
+                  </i>
+                  <p> Sessions</p>
+                </a>
+              </li>
+            </Link>
             <Link to="semester">
               <li className="nav-item mb-3">
                 <a className="nav-link" href="">

@@ -4,18 +4,20 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Form } from "react-bootstrap";
 export default function ProgramCreate() {
-  const [prog, setProg] = useState([]);
+  const [name, setName] = useState([]);
   const [departmentId, setDepartmentId] = useState("");
   const [depart, setDepart] = useState([]);
-
+  const [sessionId, setSessionId] = useState("");
+  console.log(sessionId)
   const registerProgram = async (e) => {
     e.preventDefault();
     const res = await fetch("http://localhost:5000/createProgram", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        prog,
+        name,
         departmentId,
+        sessionId
       }),
     });
     const data = await res.json();
@@ -27,14 +29,14 @@ export default function ProgramCreate() {
       toast.success("Program Created Successfully");
     }
   };
-  console.log(departmentId);
-  const getData = async () => {
-    const response = await (
-      await fetch("http://localhost:5000/departments")
-    ).json();
-    setDepart(response);
-  };
   useEffect(() => {
+    const getData = async () => {
+      const response = await (
+        await fetch("http://localhost:5000/departments")
+      ).json();
+      setDepart(response);
+    };
+
     getData();
   }, []);
 
@@ -69,17 +71,45 @@ export default function ProgramCreate() {
                             value={departmentId}
                             onChange={(e) => setDepartmentId(e.target.value)}
                           >
-                            <option disabled>----select-one----</option>
+                            <option >----select-one----</option>
                             {depart.map((data) => {
                               return (
                                 <>
                                   <option className="option" value={data._id}>
-                                    {data.department}
+                                    {console.log(data.sessionId)}
+                                    {data.name}
                                   </option>
                                 </>
                               );
                             })}
                           </select>
+
+                        </div>
+                        <div className="input-group">
+                          <div className="col-md-12 text-center mb-3">
+                            <span className=" pr-6  ">Select Session :</span>
+                          </div>
+                          <select
+                            className="form-select text-center mb-4"
+                            value={sessionId}
+                            onChange={(e) => setSessionId(e.target.value)}
+                          >
+                            <option >----select-one----</option>
+                            {depart.map((data) => {
+                              return (
+                                <>   {Object.entries(data.sessionId).map(([i, index]) => {
+                                  return (
+                                    <option className="option" value={index._id}>
+                                      {index.name}
+                                    </option>
+                                  )
+                                })}
+
+                                </>
+                              );
+                            })}
+                          </select>
+
                         </div>
                         <div className="input-group">
                           <div className="input-group-prepend ">
@@ -94,8 +124,8 @@ export default function ProgramCreate() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             required
-                            value={prog}
-                            onChange={(e) => setProg(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                           />
                         </div>
                         <div className="text-center mb-4 ml-4 mr-4">

@@ -13,6 +13,7 @@ import DepartmentCreate from "../Pages/Create/Department";
 import CourseCreate from "../Pages/Create/Course";
 import ProgramCreate from "../Pages/Create/Program";
 import SemesterCreate from "../Pages/Create/Semester";
+import SessionCreate from "../Pages/Create/Session";
 
 function Admin() {
   return (
@@ -31,6 +32,7 @@ function Admin() {
           <Route path="/departmentCreate" element={<DepartmentCreate />} />
           <Route path="/programCreate" element={<ProgramCreate />} />
           <Route path="/courseCreate" element={<CourseCreate />} />
+          <Route path="/sessionCreate" element={<SessionCreate />} />
           <Route path="/semesterCreate" element={<SemesterCreate />} />
         </Routes>
       </Fragment>

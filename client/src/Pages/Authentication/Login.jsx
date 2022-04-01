@@ -58,7 +58,7 @@ const Login = () => {
         navigate("/admin-panel/dashboard");
         window.location.reload();
       } else if (localStorage.getItem("isTeacher")) {
-        navigate("/teaacher/dashboard");
+        navigate("/teacher/dashboard");
         window.location.reload();
       } else {
         navigate("/user/dashboard");

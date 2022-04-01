@@ -1,4 +1,4 @@
-const sessions = require("../../models/Sessions");
+const sessions = require("../../models/Session");
 const department = require("../../models/Department");
 
 exports.createSession = async (req, res) => {

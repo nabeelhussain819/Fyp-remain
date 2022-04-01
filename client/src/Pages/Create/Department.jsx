@@ -4,14 +4,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function DepartmentCreate() {
-  const [department, setDepartment] = useState([]);
+  const [name, setName] = useState([]);
   const registerDepartment = async (e) => {
     e.preventDefault();
     const res = await fetch("http://localhost:5000/createDepart", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        department,
+        name,
       }),
     });
     const data = await res.json();
@@ -39,45 +39,45 @@ export default function DepartmentCreate() {
                 </p>
               </div>
             </div>
-              <div className="col-md-12">
-                <h2 className="card-title text-center">Add Department</h2>
-                <div className="card card-signup">
-                  <div className="card-body">
-                    <div className="col-md-12">
-                      <form className="form" method="POST">
-                        <div className="form-group has-default bmd-form-group ">
-                          <div className="input-group">
-                            <div className="input-group-prepend ">
-                              <span className="input-group-text pr-6 ">
-                                Department Name :
-                              </span>
-                            </div>
-                            <input
-                              type="text"
-                              name="subject"
-                              className="form-control text-center mr-4 "
-                              id="exampleInputEmail1"
-                              aria-describedby="emailHelp"
-                              required
-                              value={department}
-                              onChange={(e) => setDepartment(e.target.value)}
-                            />
+            <div className="col-md-12">
+              <h2 className="card-title text-center">Add Department</h2>
+              <div className="card card-signup">
+                <div className="card-body">
+                  <div className="col-md-12">
+                    <form className="form" method="POST">
+                      <div className="form-group has-default bmd-form-group ">
+                        <div className="input-group">
+                          <div className="input-group-prepend ">
+                            <span className="input-group-text pr-6 ">
+                              Department Name :
+                            </span>
                           </div>
-                          <div className="text-center mb-4 ml-4 mr-4">
-                            <a
-                              type="submit"
-                              className="btnLogin btn-primary btn-round mt-4"
-                              onClick={registerDepartment}
-                            >
-                              Get Started
-                            </a>
-                          </div>
+                          <input
+                            type="text"
+                            name="subject"
+                            className="form-control text-center mr-4 "
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                          />
                         </div>
-                      </form>
-                    </div>
+                        <div className="text-center mb-4 ml-4 mr-4">
+                          <a
+                            type="submit"
+                            className="btnLogin btn-primary btn-round mt-4"
+                            onClick={registerDepartment}
+                          >
+                            Get Started
+                          </a>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
         </div>
       </div>

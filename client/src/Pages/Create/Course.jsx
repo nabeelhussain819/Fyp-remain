@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function CourseCreate() {
-  const [subjects, setSubjects] = useState([]);
+  const [name, setName] = useState([]);
   const [semesterId, setSemesterId] = useState("");
   const [semester, setSemester] = useState([]);
   const [formValues, setFormValues] = useState([{ subject: "" }]);
@@ -15,7 +15,7 @@ export default function CourseCreate() {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        subjects,
+        name,
         semesterId,
       }),
     });
@@ -91,7 +91,7 @@ export default function CourseCreate() {
                                         className="option"
                                         value={data._id}
                                       >
-                                        {data.programId.prog}--{data.semester}
+                                        {Object.entries(data.programId).map(([i, index]) => index.name)}--{data.name}
                                       </option>
                                     </>
                                   );
@@ -111,8 +111,8 @@ export default function CourseCreate() {
                                 id="exampleInputEmail1"
                                 aria-describedby="emailHelp"
                                 required
-                                value={subjects}
-                                onChange={(e) => setSubjects(e.target.value)}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                               />
                               {index ? (
                                 <button

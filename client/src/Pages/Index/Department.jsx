@@ -36,7 +36,7 @@ function Department() {
                   <div className="card card-chart" data-count="0">
                     <div className="card-body">
                       <h4 className="card-title ">
-                        Department : {data.department}
+                        Department : {data.name}
                       </h4>
                       <p className="card-category">
                         <span className="text-success">Total Programs</span>{" "}
@@ -71,7 +71,7 @@ function Department() {
                             <td>
                               <div className="flag"></div>
                             </td>
-                            <td>{item.department}</td>
+                            <td>{item.name}</td>
                             <td className="text-right">{item.userId.length}</td>
                             <td className="text-right">
                               {item.teacherId.length}

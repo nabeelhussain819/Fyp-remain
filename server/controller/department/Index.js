@@ -4,6 +4,7 @@ exports.readDept = async (req, res, next) => {
   depart
     .find({})
     .populate("programId")
+    .populate("sessionId")
     .populate("userId")
     .populate("teacherId")
     .exec((err, data) => {

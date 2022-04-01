@@ -32,18 +32,21 @@ const TeacherSchema = new mongoose.Schema({
     required: true,
   },
 
-  deptId: {
+  deptId: [{
     type: Schema.Types.ObjectId,
-    ref: "Depart",
-  },
-  programId: {
+    ref: "Department",
+    required: false,
+  }],
+  programId: [{
     type: Schema.Types.ObjectId,
     ref: "Program",
-  },
+    required: false,
+  }],
   sessionId: [
     {
       type: Schema.Types.ObjectId,
       ref: "Session",
+      required: false,
     },
   ],
   courseId: [

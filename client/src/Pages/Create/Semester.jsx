@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Form } from "react-bootstrap";
 
 export default function SemesterCreate() {
-  const [semester, setSemester] = useState([]);
+  const [name, setName] = useState([]);
   const [programId, setProgramId] = useState("");
   const [program, setProgram] = useState([]);
 
@@ -17,7 +17,7 @@ export default function SemesterCreate() {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        semester,
+        name,
         programId,
       }),
     });
@@ -27,7 +27,7 @@ export default function SemesterCreate() {
     } else if (res.status === 401) {
       toast.warning("Invalid entry!");
     } else {
-      toast.success("Program Created Successfully");
+      toast.success("Semester Created Successfully");
     }
   };
 
@@ -67,27 +67,26 @@ export default function SemesterCreate() {
                           <div className="col-md-12 text-center mb-3">
                             <span className=" pr-6  ">
                               Select Program :
-                            </span>  
-                            </div>     
-                              <select
-                                className="form-select text-center mb-4"
-                                onChange={(e) =>
-                                  setProgramId(e.target.value)
-                                }
-                              >     
-                                                     
-                                {program.map((data) => {
-                                  return (
-                                    <>
-                                     <option >----select-one----</option>  
-                                      <option value={data._id}>
-                                        {data.prog}
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                              </select>
-                              
+                            </span>
+                          </div>
+                          <select
+                            className="form-select text-center mb-4"
+                            onChange={(e) =>
+                              setProgramId(e.target.value)
+                            }
+                          >
+                            <option >----select-one----</option>
+                            {program.map((data) => {
+                              return (
+                                <>
+                                  <option className="option" value={data._id}>
+                                    {data.name}
+                                  </option>
+                                </>
+                              );
+                            })}
+                          </select>
+
                         </div>
                         <div className="input-group">
                           <div className="input-group-prepend ">
@@ -102,8 +101,8 @@ export default function SemesterCreate() {
                             id="exampleInputEmail1"
                             aria-describedby="emailHelp"
                             required
-                            value={semester}
-                            onChange={(e) => setSemester(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                           />
                         </div>
                         <div className="text-center mb-4 ml-4 mr-4">

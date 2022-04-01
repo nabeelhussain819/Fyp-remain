@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
   deptId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Depart",
+      ref: "Department",
       required: false,
     },
   ],

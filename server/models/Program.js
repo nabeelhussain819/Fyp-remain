@@ -15,7 +15,7 @@ const ProgramSchema = new Schema({
   departmentId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Depart",
+      ref: "Department",
     },
   ],
   semesterId: [
