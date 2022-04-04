@@ -88,7 +88,7 @@ function SideBar() {
                   <i className="material-icons">
                     <FaArchway />
                   </i>
-                  <p> Sessions</p>
+                  <p> SESSIONS</p>
                 </a>
               </li>
             </Link>
@@ -102,7 +102,7 @@ function SideBar() {
                 </a>
               </li>
             </Link>
-            <Link to="rating">
+            <Link to="qec">
               <li className="nav-item mb-3">
                 <a className="nav-link" href="">
                   <i className="material-icons">

@@ -3,12 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaRegEnvelope, FaUnlockAlt } from "react-icons/fa";
+import ReactTimeout from 'react-timeout'
 import NavBarLogin from "../../Components/Header/LoginNavbar";
+import Countdown from 'react-countdown';
 toast.configure();
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [on, setOn] = useState(false);
   const loginUser = async (e) => {
     e.preventDefault();
     const res = await fetch("http://localhost:5000/signin", {
@@ -64,14 +67,6 @@ const Login = () => {
         navigate("/user/dashboard");
         window.location.reload();
       }
-    }
-  };
-  const getLocalItem = () => {
-    let list = localStorage.getItem(email);
-    if (list) {
-      return JSON.parse(localStorage.getItem("list"));
-    } else {
-      return [];
     }
   };
   return (

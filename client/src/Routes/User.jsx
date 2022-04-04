@@ -6,6 +6,7 @@ import Dashboard from "../Pages/Dashboard/User";
 import Course from "../Pages/Index/Course";
 import Department from "../Pages/Index/Department";
 import Program from "../Pages/Index/Program";
+import Qec from "../Pages/Index/Qec";
 import Semester from "../Pages/Index/Semester";
 import Teachers from "../Pages/Index/Teacher";
 import { Profile } from "../Pages/Profile/Profile";
@@ -23,7 +24,7 @@ function User() {
           <Route path="/semester" element={<Semester />} />
           <Route path="/course" element={<Course />} />
           <Route path="/teacher" element={<Teachers />} />
-
+          <Route exact path="/qec" element={<Qec />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Fragment>

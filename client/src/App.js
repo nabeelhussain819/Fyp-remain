@@ -34,11 +34,11 @@ function App() {
           ) : isTeacher ? (
             <>
               <Route exact path="/teacher/*" element={<Teacher />} />
-              <Route exact path="/qe" element={<Qec />} />
+              
             </>
           ) : (
             <>
-              <Route exact path="/qe" element={<Qec />} />
+
               <Route exact path="/user/*" element={<User />} />
             </>
           )}

@@ -14,6 +14,7 @@ import CourseCreate from "../Pages/Create/Course";
 import ProgramCreate from "../Pages/Create/Program";
 import SemesterCreate from "../Pages/Create/Semester";
 import SessionCreate from "../Pages/Create/Session";
+import Qec from "../Pages/Index/Qec";
 
 function Admin() {
   return (
@@ -34,6 +35,7 @@ function Admin() {
           <Route path="/courseCreate" element={<CourseCreate />} />
           <Route path="/sessionCreate" element={<SessionCreate />} />
           <Route path="/semesterCreate" element={<SemesterCreate />} />
+          <Route exact path="/qec" element={<Qec />} />
         </Routes>
       </Fragment>
     </>

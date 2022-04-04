@@ -92,7 +92,7 @@ export default function SessionCreate() {
                                                         value={name}
                                                         onChange={(e) => setName(e.target.value)}
                                                     >
-                                                        <option disabled>----select-one----</option>
+                                                        <option >----select-one----</option>
                                                         <option className="option" value="Spring">
                                                             Spring
                                                         </option>
