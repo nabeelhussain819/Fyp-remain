@@ -39,6 +39,13 @@ const UserSchema = new mongoose.Schema({
       required: false,
     },
   ],
+  courseId: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
+      required: false,
+    },
+  ],
   rating: [
     {
       type: Schema.Types.ObjectId,
@@ -60,7 +67,7 @@ const UserSchema = new mongoose.Schema({
   semesterId: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Semester",
+      ref: "Semes",
       required: false,
     },
   ],

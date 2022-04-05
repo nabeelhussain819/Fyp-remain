@@ -156,6 +156,7 @@ function AddSession(props) {
         await fetch("http://localhost:5000/session")
       ).json();
       setSession(response);
+      console.log(props.data)
     };
     const Data = localStorage.getItem("teacher");
     const user = localStorage.getItem("user");
@@ -224,12 +225,6 @@ function Program(props) {
   const [Semester, setSemester] = useState(false);
   const [teacherId, setTeacherId] = useState("");
   const navigate = useNavigate()
-  // const red = program.map((data) => {
-  //   return data._id;
-  // });
-  // const purple = red.map((data) => {
-  //   return data === props.data ? data : null;
-  // });
 
   const next = async () => {
     const res = await fetch("http://localhost:5000/addProgram", {
@@ -262,6 +257,7 @@ function Program(props) {
         await fetch("http://localhost:5000/readProgram")
       ).json();
       setProgram(response);
+
     }
     const Data = localStorage.getItem("teacher");
     const user = localStorage.getItem("user");

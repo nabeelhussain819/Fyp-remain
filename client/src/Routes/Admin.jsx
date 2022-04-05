@@ -15,6 +15,7 @@ import ProgramCreate from "../Pages/Create/Program";
 import SemesterCreate from "../Pages/Create/Semester";
 import SessionCreate from "../Pages/Create/Session";
 import Qec from "../Pages/Index/Qec";
+import Students from "../Pages/Index/Students";
 
 function Admin() {
   return (
@@ -30,6 +31,7 @@ function Admin() {
           <Route path="/teacher" element={<Teachers />} />
           <Route path="/department" element={<Department />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/students" element={<Students />} />
           <Route path="/departmentCreate" element={<DepartmentCreate />} />
           <Route path="/programCreate" element={<ProgramCreate />} />
           <Route path="/courseCreate" element={<CourseCreate />} />

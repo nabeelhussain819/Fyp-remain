@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, Accordion } from "react-bootstrap";
+import SearchSemester from "../../Components/Search/Semester";
 
 function Semester() {
-  const [semester, setSemester] = useState([]);
-  const getData = async () => {
-    const response = await fetch("http://localhost:5000/semesters");
-    setSemester(await response.json());
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  const [name, setName] = useState("");
+  function searchData(e) {
+    let data = e.target.value.toLowerCase();
+    setName(data);
+  }
   return (
     <>
       <div className="wrapper ">
@@ -18,12 +16,21 @@ function Semester() {
             <div className="container-fluid">
               <div className="col-md-12 ">
                 <h3>
-                  {" "}
-                  Semesters
-                  <a href="semesterCreate" style={{ float: "right" }}>
-                    Add Semester
-                  </a>
-                </h3>
+                  Semester    </h3>
+                {localStorage.getItem("isAdmin") ? <a href="departmentCreate" style={{ float: "right" }}>
+                  Add Semester
+                </a> : <>
+                  <div className="input-group ">
+                    <input
+                      type="text"
+                      onChange={searchData}
+                      className="form-control"
+                      placeholder="Search..."
+                      name="search"
+                    />
+
+                  </div>
+                </>}
                 <p>
                   <small>
                     <a href="dashboard">Home</a> / <small> Semesters</small>
@@ -31,58 +38,7 @@ function Semester() {
                 </p>
               </div>
             </div>
-            <div className="row">
-              {semester.map((data) => (
-                <div className="col-md-4">
-                  <div className="card card-chart" data-count="0">
-                    <div className="card-body">
-                      <h4 className="card-title">semester-{data.semester}</h4>
-                      <p className="card-category">
-                        <span className="text-success">Program Name :</span>
-                        {data.programId.prog}
-                      </p>
-                    </div>
-                    <div className="card-footer">
-                      <div className="stats">
-                        <p>Total Number Of Courses {data.courseId.length}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="row">
-              <div className="table-responsive table-sales">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <td></td>
-                      <td>Semester</td>
-                      <td className="text-right">total Courses</td>
-                      <td className="text-right">total Students</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {semester.map((data) => {
-                      return (
-                        <>
-                          <tr>
-                            <td>
-                              <div className="flag"></div>
-                            </td>
-                            <td>semester-{data.semester}</td>
-                            <td className="text-right">
-                              {data.courseId.length}
-                            </td>
-                            <td className="text-right">{data.userId.length}</td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <SearchSemester searchData={name} />
           </div>
         </div>
       </div>

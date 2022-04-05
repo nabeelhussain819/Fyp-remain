@@ -52,12 +52,10 @@ function Dashboard() {
                     </div>
                     <div className="card-body">
                       <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-12">
                           <Chart />
                         </div>
-                        <div className="col-md-6 ml-auto mr-auto">
-                          <div id="worldMap"></div>
-                        </div>
+
                       </div>
                     </div>
                   </div>

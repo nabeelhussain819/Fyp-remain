@@ -1,6 +1,11 @@
 import React from "react";
 import user from "../../Assets/marc.jpg";
 export const Profile = () => {
+  const name = localStorage.getItem("data")
+  const phone = localStorage.getItem("phone")
+  const u_id = localStorage.getItem("u_id")
+  const email = localStorage.getItem("email")
+  const teacher = localStorage.getItem("isTeacher")
   return (
     <div className="wrapper ">
       <div className="main-panel">
@@ -12,7 +17,7 @@ export const Profile = () => {
                   <div className="card">
                     <div className="card-header card-header-icon card-header-rose">
                       <h4 className="card-title">
-                        {localStorage.getItem("data")} Profile
+                        {name} Profile
                       </h4>
                     </div>
                     <div className="card-body">
@@ -23,7 +28,7 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Username
                               </label>
-                              <input type="text" className="form-control" />
+                              <input type="text" className="form-control" value={name} disabled />
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -31,7 +36,7 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Email address
                               </label>
-                              <input type="email" className="form-control" />
+                              <input type="email" className="form-control" value={email} disabled />
                             </div>
                           </div>
                         </div>
@@ -41,7 +46,7 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Phone Number
                               </label>
-                              <input type="text" className="form-control" />
+                              <input type="text" className="form-control" value={phone} disabled />
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -49,7 +54,7 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Universit ID
                               </label>
-                              <input type="text" className="form-control" />
+                              <input type="text" className="form-control" value={u_id} disabled />
                             </div>
                           </div>
                         </div>
@@ -114,10 +119,13 @@ export const Profile = () => {
                       <img src={user} />
                     </div>
                     <div className="card-body">
-                      <h6 className="card-category text-gray">
-                        CEO / Co-Founder
-                      </h6>
-                      <h4 className="card-title">Alec Thompson</h4>
+                      {teacher ? <h6 className="card-category text-gray">
+                        Teacher
+                      </h6> : <h6 className="card-category text-gray">
+                        Student
+                      </h6>}
+
+                      <h4 className="card-title">{name}</h4>
                       <p className="card-description">
                         Don't be scared of the truth because we need to restart
                         the human foundation in truth And I love you like Kanye

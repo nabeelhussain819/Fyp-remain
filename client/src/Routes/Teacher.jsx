@@ -8,6 +8,7 @@ import Department from "../Pages/Index/Department";
 import Program from "../Pages/Index/Program";
 import Qec from "../Pages/Index/Qec";
 import Semester from "../Pages/Index/Semester";
+import Students from "../Pages/Index/Students";
 import Teachers from "../Pages/Index/Teacher";
 import { Profile } from "../Pages/Profile/Profile";
 function Teacher() {
@@ -21,6 +22,7 @@ function Teacher() {
           <Route path="/department" element={<Department />} />
           <Route path="/program" element={<Program />} />
           <Route path="/semester" element={<Semester />} />
+          <Route path="/students" element={<Students />} />
           <Route path="/course" element={<Course />} />
           <Route path="/teacher" element={<Teachers />} />
           <Route path="/profile" element={<Profile />} />

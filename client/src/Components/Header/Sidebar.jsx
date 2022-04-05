@@ -28,9 +28,7 @@ function SideBar() {
               <img src={user} />
             </div>
             <div className="user-info">
-              <a href="" className="username">
-                <Link to="profile"> Tania Andrew</Link>
-              </a>
+              <Link to="profile" className="username"> {localStorage.getItem("data")}'s Profile</Link>
             </div>
           </div>
 
@@ -82,7 +80,7 @@ function SideBar() {
                 </a>
               </li>
             </Link>
-            <Link to="sessionCreate">
+            {localStorage.getItem("isAdmin") && <Link to="sessionCreate">
               <li className="nav-item mb-3">
                 <a className="nav-link" href="">
                   <i className="material-icons">
@@ -91,7 +89,8 @@ function SideBar() {
                   <p> SESSIONS</p>
                 </a>
               </li>
-            </Link>
+            </Link>}
+
             <Link to="semester">
               <li className="nav-item mb-3">
                 <a className="nav-link" href="">
@@ -126,7 +125,7 @@ function SideBar() {
                 </a>
               </li>
             </Link>
-            <Link to="user">
+            <Link to="students">
               <li className="nav-item mb-3 ">
                 <a className="nav-link" href="">
                   <i className="material-icons">

@@ -2,14 +2,6 @@ import React, { useState, useEffect } from "react"
 import { Line } from "react-chartjs-2";
 
 export default function Chart() {
-  const [depart, setDepart] = useState("");
-  const getData = async () => {
-    const response = await fetch("http://localhost:5000/departments");
-    setDepart(await response.json());
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   const state = {
     labels: ["January", "February", "March", "April", "May"],
     datasets: [

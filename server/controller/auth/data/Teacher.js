@@ -6,8 +6,10 @@ exports.teacher = async (req, res, next) => {
     .populate({
       path: "deptId",
     })
-    .populate("semesterId")
+    .populate("sessionId")
     .populate("programId")
+    .populate("courseId")
+    // .populate("rating")
     .exec((err, data) => {
       if (err) {
         throw err;

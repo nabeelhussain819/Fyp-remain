@@ -56,13 +56,13 @@ const TeacherSchema = new mongoose.Schema({
       required: false,
     },
   ],
-  rating: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "TeacherRating",
-      required: false,
-    },
-  ],
+  // rating: [
+  //   {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "TeacRating",
+  //     required: false,
+  //   },
+  // ],
   tokens: [
     {
       token: {

@@ -2,13 +2,14 @@ import React from "react";
 import { FaSearch, FaThLarge, FaUserAlt } from "react-icons/fa";
 import Offcanvas from "./Offcanvas";
 import { Link } from "react-router-dom";
+import user from "../../Assets/user.png";
 import Example from "../Loader";
 
 function Navbar() {
   return (
     <>
       <div className="main-panel">
-        <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <nav className="navbar navbar-expand-md navbar-transparent navbar-absolute fixed-top ">
           <div className="container-fluid">
             <div className="navbar-wrapper">
               <Link to="dashboard" >
@@ -21,24 +22,16 @@ function Navbar() {
               <Offcanvas />
             </button>
             <div className="collapse navbar-collapse justify-content-end">
-              <form className="navbar-form">
-                <div className="input-group no-border">
-                  <input
-                    type="text"
-                    value=""
-                    className="form-control"
-                    placeholder="Search..."
-                  />
-                </div>
-              </form>
+
               <ul className="navbar-nav">
                 <Link to="profile" >
                   <li className="nav-item ">
                     <a className="nav-link text-white" href="">
-                      <i className="material-icons">
-                        <FaUserAlt />
-                      </i>
-                      Profile
+                      <div className="user">
+                        <img src={user} className="photo" />
+                        Profile
+                      </div>
+
                     </a>
                   </li>
                 </Link>

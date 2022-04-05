@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, Accordion } from "react-bootstrap";
+import SearchProgram from "../../Components/Search/Program";
 
 function Program() {
-  const [program, setProgram] = useState([]);
-  const getData = async () => {
-    const response = await (
-      await fetch("http://localhost:5000/readProgram")
-    ).json();
-    setProgram(await response);
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  const [name, setName] = useState("");
+  function searchData(e) {
+    let data = e.target.value.toLowerCase();
+    setName(data);
+  }
   return (
     <>
       <div className="wrapper ">
@@ -20,11 +16,21 @@ function Program() {
             <div className="container-fluid">
               <div className="col-md-12 ">
                 <h3>
-                  Programs
-                  <a href="programCreate" style={{ float: "right" }}>
-                    Add Program
-                  </a>
-                </h3>
+                  Program    </h3>
+                {localStorage.getItem("isAdmin") ? <a href="programCreate" style={{ float: "right" }}>
+                  Add Program
+                </a> : <>
+                  <div className="input-group ">
+                    <input
+                      type="text"
+                      onChange={searchData}
+                      className="form-control"
+                      placeholder="Search..."
+                      name="search"
+                    />
+
+                  </div>
+                </>}
                 <p>
                   <small>
                     <a href="">Home</a> / <small> Programs</small>
@@ -32,69 +38,7 @@ function Program() {
                 </p>
               </div>
             </div>
-            <div className="row">
-              {program.map((item) => {
-                return (
-                  <div className="col-md-4">
-                    <div className="card card-chart" data-count="0">
-                      <div className="card-body">
-                        <h4 className="card-title">
-                          Program Name : {item.prog}
-                        </h4>
-                        <p className="card-category">
-                          <span className="text-success">Department </span>
-                          {item.departmentId.department}
-                        </p>
-                      </div>
-                      <div className="card-footer">
-                        <div className="stats">
-                          <p>
-                            Total Students in {item.prog} is{" "}
-                            {item.userId.length}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="row">
-              <div className="table-responsive table-sales">
-                <table className="table">
-                  <thead>
-                    <tr>
-                      <td></td>
-                      <td>Program</td>
-                      <td className="text-right">Total Semester</td>
-                      <td className="text-right">Total Students</td>
-                      <td className="text-right">Total Teacher</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {program.map((item) => {
-                      return (
-                        <>
-                          <tr>
-                            <td>
-                              <div className="flag"></div>
-                            </td>
-                            <td>{item.prog}</td>
-                            <td className="text-right">
-                              {item.semesterId.length}
-                            </td>
-                            <td className="text-right">{item.userId.length}</td>
-                            <td className="text-right">
-                              {item.teacherId.length}
-                            </td>
-                          </tr>
-                        </>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <SearchProgram searchData={name} />
           </div>
         </div>
       </div>
