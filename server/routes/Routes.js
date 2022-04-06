@@ -1,7 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const app = express();
-const { register, addDepartment, addProgram, addSemester, addSession } = require("../controller/auth/Register");
+const {
+  register,
+  addDepartment,
+  addProgram,
+  addSemester,
+  addSession,
+} = require("../controller/auth/Register");
 const { login } = require("../controller/auth/Login");
 const { data } = require("../controller/auth/data/Student");
 const cors = require("cors");

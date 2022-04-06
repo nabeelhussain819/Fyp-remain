@@ -1,82 +1,61 @@
 import React, { useEffect, useState } from "react";
 
 function SearchProgram({ searchData }) {
-    const [program, setProgram] = useState([]);
-    console.log(program)
-    const filterData = program.filter((data) => data.name.includes(searchData))
-    console.log(filterData)
-    useEffect(() => {
-        const getData = async () => {
-            const response = await (
-                await fetch("http://localhost:5000/readProgram")
-            ).json();
-            setProgram(response);
-        };
-        getData();
-    }, []);
-    return (
-        <>
-            <div className="row">
-                {program.slice(0, 3).map((data) => {
-                    return (
-                        <>
-                            <div className="col-md-4">
-                                <div className="card card-chart" data-count="0">
-                                    <div className="card-body">
-                                        <h4 className="card-title">{data.name}</h4>
-                                        <p className="card-category">
-                                            <span className="text-success">Program</span>{" "}
-                                            {data.program}
-                                        </p>
-                                    </div>
-                                    <div className="card-footer">
-                                        <div className="stats">
-                                            <p>
-                                                Total Teachers in {data.name} is{" "}
-                                                {data.teacherId.length}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </>
-                    );
-                })}
-            </div>
-            <div className="row">
-                <div className="table-responsive table-sales">
-                    <table className="table">
-                        <thead>
+  const [program, setProgram] = useState([]);
+  console.log(program);
+  const filterData = program.filter((data) => data.name.includes(searchData));
+  console.log(filterData);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await (
+        await fetch("http://localhost:5000/readProgram")
+      ).json();
+      setProgram(response);
+    };
+    getData();
+  }, []);
+  return (
+    <>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-box">
+              <div class="form-title-wrap">
+                <h3 class="title">Available program Lists</h3>
+              </div>
+              <div class="form-content">
+                <div class="table-form table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">userId</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filterData.map((data) => {
+                        return (
+                          <>
                             <tr>
-                                <td></td>
-                                <td>Course Name</td>
-                                <td className="text-right">Code</td>
-                                <td className="text-right">Teacher</td>
+                              {" "}
+                              <td>{data.name}</td>
+                              <td>{data.teacherId.length}</td>
+                              <td>{data.userId.length}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {filterData.map((data) => {
-                                return (
-                                    <>
-                                        <tr>
-                                            <td>
-                                                <div className="flag"></div>
-                                            </td>
-                                            <td>{data.name}</td>
-                                            <td className="text-right">{data.teacherId.length}</td>
-                                            <td className="text-right">
-                                                {data.userId.length}
-                                            </td>
-                                        </tr>
-                                    </>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                          </>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-        </>
-    );
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default SearchProgram;

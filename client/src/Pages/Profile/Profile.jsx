@@ -1,24 +1,50 @@
 import React from "react";
 import user from "../../Assets/marc.jpg";
 export const Profile = () => {
-  const name = localStorage.getItem("data")
-  const phone = localStorage.getItem("phone")
-  const u_id = localStorage.getItem("u_id")
-  const email = localStorage.getItem("email")
-  const teacher = localStorage.getItem("isTeacher")
+  const name = localStorage.getItem("data");
+  const phone = localStorage.getItem("phone");
+  const u_id = localStorage.getItem("u_id");
+  const email = localStorage.getItem("email");
+  const teacher = localStorage.getItem("isTeacher");
   return (
-    <div className="wrapper ">
-      <div className="main-panel">
-        <div className="content">
-          <div className="content">
-            <div className="container-fluid">
+    <>
+      <div className="dashboard-content-wrap">
+        <div className="dashboard-bread dashboard-bread-2">
+          <div className="container-fluid">
+            <div class="arrow-separator"></div>
+            <div className="row align-items-center">
+              <div className="col-lg-6">
+                <div className="breadcrumb-content">
+                  <div className="section-heading">
+                    <h2 className="sec__title font-size-30 text-white">
+                      Profile
+                    </h2>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="breadcrumb-list text-right">
+                  <ul className="list-items">
+                    <li>
+                      <a href="index.html" className="text-white">
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>Profile</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="form-box">
+            <div className="container-fluid p-4">
               <div className="row">
                 <div className="col-md-8">
-                  <div className="card">
-                    <div className="card-header card-header-icon card-header-rose">
-                      <h4 className="card-title">
-                        {name} Profile
-                      </h4>
+                  <div className="contact-form-action">
+                    <div className="title">
+                      <h4 className="card-title">{name} Profile</h4>
                     </div>
                     <div className="card-body">
                       <form>
@@ -28,7 +54,12 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Username
                               </label>
-                              <input type="text" className="form-control" value={name} disabled />
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={name}
+                                disabled
+                              />
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -36,7 +67,12 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Email address
                               </label>
-                              <input type="email" className="form-control" value={email} disabled />
+                              <input
+                                type="email"
+                                className="form-control"
+                                value={email}
+                                disabled
+                              />
                             </div>
                           </div>
                         </div>
@@ -46,7 +82,12 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Phone Number
                               </label>
-                              <input type="text" className="form-control" value={phone} disabled />
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={phone}
+                                disabled
+                              />
                             </div>
                           </div>
                           <div className="col-md-6">
@@ -54,7 +95,12 @@ export const Profile = () => {
                               <label className="bmd-label-floating">
                                 Universit ID
                               </label>
-                              <input type="text" className="form-control" value={u_id} disabled />
+                              <input
+                                type="text"
+                                className="form-control"
+                                value={u_id}
+                                disabled
+                              />
                             </div>
                           </div>
                         </div>
@@ -114,16 +160,16 @@ export const Profile = () => {
                   </div>
                 </div>
                 <div className="col-md-4">
-                  <div className="card card-profile">
-                    <div className="card-avatar">
+                  <div className="contact-form-action">
+                    <div className="user-pro-img">
                       <img src={user} />
                     </div>
                     <div className="card-body">
-                      {teacher ? <h6 className="card-category text-gray">
-                        Teacher
-                      </h6> : <h6 className="card-category text-gray">
-                        Student
-                      </h6>}
+                      {teacher ? (
+                        <h6 className="card-category text-gray">Teacher</h6>
+                      ) : (
+                        <h6 className="card-category text-gray">Student</h6>
+                      )}
 
                       <h4 className="card-title">{name}</h4>
                       <p className="card-description">
@@ -143,6 +189,6 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };

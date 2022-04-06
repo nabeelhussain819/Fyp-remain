@@ -20,26 +20,28 @@ import Students from "../Pages/Index/Students";
 function Admin() {
   return (
     <>
-      <Navbar />
-      <SideBar />
-      <Fragment>
-        <Routes>
-          <Route path="/dashboard" element={<AdminDashboard />} />
-          <Route path="/program" element={<Program />} />
-          <Route path="/semester" element={<Semester />} />
-          <Route path="/course" element={<Course />} />
-          <Route path="/teacher" element={<Teachers />} />
-          <Route path="/department" element={<Department />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/departmentCreate" element={<DepartmentCreate />} />
-          <Route path="/programCreate" element={<ProgramCreate />} />
-          <Route path="/courseCreate" element={<CourseCreate />} />
-          <Route path="/sessionCreate" element={<SessionCreate />} />
-          <Route path="/semesterCreate" element={<SemesterCreate />} />
-          <Route exact path="/qec" element={<Qec />} />
-        </Routes>
-      </Fragment>
+      <section class="dashboard-area">
+        <SideBar />
+        <Navbar />
+        <Fragment>
+          <Routes>
+            <Route path="/dashboard" element={<AdminDashboard />} />
+            <Route path="/program" element={<Program />} />
+            <Route path="/semester" element={<Semester />} />
+            <Route path="/course" element={<Course />} />
+            <Route path="/teacher" element={<Teachers />} />
+            <Route path="/department" element={<Department />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/departmentCreate" element={<DepartmentCreate />} />
+            <Route path="/programCreate" element={<ProgramCreate />} />
+            <Route path="/courseCreate" element={<CourseCreate />} />
+            <Route path="/sessionCreate" element={<SessionCreate />} />
+            <Route path="/semesterCreate" element={<SemesterCreate />} />
+            <Route exact path="/qec" element={<Qec />} />
+          </Routes>
+        </Fragment>
+      </section>
     </>
   );
 }

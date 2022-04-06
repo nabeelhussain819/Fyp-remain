@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import SearchDepartment from "../../Components/Search/Department";
 
 function Department() {
@@ -9,34 +10,66 @@ function Department() {
   }
   return (
     <>
-      <div className="wrapper ">
-        <div className="main-panel">
-          <div className="content">
-            <div className="container-fluid">
-              <div className="col-md-12 ">
-                <h3>
-                  Departments    </h3>
-                {localStorage.getItem("isAdmin") ? <a href="departmentCreate" style={{ float: "right" }}>
-                  Add Departments
-                </a> : <>
-                  <div className="input-group ">
-                    <input
-                      type="text"
-                      onChange={searchData}
-                      className="form-control"
-                      placeholder="Search..."
-                      name="search"
-                    />
+      <section class=" cta-area subscriber-area section-bg-2  ">
+        <div className="hero-box ">
+          <div className="container-fluid">
+            <div className="row align-items-center">
+              <div className="col-lg-6">
+                <div className="breadcrumb-content">
+                  <div className="section-heading">
+                    <div class="container">
+                      <h2 className="sec__title font-size-30 text-white">
+                        Departments{" "}
+                      </h2>
 
-                  </div>
-                </>}
-                <p>
-                  <small>
-                    <a href="dashboard">Home</a> / <small> Departments</small>
-                  </small>
-                </p>
+                      <div class="form-group">
+                        <input
+                          class="form-control"
+                          type="text"
+                          placeholder="Search..."
+                          onChange={searchData}
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>{" "}
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="breadcrumb-list text-right">
+                  <ul className="list-items">
+                    <li>
+                      <a href="index.html" className="text-white">
+                        Home
+                      </a>
+                    </li>
+                    {localStorage.getItem("isAdmin") ? (
+                      <li>
+                        <Link to="../departmentCreate">Add Department</Link>
+                      </li>
+                    ) : (
+                      <li>
+                        <Link to="../dashboard">Dashboard </Link>
+                      </li>
+                    )}
+                  </ul>
+                </div>
               </div>
             </div>
+          </div>
+          <svg
+            class="hero-svg"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 10"
+            preserveAspectRatio="none"
+          >
+            <path d="M0 10 0 0 A 90 59, 0, 0, 0, 100 0 L 100 10 Z"></path>
+          </svg>
+        </div>
+      </section>
+      <div className="container ">
+        <div className="main-panel">
+          <div className="content">
             <SearchDepartment searchData={name} />
           </div>
         </div>

@@ -1,118 +1,91 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Chart from "../../Components/Charts/Chart";
+import LineChart from "../../Components/Charts/LineChart";
+import Navbar from "../../Components/Header/Navbar";
 
 function Dashboard() {
-    const [teacher, setTeacher] = useState([])
-    useEffect(() => {
-        const getData = async () => {
-            const response = await (await fetch("http://localhost:5000/teacher")).json();
-            setTeacher(response);
-        };
-        getData()
-    }, [])
-
-    return (
-        <>
-            <div className="wrapper ">
-                <div className="main-panel">
-                    <div className="content">
-                        <div className="row">
-                            {teacher.map((data) => {
-                                return (
-                                    Object.entries(data.courseId).map(([i, index]) => {
-                                        { console.log(data.courseId) }
-                                        return (<>
-
-                                            <div className="col-md-4">
-                                                <div className="card card-chart" data-count="0">
-                                                    <div className="card-body">
-                                                        <h4 className="card-title">{index.name}</h4>
-                                                        <p className="card-category">
-                                                            <span className="text-success">
-                                                                <i className="fa fa-long-arrow-up"></i> 55%{" "}
-                                                            </span>{" "}
-                                                            increase in today sales.
-                                                        </p>
-                                                    </div>
-                                                    <div className="card-footer">
-                                                        <div className="stats">
-                                                            <i className="material-icons">access_time</i> updated 4
-                                                            minutes ago
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </>)
-                                    })
-
-                                )
-
-                            })}
-                        </div>
-                        <div className="container-fluid">
-                            <div className="col-md-12">
-                                <div className="card ">
-                                    <div className="card-header card-header-success card-header-icon">
-                                        <h4 className="card-title">
-                                            Your Progress
-                                        </h4>
-                                    </div>
-                                    <div className="card-body ">
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <div className="table-responsive table-sales"><Chart /></div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="container-fluid">
-                            <div className="col-md-12">
-                                <div className="card">
-                                    <div className="card-header card-header-success card-header-icon">
-                                        <h4 className="card-title">
-                                            Your Courses
-                                        </h4>
-                                    </div>
-                                    <div className="card-body ">
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <div className="table-responsive table-sales">
-                                                    <table className="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <td></td>
-                                                                <td >Course Name:</td>
-                                                                <td className="text-right">Total Students</td>
-                                                                <td className="text-right"></td>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div className="flag"></div>
-                                                                </td>
-                                                                <td>USA</td>
-                                                                <td className="text-right">2.920</td>
-                                                                <td className="text-right">53.23%</td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <>
+      <div className="dashboard-content-wrap">
+        <div className="dashboard-bread dashboard-bread-2">
+          <div className="container-fluid">
+            <div class="arrow-separator"></div>
+            <div className="row align-items-center">
+              <div className="col-lg-6">
+                <div className="breadcrumb-content">
+                  <div className="section-heading">
+                    <h2 className="sec__title font-size-30 text-white">
+                      Dashboard
+                    </h2>
+                  </div>
                 </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="breadcrumb-list text-right">
+                  <ul className="list-items">
+                    <li>
+                      <a href="index.html" className="text-white">
+                        Home
+                      </a>
+                    </li>
+                    <li>Pages</li>
+                    <li>Dashboard</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-        </>
-    );
+          </div>
+
+          <div className="row mt-4">
+            {Array.from({ length: 4 }).map((_, idx) => (
+              <div className="col-lg-3 responsive-column-l">
+                <div className="icon-box icon-layout-2 dashboard-icon-box pb-0">
+                  <div className="d-flex pb-3 justify-content-between">
+                    <div className="info-content">
+                      <p className="info__desc">Total Booking!</p>
+                      <h4 className="info__title">55</h4>
+                    </div>
+                    <div className="info-icon icon-element bg-4">
+                      <i className="la la-shopping-cart"></i>
+                    </div>
+                  </div>
+                  <div className="section-block"></div>
+                  <a
+                    href="admin-dashboard-booking.html"
+                    className="d-flex align-items-center justify-content-between view-all"
+                  >
+                    View All <i className="la la-angle-right"></i>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="dashboard-main-content">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-lg-7 responsive-column--m">
+                <div className="form-box">
+                  <div className="form-content">
+                    <div className="chartjs-size-monitor">
+                      <div className="chartjs-size-monitor-expand">
+                        <div className=""></div>
+                      </div>
+                      <div className="chartjs-size-monitor-shrink">
+                        <div className=""></div>
+                      </div>
+                    </div>
+                    <Chart />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="border-top mt-4"></div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Dashboard;
