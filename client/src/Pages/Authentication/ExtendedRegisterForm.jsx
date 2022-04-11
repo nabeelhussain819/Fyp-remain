@@ -191,8 +191,7 @@ function AddSession(props) {
                                             disabled
                                           />
                                           <button
-                                            class="theme-btn theme-btn-small submit-btn"
-                                            type="submit"
+                                            class="theme-btn theme-btn-small "                                     
                                             onClick={() =>
                                               setSessionId(data._id)
                                             }
@@ -285,7 +284,7 @@ function Program(props) {
         <AddSemester />
       ) : (
         <>
-          <section class="trending-area position-relative section-bg section-padding ">
+          <section class="trending-area position-relative  section-padding ">
             <div class="container">
               <div class="row align-items-center">
                 <div class="col-lg-8">

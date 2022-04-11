@@ -7,17 +7,21 @@ import Teacher from "./Routes/Teacher";
 import User from "./Routes/User";
 import ExtendedRegisterForm from "./Pages/Authentication/ExtendedRegisterForm";
 import Home from "./Pages/Home";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 let token = localStorage.getItem("list");
 let isAdmin = localStorage.getItem("isAdmin");
 let isTeacher = localStorage.getItem("isTeacher");
 function App() {
   return (
     <>
+      <ToastContainer theme="colored" />
       <BrowserRouter>
         <Routes>
+          <Route exact path="/" element={<Home />} />
           {!token ? (
             <>
-              <Route exact path="/" element={<Home />} />
               <Route
                 exact
                 path="/extendedForm"

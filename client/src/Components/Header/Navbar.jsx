@@ -8,7 +8,7 @@ import Example from "../Loader";
 function Navbar() {
   return (
     <>
-      <div className="dashboard-nav dashboard--nav">
+      <div className="dashboard-nav dashboard--nav cta-area section-bg-2 subscriber-area">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-12">

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Modal, Button, Container } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RegisterModal from "./Register";
 
 function LoginModal() {
   const values = [true];
@@ -83,7 +84,7 @@ function LoginModal() {
           style={{ textDecoration: "none" }}
           onClick={() => handleShow(v)}
         >
-          <span>Sign In</span>
+          <span>Log In</span>
 
           {typeof v === "string" && `below ${v.split("-")[0]}`}
         </a>
@@ -135,15 +136,9 @@ function LoginModal() {
                   <div className="form-check text-center">
                     <label className="form-check-label">
                       Don't have any Account ?
-                      <Link
-                        to="/signup"
-                        style={{
-                          textDecoration: "none",
-                        }}
-                      >
-                        {" "}
-                        <b> Register Now</b>
-                      </Link>
+                      <b>
+                        <RegisterModal />
+                      </b>
                     </label>
                   </div>
                   <div>

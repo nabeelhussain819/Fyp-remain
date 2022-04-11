@@ -1,10 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NavBarLogin from "../Components/Header/LoginNavbar";
 import bg from "../Assets/bg2.jpg";
 import dimg from "../Assets/dimg.jpg";
 import dimg2 from "../Assets/dimg2.jpg";
 
 const Home = () => {
+  const [dept, setDept] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [teacher, setTeacher] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      const response = await (
+        await fetch("http://localhost:5000/departments")
+      ).json();
+      setDept(response);
+    };
+    const getData2 = async () => {
+      const response = await (
+        await fetch("http://localhost:5000/courses")
+      ).json();
+      setCourses(response);
+    };
+    const getData3 = async () => {
+      const response = await (
+        await fetch("http://localhost:5000/teacher")
+      ).json();
+      setTeacher(response);
+    };
+    getData3();
+    getData2();
+    getData();
+  }, []);
   return (
     <>
       <NavBarLogin />
@@ -12,61 +38,9 @@ const Home = () => {
         <div class="hero-box hero-bg-3 bg-fixed">
           <div class="container">
             <div class="row">
-              <div class="col-lg-10 mx-auto responsive--column-l">
-                <div class="search-fields-container search-fields-container-shape">
-                  <div class="search-fields-container-inner">
-                    <div class="contact-form-action">
-                      <form action="#" class="row">
-                        <div class="col-lg-4 pr-0">
-                          <div class="input-box">
-                            <label class="label-text">Destination</label>
-                            <div class="form-group">
-                              <span class="la la-map-marker form-icon"></span>
-                              <input
-                                class="form-control"
-                                type="text"
-                                placeholder="Where are you going?"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-4 pr-0">
-                          <div class="input-box">
-                            <label class="label-text">From</label>
-                            <div class="form-group">
-                              <span class="la la-calendar form-icon"></span>
-                              <input
-                                class="date-range form-control"
-                                type="text"
-                                name="daterange-single"
-                                readonly
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-lg-4">
-                          <div class="input-box">
-                            <label class="label-text">To</label>
-                            <div class="form-group">
-                              <span class="la la-calendar form-icon"></span>
-                              <input
-                                class="date-range form-control"
-                                type="text"
-                                name="daterange-single"
-                                readonly
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="btn-box pt-3">
-                      <a href="activity-search-result.html" class="theme-btn">
-                        Search Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <div class="col-lg-10 mx-auto responsive--column-l text-center text-light">
+                <h1>Welcome to Student and Teacher evaluation system</h1>
+                <p>we are Here To help you in evaluating your teachers </p>
               </div>
             </div>
           </div>
@@ -108,159 +82,90 @@ const Home = () => {
           <div class="row align-items-center">
             <div class="col-lg-8">
               <div class="section-heading">
-                <h2 class="sec__title">Popular Destinations</h2>
+                <h2 class="sec__title">Department we have</h2>
                 <p class="sec__desc pt-3">
-                  Morbi convallis bibendum urna ut viverra Maecenas quis{" "}
+                  Department we Have Today Are repestively as follow
                 </p>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="btn-box btn--box text-right">
-                <a href="tour-grid.html" class="theme-btn">
-                  Discover More <i class="la la-arrow-right ml-1"></i>
-                </a>
               </div>
             </div>
           </div>
           <div class="row padding-top-50px">
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">New York</a>
-                    </h3>
-                    <p class="card-meta">34 Activities</p>
+            {dept.map((data) => {
+              return (
+                <>
+                  <div class="col-lg-4 responsive-column">
+                    <div class="card-item destination-card destination--card">
+                      <div class="card-img">
+                        <img src={bg} alt="destination-img" />
+                      </div>
+                      <div class="card-body d-flex align-items-center justify-content-between">
+                        <div>
+                          <h3 class="card-title">
+                            <a href="tour-details.html">{data.name}</a>
+                          </h3>
+                          <p class="card-meta">
+                            {data.userId.length} Total Students
+                          </p>
+                        </div>
+                        <div>
+                          <a
+                            href="tour-details.html"
+                            class="theme-btn theme-btn-small border-0"
+                          >
+                            Explore
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      <section class="destination-area section--padding">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="section-heading">
+                <h2 class="sec__title">Top Rating Courses</h2>
+                <p class="sec__desc pt-3">Courses According to there Rating</p>
               </div>
             </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">Chicago</a>
-                    </h3>
-                    <p class="card-meta">13 Activities</p>
+          </div>
+          <div class="row padding-top-50px">
+            {courses.slice(0, 3).map((data) => {
+              return (
+                <>
+                  <div class="col-lg-4">
+                    <div class="card-item destination-card">
+                      <div class="card-img">
+                        <img src={dimg2} alt="destination-img" />
+                        <span class="badge">Top Ranked</span>
+                      </div>
+                      <div class="card-body">
+                        <h3 class="card-title">
+                          <a href="tour-details.html">{data.subjects}</a>
+                        </h3>
+                        <div class="card-rating d-flex align-items-center">
+                          <span class="rating__text">(70694 Reviews)</span>
+                        </div>
+                        <div class="card-price d-flex align-items-center justify-content-between">
+                          <p class="tour__text">
+                            {data.userId.length} Students
+                          </p>
+                          <p>
+                            <span class="price__from">Code </span>
+                            <span class="price__num">{data.code}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">Hong Kong</a>
-                    </h3>
-                    <p class="card-meta">44 Activities</p>
-                  </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">Las Vegas</a>
-                    </h3>
-                    <p class="card-meta">22 Activities</p>
-                  </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">Miami</a>
-                    </h3>
-                    <p class="card-meta">54 Activities</p>
-                  </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item destination-card destination--card">
-                <div class="card-img">
-                  <img src={bg} alt="destination-img" />
-                </div>
-                <div class="card-body d-flex align-items-center justify-content-between">
-                  <div>
-                    <h3 class="card-title">
-                      <a href="tour-details.html">New Jersey</a>
-                    </h3>
-                    <p class="card-meta">55 Activities</p>
-                  </div>
-                  <div>
-                    <a
-                      href="tour-details.html"
-                      class="theme-btn theme-btn-small border-0"
-                    >
-                      Explore <i class="la la-arrow-right ml-1"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+                </>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -270,425 +175,71 @@ const Home = () => {
             <div class="col-lg-12">
               <div class="section-heading">
                 <h2 class="sec__title text-white font-size-50 line-height-60">
-                  Relax with us. We love Our Clients.
+                  Evaluate With Us, make Your comments about Teacher And Courses
                 </h2>
                 <p class="sec__desc text-white pt-3">
-                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur
+                  You can check your progress Here
                 </p>
               </div>
               <div class="btn-box padding-top-35px">
-                <a href="become-local-expert.html" class="theme-btn border-0">
-                  Become Local Expert
-                </a>
+                <a
+                  href="become-local-expert.html"
+                  class="theme-btn border-0"
+                ></a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="destination-area section--padding">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="section-heading">
-                <h2 class="sec__title">Top Visited Places</h2>
-                <p class="sec__desc pt-3">
-                  Morbi convallis bibendum urna ut viverra Maecenas quis
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="btn-box btn--box text-right">
-                <a href="tour-grid.html" class="theme-btn">
-                  Discover More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="row padding-top-50px">
-            <div class="col-lg-4">
-              <div class="card-item destination-card">
-                <div class="card-img">
-                  <img src={dimg} alt="destination-img" />
-                  <span class="badge">new york</span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="tour-details.html">Main Street Park</a>
-                  </h3>
-                  <div class="card-rating d-flex align-items-center">
-                    <span class="ratings d-flex align-items-center mr-1">
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star-o"></i>
-                      <i class="la la-star-o"></i>
-                    </span>
-                    <span class="rating__text">(70694 Reviews)</span>
-                  </div>
-                  <div class="card-price d-flex align-items-center justify-content-between">
-                    <p class="tour__text">50 Tours</p>
-                    <p>
-                      <span class="price__from">Price</span>
-                      <span class="price__num">$58.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-item destination-card">
-                <div class="card-img">
-                  <img src={dimg} alt="destination-img" />
-                  <span class="badge">chicago</span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="tour-details.html">Chicago Cultural Center</a>
-                  </h3>
-                  <div class="card-rating d-flex align-items-center">
-                    <span class="ratings d-flex align-items-center mr-1">
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star-o"></i>
-                    </span>
-                    <span class="rating__text">(70694 Reviews)</span>
-                  </div>
-                  <div class="card-price d-flex align-items-center justify-content-between">
-                    <p class="tour__text">50 Tours</p>
-                    <p>
-                      <span class="price__from">Price</span>
-                      <span class="price__num">$68.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card-item destination-card">
-                <div class="card-img">
-                  <img src={dimg} alt="destination-img" />
-                  <span class="badge">new york</span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="tour-details.html">Main Street Park</a>
-                  </h3>
-                  <div class="card-rating d-flex align-items-center">
-                    <span class="ratings d-flex align-items-center mr-1">
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star-o"></i>
-                      <i class="la la-star-o"></i>
-                    </span>
-                    <span class="rating__text">(70694 Reviews)</span>
-                  </div>
-                  <div class="card-price d-flex align-items-center justify-content-between">
-                    <p class="tour__text">50 Tours</p>
-                    <p>
-                      <span class="price__from">Price</span>
-                      <span class="price__num">$58.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="card-item destination-card">
-                <div class="card-img">
-                  <img src={dimg} alt="destination-img" />
-                  <span class="badge">chicago</span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="tour-details.html">Chicago Cultural Center</a>
-                  </h3>
-                  <div class="card-rating d-flex align-items-center">
-                    <span class="ratings d-flex align-items-center mr-1">
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star-o"></i>
-                    </span>
-                    <span class="rating__text">(70694 Reviews)</span>
-                  </div>
-                  <div class="card-price d-flex align-items-center justify-content-between">
-                    <p class="tour__text">50 Tours</p>
-                    <p>
-                      <span class="price__from">Price</span>
-                      <span class="price__num">$68.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <div class="card-item destination-card">
-                <div class="card-img">
-                  <img src={dimg2} alt="destination-img" />
-                  <span class="badge">new york</span>
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title">
-                    <a href="tour-details.html">Main Street Park</a>
-                  </h3>
-                  <div class="card-rating d-flex align-items-center">
-                    <span class="ratings d-flex align-items-center mr-1">
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star"></i>
-                      <i class="la la-star-o"></i>
-                      <i class="la la-star-o"></i>
-                    </span>
-                    <span class="rating__text">(70694 Reviews)</span>
-                  </div>
-                  <div class="card-price d-flex align-items-center justify-content-between">
-                    <p class="tour__text">50 Tours</p>
-                    <p>
-                      <span class="price__from">Price</span>
-                      <span class="price__num">$58.00</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="hero-box hero-bg bg-fixed text-center">
-        <div class="container ">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="section-heading">
-                <h2 class="sec__title text-white line-height-55">
-                  Let us show you the world Discover our most popular
-                  destinations
-                </h2>
-              </div>
-              <div class="btn-box padding-top-35px">
-                <a href="become-local-expert.html" class="theme-btn border-0">
-                  Join with us
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <svg class="cta-svg" viewBox="0 0 500 150" preserveAspectRatio="none">
-          <path d="M-31.31,170.22 C164.50,33.05 334.36,-32.06 547.11,196.88 L500.00,150.00 L0.00,150.00 Z"></path>
-        </svg>
-      </section>
-      <section class="blog-area ">
+      <section class="blog-area padding-top-50px">
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
               <div class="section-heading text-center">
-                <h2 class="sec__title line-height-55">
-                  Latest News You Might Like
-                </h2>
+                <h2 class="sec__title line-height-55">Best Teachers We Have</h2>
               </div>
             </div>
           </div>
           <div class="row padding-top-50px">
             <div class="col-lg-4 responsive-column">
-              <div class="card-item blog-card">
-                <div class="card-img">
-                  <img src={dimg} alt="blog-img" />
-                  <div class="post-format icon-element">
-                    <i class="la la-photo"></i>
-                  </div>
-                  <div class="card-body">
-                    <div class="post-categories">
-                      <a href="#" class="badge">
-                        Travel
-                      </a>
-                      <a href="#" class="badge">
-                        lifestyle
-                      </a>
-                    </div>
-                    <h3 class="card-title line-height-26">
-                      <a href="blog-single.html">
-                        When Traveling Avoid Expensive Hotels Resorts
-                      </a>
-                    </h3>
-                    <p class="card-meta">
-                      <span class="post__date"> 1 January, 2020</span>
-                      <span class="post-dot"></span>
-                      <span class="post__time">5 Mins read</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                  <div class="author-content d-flex align-items-center">
-                    <div class="author-img">
-                      {/* <img src="images/small-team1.jpg" alt="testimonial image"> */}
-                    </div>
-                    <div class="author-bio">
-                      <a href="#" class="author__title">
-                        Leroy Bell
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-share">
-                    <ul>
-                      <li>
-                        <i class="la la-share icon-element"></i>
-                        <ul class="post-share-dropdown d-flex align-items-center">
-                          <li>
-                            <a href="#">
-                              <i class="lab la-facebook-f"></i>
+              {teacher.map((data) => {
+                return (
+                  <>
+                    <div class="card-item blog-card">
+                      <div class="card-img">
+                        <img src={dimg} alt="blog-img" />
+                        <div class="post-format icon-element">
+                          <i class="la la-photo"></i>
+                        </div>
+                        <div class="card-body">
+                          <div class="post-categories">
+                            <a href="#" class="badge">
+                              {data.programId.name}
                             </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-twitter"></i>
+                          </div>
+                          <h3 class="card-title line-height-26">
+                            <a href="blog-single.html">{data.courseId.name}</a>
+                          </h3>
+                          <p class="card-meta">
+                            <span class="post__date"> 1 January, 2020</span>
+                            <span class="post-dot"></span>
+                            <span class="post__time">5 Mins read</span>
+                          </p>
+                        </div>
+                      </div>
+                      <div class="card-footer d-flex align-items-center justify-content-between">
+                        <div class="author-content d-flex align-items-center">
+                          <div class="author-bio">
+                            <a href="#" class="author__title">
+                              {data.name}
                             </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-instagram"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item blog-card">
-                <div class="card-img">
-                  <img src={dimg} alt="blog-img" />
-                  <div class="post-format icon-element">
-                    <i class="la la-play"></i>
-                  </div>
-                  <div class="card-body">
-                    <div class="post-categories">
-                      <a href="#" class="badge">
-                        Video
-                      </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <h3 class="card-title line-height-26">
-                      <a href="blog-single.html">
-                        My Best Travel Tips: The Ultimate Travel Guide
-                      </a>
-                    </h3>
-                    <p class="card-meta">
-                      <span class="post__date"> 1 February, 2020</span>
-                      <span class="post-dot"></span>
-                      <span class="post__time">4 Mins read</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                  <div class="author-content d-flex align-items-center">
-                    <div class="author-img">
-                      {/* <img src="images/small-team2.jpg" alt="testimonial image"> */}
-                    </div>
-                    <div class="author-bio">
-                      <a href="#" class="author__title">
-                        Phillip Hunt
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-share">
-                    <ul>
-                      <li>
-                        <i class="la la-share icon-element"></i>
-                        <ul class="post-share-dropdown d-flex align-items-center">
-                          <li>
-                            <a href="#">
-                              <i class="lab la-facebook-f"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-twitter"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-instagram"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 responsive-column">
-              <div class="card-item blog-card">
-                <div class="card-img">
-                  <img src={dimg} alt="blog-img" />
-                  <div class="post-format icon-element">
-                    <i class="la la-music"></i>
-                  </div>
-                  <div class="card-body">
-                    <div class="post-categories">
-                      <a href="#" class="badge">
-                        audio
-                      </a>
-                    </div>
-                    <h3 class="card-title line-height-26">
-                      <a href="blog-single.html">
-                        By all Means, Travel to Popular Sites Don’t Rule Out
-                        Other Locations
-                      </a>
-                    </h3>
-                    <p class="card-meta">
-                      <span class="post__date"> 1 March, 2020</span>
-                      <span class="post-dot"></span>
-                      <span class="post__time">3 Mins read</span>
-                    </p>
-                  </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                  <div class="author-content d-flex align-items-center">
-                    <div class="author-img">
-                      {/* <img src="images/small-team3.jpg" alt="testimonial image"> */}
-                    </div>
-                    <div class="author-bio">
-                      <a href="#" class="author__title">
-                        Luke Jacobs
-                      </a>
-                    </div>
-                  </div>
-                  <div class="post-share">
-                    <ul>
-                      <li>
-                        <i class="la la-share icon-element"></i>
-                        <ul class="post-share-dropdown d-flex align-items-center">
-                          <li>
-                            <a href="#">
-                              <i class="lab la-facebook-f"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-twitter"></i>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <i class="lab la-instagram"></i>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="btn-box text-center pt-4">
-                <a href="blog-grid.html" class="theme-btn">
-                  Read More Post
-                </a>
-              </div>
+                  </>
+                );
+              })}
             </div>
           </div>
         </div>

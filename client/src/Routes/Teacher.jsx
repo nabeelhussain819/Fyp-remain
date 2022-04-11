@@ -2,33 +2,35 @@ import React, { Fragment } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar";
 import SideBar from "../Components/Header/Sidebar";
-import Dashboard from "../Pages/Dashboard/Teacher";
-import Course from "../Pages/Index/Course";
-import Department from "../Pages/Index/Department";
-import Program from "../Pages/Index/Program";
-import Qec from "../Pages/Index/Qec";
-import Semester from "../Pages/Index/Semester";
-import Students from "../Pages/Index/Students";
-import Teachers from "../Pages/Index/Teacher";
-import { Profile } from "../Pages/Profile/Profile";
+import Dashboard from "../Pages/AdminTeacher/Dashboard/Teacher";
+import Course from "../Pages/AdminTeacher/Index/Course";
+import Department from "../Pages/AdminTeacher/Index/Department";
+import Program from "../Pages/AdminTeacher/Index/Program";
+import Qec from "../Pages/AdminTeacher/Index/Qec";
+import Semester from "../Pages/AdminTeacher/Index/Semester";
+import Students from "../Pages/AdminTeacher/Index/Students";
+import Teachers from "../Pages/AdminTeacher/Index/Teacher";
+import { Profile } from "../Pages/AdminTeacher/Profile/Profile";
 function Teacher() {
   return (
     <>
-      <Navbar />
-      <SideBar />
-      <Fragment>
-        <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/department" element={<Department />} />
-          <Route path="/program" element={<Program />} />
-          <Route path="/semester" element={<Semester />} />
-          <Route path="/students" element={<Students />} />
-          <Route path="/course" element={<Course />} />
-          <Route path="/teacher" element={<Teachers />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route exact path="/qec" element={<Qec />} />
-        </Routes>
-      </Fragment>
+      <section class="dashboard-area">
+        <Navbar />
+        <SideBar />
+        <Fragment>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/department" element={<Department />} />
+            <Route path="/program" element={<Program />} />
+            <Route path="/semester" element={<Semester />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/course" element={<Course />} />
+            <Route path="/teacher" element={<Teachers />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route exact path="/qec" element={<Qec />} />
+          </Routes>
+        </Fragment>
+      </section>
     </>
   );
 }

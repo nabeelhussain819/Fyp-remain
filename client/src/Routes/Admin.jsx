@@ -1,21 +1,21 @@
 import React, { Fragment } from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import AdminDashboard from "../Pages/Dashboard/Admin";
+import AdminDashboard from "../Pages/AdminTeacher/Dashboard/Admin";
 import Navbar from "../Components/Header/Navbar";
 import SideBar from "../Components/Header/Sidebar";
-import Course from "../Pages/Index/Course";
-import Department from "../Pages/Index/Department";
-import Program from "../Pages/Index/Program";
-import Semester from "../Pages/Index/Semester";
-import Teachers from "../Pages/Index/Teacher";
-import { Profile } from "../Pages/Profile/Profile";
-import DepartmentCreate from "../Pages/Create/Department";
-import CourseCreate from "../Pages/Create/Course";
-import ProgramCreate from "../Pages/Create/Program";
-import SemesterCreate from "../Pages/Create/Semester";
-import SessionCreate from "../Pages/Create/Session";
-import Qec from "../Pages/Index/Qec";
-import Students from "../Pages/Index/Students";
+import Course from "../Pages/AdminTeacher/Index/Course";
+import Department from "../Pages/AdminTeacher/Index/Department";
+import Program from "../Pages/AdminTeacher/Index/Program";
+import Semester from "../Pages/AdminTeacher/Index/Semester";
+import Teachers from "../Pages/AdminTeacher/Index/Teacher";
+import { Profile } from "../Pages/AdminTeacher/Profile/Profile";
+import DepartmentCreate from "../Pages/AdminTeacher/Create/Department";
+import CourseCreate from "../Pages/AdminTeacher/Create/Course";
+import ProgramCreate from "../Pages/AdminTeacher/Create/Program";
+import SemesterCreate from "../Pages/AdminTeacher/Create/Semester";
+import SessionCreate from "../Pages/AdminTeacher/Create/Session";
+import Qec from "../Pages/AdminTeacher/Index/Qec";
+import Students from "../Pages/AdminTeacher/Index/Students";
 
 function Admin() {
   return (
