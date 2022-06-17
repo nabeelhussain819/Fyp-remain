@@ -1,70 +1,40 @@
-import React, { useState } from "react";
-
-import SearchTeacher from "../../../Components/Search/Teacher";
+import React from "react";
 import { Link } from "react-router-dom";
+import TeacherSidebar from "../../../Components/Sidebar/TeacherSidebar";
 function Teachers() {
-  const [name, setName] = useState("");
-  function searchData(e) {
-    let data = e.target.value.toLowerCase();
-    setName(data);
-  }
   return (
     <>
-      <section class=" cta-area subscriber-area section-bg-2  ">
-        <div className="hero-box ">
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-lg-6">
-                <div className="breadcrumb-content">
-                  <div className="section-heading">
-                    <div class="container">
-                      <h2 className="sec__title font-size-30 text-white">
-                        Teacher
-                      </h2>
-
-                      <div class="form-group">
-                        <input
-                          class="form-control"
-                          type="text"
-                          placeholder="Search..."
-                          onChange={searchData}
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>{" "}
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="breadcrumb-list text-right">
-                  <ul className="list-items">
-                    <li>
-                      <a href="index.html" className="text-white">
-                        Home
-                      </a>
-                    </li>
-                    <li>
-                      <Link to="../dashboard">Dashboard </Link>
-                    </li>
-                  </ul>
+      <div className="dashboard-bread dashboard-bread-2 section-bg-2 cta-area subscriber-area pt-4">
+        <div className="container-fluid">
+          <div className="arrow-separator"></div>
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="breadcrumb-content">
+                <div className="section-heading">
+                  <h2 className="sec__title font-size-30 text-white">
+                    Teachers
+                  </h2>
                 </div>
               </div>
             </div>
+            <div className="col-lg-6">
+              <div className="breadcrumb-list text-right">
+                <ul className="list-items">
+                  <li>
+                    <Link to="../Home">Home</Link>{" "}
+                  </li>
+                  <li>Teachers</li>
+                </ul>
+              </div>
+            </div>
+            <div className="form-group col-md-6"></div>
           </div>
-          <svg
-            class="hero-svg"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 100 10"
-            preserveAspectRatio="none"
-          >
-            <polygon points="100 10 100 0 0 10"></polygon>
-          </svg>
         </div>
-      </section>
-      <div className="container ">
+      </div>
+      <div className="container-fluid">
         <div className="main-panel">
           <div className="content">
-            <SearchTeacher searchData={name} />
+            <TeacherSidebar />
           </div>
         </div>
       </div>

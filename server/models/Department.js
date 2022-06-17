@@ -7,6 +7,10 @@ const DepartmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    code: {
+      type: String,
+      required: true,
+    },
     sessionId: [
       {
         type: Schema.Types.ObjectId,
@@ -21,10 +25,16 @@ const DepartmentSchema = new mongoose.Schema(
         required: false,
       },
     ],
-    userId: [
+    rating: [
+      {
+        type: Number,
+        required: false,
+      },
+    ],
+    studentId: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Student",
         required: false,
       },
     ],

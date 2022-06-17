@@ -19,30 +19,34 @@ function Example() {
   return (
     <>
       {values.map((v, idx) => (
-        <a
+        <button
           key={idx}
-          className="me-2 text-white "
+          className=" border-0 bg-transparent"
           style={{ textDecoration: "none" }}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
           onClick={() => handleShow(v)}
         >
-          <span>LogOut</span>
-
+          LogOut
           {typeof v === "string" && `below ${v.split("-")[0]}`}
-        </a>
+        </button>
       ))}
+
       <Modal
         show={show}
-        className="bg-transparent"
+        className="bg-transparent "
         fullscreen={fullscreen}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
         onHide={() => setShow(false)}
       >
         <Modal.Body
-          className=" text-center text-light"
+          id="contained-modal-title-vcenter"
+          className=" text-center text-light mt-2 section-bg3"
           style={{ backgroundColor: "#0d233e" }}
         >
-          <p>LOGING OUT.....</p>
-          <div id="loading-wrapper">
-            <div id="loading-text">LOADING</div>
+          <div id="loading-wrapper" className="p-4">
+            <div id="loading-text">LOGOUT...</div>
             <div id="loading-content"></div>
           </div>
         </Modal.Body>

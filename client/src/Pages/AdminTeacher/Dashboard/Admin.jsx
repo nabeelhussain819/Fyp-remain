@@ -1,7 +1,8 @@
 import React from "react";
+import CommentsColumn from "../../../Components/AdminUtilis/CommentsColumn";
+import { ResponseStatus } from "../../../Components/AdminUtilis/ResponseStatus";
+import TopBar from "../../../Components/AdminUtilis/TopBar";
 import Chart from "../../../Components/Charts/Chart";
-import LineChart from "../../../Components/Charts/LineChart";
-import Navbar from "../../../Components/Header/Navbar";
 
 function Dashboard() {
   return (
@@ -9,7 +10,7 @@ function Dashboard() {
       <div className="dashboard-content-wrap">
         <div className="dashboard-bread dashboard-bread-2">
           <div className="container-fluid">
-            <div class="arrow-separator"></div>
+            <div className="arrow-separator"></div>
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">
@@ -35,49 +36,23 @@ function Dashboard() {
               </div>
             </div>
           </div>
-
-          <div className="row mt-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
-              <div className="col-lg-3 responsive-column-l">
-                <div className="icon-box icon-layout-2 dashboard-icon-box pb-0">
-                  <div className="d-flex pb-3 justify-content-between">
-                    <div className="info-content">
-                      <p className="info__desc">Total Booking!</p>
-                      <h4 className="info__title">55</h4>
-                    </div>
-                    <div className="info-icon icon-element bg-4">
-                      <i className="la la-shopping-cart"></i>
-                    </div>
-                  </div>
-                  <div className="section-block"></div>
-                  <a
-                    href="admin-dashboard-booking.html"
-                    className="d-flex align-items-center justify-content-between view-all"
-                  >
-                    View All <i className="la la-angle-right"></i>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
+          <TopBar />
         </div>
         <div className="dashboard-main-content">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-7 responsive-column--m">
+              <div className="col-lg-7 responsive-column--m ">
                 <div className="form-box">
-                  <div className="form-content">
-                    <div className="chartjs-size-monitor">
-                      <div className="chartjs-size-monitor-expand">
-                        <div className=""></div>
-                      </div>
-                      <div className="chartjs-size-monitor-shrink">
-                        <div className=""></div>
-                      </div>
-                    </div>
+                  <div className="form-content shadow-lg">
                     <Chart />
                   </div>
                 </div>
+              </div>
+              <div class="col-lg-5 responsive-column--m ">
+                <CommentsColumn />
+              </div>
+              <div class="col-lg-12">
+                <ResponseStatus />
               </div>
             </div>
             <div className="border-top mt-4"></div>

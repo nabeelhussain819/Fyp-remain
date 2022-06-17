@@ -1,19 +1,15 @@
-const user = require("../../models/User");
-
+const student = require("../../Models/Student");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const teacher = require("../../models/Teacher");
+const teacher = require("../../Models/Teacher");
 
 exports.login = async (req, res) => {
   try {
-    let token;
     const { email, password } = req.body;
-
     if (!email || !password) {
       res.status(400).json({ error: "add all feilds" });
     }
-
-    const userLogin = await user
+    const userLogin = await student
       .findOne({ email: req.body.email })
       .populate("deptId");
     const teacherLogin = await teacher
@@ -25,7 +21,7 @@ exports.login = async (req, res) => {
       if (!isMatch) {
         res.status(400).json({ message: "Invalid Credentials" });
       } else {
-        const token = jwt.sign({ _id: user._id }, process.env.KEY);
+        const token = jwt.sign({ _id: student._id }, process.env.KEY);
         const name = userLogin;
         res.send({
           token,
@@ -45,6 +41,18 @@ exports.login = async (req, res) => {
           name,
         });
       }
+    } else if (email == "admin@admin.com" && password == "admin@123") {
+      console.log("sss");
+      const adminLogin = {
+        email: "admin@admin.com",
+        name: "admin",
+      };
+      const token = "admin";
+      const name = adminLogin;
+      res.send({
+        token,
+        name,
+      });
     } else {
       res.status(400).json({ message: "Invalid Credentials" });
     }

@@ -1,13 +1,12 @@
 const express = require("express");
 const app = express();
 var path = require("path");
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const connectDB = require("./config/DataBase");
 dotenv.config();
 connectDB();
-require("./models/User");
 const cors = require("cors");
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,7 +20,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(require("./routes/Routes"));
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.json("hello world");
 });
 
 app.listen(PORT, () => {

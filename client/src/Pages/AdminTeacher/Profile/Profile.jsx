@@ -8,10 +8,10 @@ export const Profile = () => {
   const teacher = localStorage.getItem("isTeacher");
   return (
     <>
-      <div className="dashboard-content-wrap">
+      <div className="dashboard-content-wrap ">
         <div className="dashboard-bread dashboard-bread-2">
           <div className="container-fluid">
-            <div class="arrow-separator"></div>
+            <div className="arrow-separator"></div>
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">

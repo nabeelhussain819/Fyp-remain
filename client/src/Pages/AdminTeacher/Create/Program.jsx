@@ -9,16 +9,20 @@ export default function ProgramCreate() {
   const [departmentId, setDepartmentId] = useState("");
   const [depart, setDepart] = useState([]);
   const [sessionId, setSessionId] = useState("");
-  console.log(sessionId);
+  const [image, setImage] = useState("");
   const registerProgram = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/createProgram", {
+    const res = await fetch("https://new819.herokuapp.com/create-program", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "multipart/form-data",
+        "content-type": "application/json",
+      },
       body: JSON.stringify({
         name,
         departmentId,
         sessionId,
+        image: image.name,
       }),
     });
     const data = await res.json();
@@ -33,7 +37,7 @@ export default function ProgramCreate() {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/departments")
+        await fetch("https://new819.herokuapp.com/departments")
       ).json();
       setDepart(response);
     };
@@ -43,71 +47,77 @@ export default function ProgramCreate() {
 
   return (
     <>
-      <section class=" cta-area subscriber-area section-bg-2  ">
-        <div className="hero-box ">
-          <div className="container-fluid">
-            <div className="row align-items-center">
-              <div className="col-lg-6">
-                <div className="breadcrumb-content">
-                  <div className="section-heading">
-                    <div class="container">
-                      <h2 className="sec__title font-size-30 text-white">
-                        Program
-                      </h2>
-                    </div>
-                  </div>{" "}
+      <div className="dashboard-bread cta-area pt-4">
+        <div className="container-fluid">
+          <div className="arrow-separator"></div>
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="breadcrumb-content">
+                <div className="section-heading">
+                  <h2 className="sec__title font-size-30 text-white">
+                    Program
+                  </h2>
                 </div>
               </div>
-              <div className="col-lg-6">
-                <div className="breadcrumb-list text-right">
-                  <ul className="list-items">
+            </div>
+            <div className="col-lg-6">
+              <div className="breadcrumb-list text-right">
+                <ul className="list-items">
+                  <li>
+                    <a href="index.html" className="text-white">
+                      Home
+                    </a>
+                  </li>
+                  {localStorage.getItem("isAdmin") ? (
                     <li>
-                      <a href="index.html" className="text-white">
-                        Home
-                      </a>
+                      <Link to="../programCreate">Add Program</Link>
                     </li>
-                    {localStorage.getItem("isAdmin") ? (
-                      <li>
-                        <Link to="../programCreate">Add Program</Link>
-                      </li>
-                    ) : (
-                      <li>
-                        <Link to="../dashboard">Dashboard </Link>
-                      </li>
-                    )}
-                  </ul>
-                </div>
+                  ) : (
+                    <li>
+                      <Link to="../dashboard">Dashboard </Link>
+                    </li>
+                  )}
+                </ul>
               </div>
             </div>
           </div>
-          <svg
-            class="hero-svg"
-            viewBox="0 0 500 150"
-            preserveAspectRatio="none"
-          >
-            <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"></path>
-          </svg>
         </div>
-      </section>
-      <div class="col-lg-12">
-        <div class="form-box">
-          <div class="form-title-wrap">
-            <h3 class="title">Add Program</h3>
+      </div>
+      {image && (
+        <div>
+          <img
+            alt="not fount"
+            width={"250px"}
+            src={URL.createObjectURL(image)}
+          />
+          <br />
+          <button onClick={() => setImage(null)}>Remove</button>
+        </div>
+      )}
+      <div className="col-lg-12">
+        <div className="form-box">
+          <div className="form-title-wrap">
+            <h3 className="title">Add Program</h3>
           </div>
-          <div class="form-content">
-            <div class="user-profile-action d-flex align-items-center pb-4">
-              <div class="upload-btn-box"></div>
+          <div className="form-content">
+            <div className="user-profile-action d-flex align-items-center pb-4">
+              <div className="upload-btn-box"></div>
             </div>
-            <div class="contact-form-action">
-              <form action="#" class="MultiFile-intercepted">
-                <div class="row">
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Program Name</label>
-                      <div class="form-group">
-                        <span class="la la-user form-icon"></span>
+            <div className="contact-form-action">
+              <form action="#" className="MultiFile-intercepted">
+                <div className="row">
+                  <input
+                    type="file"
+                    name="myImage"
+                    onChange={(event) => setImage(event.target.files[0])}
+                  />
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Program Name</label>
+                      <div className="form-group">
+                        <span className="la la-user form-icon"></span>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -115,13 +125,13 @@ export default function ProgramCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Select Department</label>
-                      <div class="form-group">
-                        <span class="la la-map form-icon"></span>
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Select Department</label>
+                      <div className="form-group">
+                        <span className="la la-map form-icon"></span>
                         <select
-                          class="form-control p-3"
+                          className="form-control p-3"
                           value={departmentId}
                           onChange={(e) => setDepartmentId(e.target.value)}
                         >
@@ -140,11 +150,11 @@ export default function ProgramCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Select Session</label>
-                      <div class="form-group">
-                        <span class="la la-map form-icon"></span>
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Select Session</label>
+                      <div className="form-group">
+                        <span className="la la-map form-icon"></span>
                         <select
                           className="form-control p-3"
                           value={sessionId}
@@ -173,12 +183,12 @@ export default function ProgramCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-12 responsive-column">
-                    <div class="input-box">
-                      <div class="form-group">
+                  <div className="col-lg-12 responsive-column">
+                    <div className="input-box">
+                      <div className="form-group">
                         <button
                           type="submit"
-                          class="theme-btn"
+                          className="theme-btn"
                           onClick={registerProgram}
                         >
                           Add!

@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SearchCourse from "../../../Components/Search/Course";
 
 export default function CourseCreate() {
   const [name, setName] = useState([]);
-  const [semesterId, setSemesterId] = useState("");
-  const [semester, setSemester] = useState([]);
+  const [sectionId, setSectionId] = useState("");
+  const [section, setSection] = useState([]);
   const [formValues, setFormValues] = useState([{ subject: "" }]);
 
   const registerCourse = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/createCourse", {
+    const res = await fetch("https://new819.herokuapp.com/create-course", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         name,
-        semesterId,
+        sectionId,
       }),
     });
     const data = await res.json();
@@ -30,7 +29,6 @@ export default function CourseCreate() {
       toast.success("Course Created Successfully");
     }
   };
-
   let removeFormFields = (i) => {
     let newFormValues = [...formValues];
     newFormValues.splice(i, 1);
@@ -44,22 +42,22 @@ export default function CourseCreate() {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/semesters")
+        await fetch("https://new819.herokuapp.com/sections")
       ).json();
-      setSemester(response);
+      setSection(response);
     };
     getData();
   }, []);
   return (
     <>
-      <section class=" cta-area section-bg-2 subscriber-area ">
+      <section className=" cta-area section-bg-2 subscriber-area ">
         <div className="hero-box ">
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">
                   <div className="section-heading">
-                    <div class="container">
+                    <div className="container">
                       <h2 className="sec__title font-size-30 text-white">
                         Courses{" "}
                       </h2>
@@ -90,7 +88,7 @@ export default function CourseCreate() {
             </div>
           </div>
           <svg
-            class="hero-svg"
+            className="hero-svg"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1000 100"
             preserveAspectRatio="none"
@@ -99,27 +97,27 @@ export default function CourseCreate() {
           </svg>{" "}
         </div>
       </section>
-      <div class="col-lg-12">
-        <div class="form-box">
-          <div class="form-title-wrap">
-            <h3 class="title">Add Course</h3>
+      <div className="col-lg-12">
+        <div className="form-box">
+          <div className="form-title-wrap">
+            <h3 className="title">Add Course</h3>
           </div>
-          <div class="form-content">
-            <div class="user-profile-action d-flex align-items-center pb-4">
-              <div class="upload-btn-box"></div>
+          <div className="form-content">
+            <div className="user-profile-action d-flex align-items-center pb-4">
+              <div className="upload-btn-box"></div>
             </div>
-            <div class="contact-form-action">
-              <form action="#" class="MultiFile-intercepted">
+            <div className="contact-form-action">
+              <form action="#" className="MultiFile-intercepted">
                 {formValues.map((element, index) => (
                   <>
-                    <div class="row">
-                      <div class="col-lg-6 responsive-column">
-                        <div class="input-box">
-                          <label class="label-text">Course Title</label>
-                          <div class="form-group">
-                            <span class="la la-user form-icon"></span>
+                    <div className="row">
+                      <div className="col-lg-6 responsive-column">
+                        <div className="input-box">
+                          <label className="label-text">Course Title</label>
+                          <div className="form-group">
+                            <span className="la la-user form-icon"></span>
                             <input
-                              class="form-control"
+                              className="form-control"
                               type="text"
                               value={name}
                               onChange={(e) => setName(e.target.value)}
@@ -127,25 +125,22 @@ export default function CourseCreate() {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-6 responsive-column">
-                        <div class="input-box">
-                          <label class="label-text">Select Semester</label>
-                          <div class="form-group">
-                            <span class="la la-map form-icon"></span>
+                      <div className="col-lg-6 responsive-column">
+                        <div className="input-box">
+                          <label className="label-text">Select Semester</label>
+                          <div className="form-group">
+                            <span className="la la-map form-icon"></span>
                             <select
-                              class="form-control p-3"
-                              value={semesterId}
-                              onChange={(e) => setSemesterId(e.target.value)}
+                              className="form-control p-3"
+                              value={sectionId}
+                              onChange={(e) => setSectionId(e.target.value)}
                             >
                               <option>----select-one----</option>
-                              {semester.map((data) => {
+                              {section.map((data) => {
                                 return (
                                   <>
                                     <option className="option" value={data._id}>
-                                      {Object.entries(data.programId).map(
-                                        ([i, index]) => index.name
-                                      )}
-                                      --{data.name}
+                                      {data.name}
                                     </option>
                                   </>
                                 );
@@ -154,11 +149,11 @@ export default function CourseCreate() {
                           </div>
                         </div>
                       </div>
-                      <div class="col-lg-12">
-                        <div class="btn-box">
+                      <div className="col-lg-12">
+                        <div className="btn-box">
                           <button
                             type="submit"
-                            class="theme-btn"
+                            className="theme-btn"
                             onClick={registerCourse}
                           >
                             Add!

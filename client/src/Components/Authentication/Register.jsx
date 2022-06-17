@@ -1,68 +1,49 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Modal, Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import myData from "./RegisterForm";
 
-function RegisterModal() {
+function RegisterModal(props) {
   const values = [true];
-  const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
-  const [nextField, setNextFeild] = useState(0);
-  const [nextButton, setNextButton] = useState(true);
-  const [apendState, setApendState] = useState([]);
-  const [newData, setNewData] = useState([]);
-  const [submitButton, setSubmitButton] = useState(false);
-  const [sendData, setSendData] = useState([]);
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [u_id, setUid] = useState("");
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setShow(true);
   }
-
-  function Handle() {
-    const Change = nextField + 1;
-    if (Change < myData.length) {
-      setApendState("");
-      var obj = { [myData[nextField].name]: apendState };
-      setNewData((newData) => [...newData, obj]);
-      const arrObj = [...newData];
-      setSendData(() => Object.assign({}, ...arrObj));
-      console.log(sendData);
-      setNextFeild(Change);
-    } else {
-      setNextButton(false);
-      setSubmitButton(true);
-    }
-  }
-  function Data(e) {
-    setApendState(e.target.value);
-    console.log(JSON.stringify(newData));
-  }
-
   const registerUser = async (e) => {
     e.preventDefault();
     const res = await fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(sendData),
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+        u_id,
+        phone,
+      }),
     });
     const data = await res.json();
     if (res.status === 400 || !data) {
-      toast.error("Invalid Credentials!");
+      toast.error(data.error);
     } else {
-      console.log(data);
       {
         data.isTeacher === true
           ? localStorage.setItem("teacher", data._id)
           : localStorage.setItem("user", data._id);
       }
       toast("register Successfully");
-      navigate("/extendedForm");
+      // navigate("/extendedForm");
     }
-    console.log(JSON.stringify(newData));
   };
   return (
     <>
@@ -73,92 +54,104 @@ function RegisterModal() {
           style={{ textDecoration: "none" }}
           onClick={() => handleShow(v)}
         >
-          <span>Sign Up</span>
+          <span>SignUp</span>
 
           {typeof v === "string" && `below ${v.split("-")[0]}`}
         </a>
       ))}
       <Modal
+        {...props}
         show={show}
-        className="bg-opacity"
+        className="bg-opacity section-bg3"
         fullscreen={fullscreen}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
         onHide={() => setShow(false)}
       >
         <Modal.Body>
-          <div class="modal-content border-0">
-            <div class="modal-header text-center">
-              <h2 class="modal-title title ">SIGN UP</h2>
-              <p class="font-size-14">Create New Account</p>
+          <div className="modal-content border-0">
+            <div className="modal-header text-center">
+              <h4 className="modal-title ">SignUp</h4>
+              <p className="font-size-14">Create Your New Account</p>
             </div>
-            <div class="modal-body">
-              <div class="contact-form-action">
+            <div className="modal-body">
+              <div className="contact-form-action">
                 <form className="form " method="POST" action="">
-                  <div class="input-box">
-                    <label> step :0{nextField + 1}</label>
-
-                    <div class="form-group">
+                  <div className="input-box">
+                    <div className="form-group label-float">
                       <input
-                        class="form-control"
-                        type={myData[nextField].type}
+                        type="text"
                         name="text"
+                        placeholder="Type your Name"
                         required
-                        onChange={Data}
-                        value={apendState}
-                        placeholder={myData[nextField].placeholder}
-                        disabled={myData[nextField].disable}
-                      />
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />{" "}
+                      <label>User Name</label>
                     </div>
                   </div>
-                  <div className="form-check text-center">
-                    <label className="form-check-label">
-                      Already have an{" "}
-                      <Link
-                        to="/"
-                        style={{
-                          textDecoration: "none",
-                        }}
-                      >
-                        {" "}
-                        Account ?
-                      </Link>
-                    </label>
+                  <div className="input-box">
+                    <div className="form-group label-float">
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Type Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />{" "}
+                      <label>Email Address</label>
+                    </div>
                   </div>
+                  <div className="input-box">
+                    <div className="form-group label-float">
+                      <input
+                        type="password"
+                        name="text"
+                        placeholder="Type password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />{" "}
+                      <label>Password</label>
+                    </div>
+                  </div>
+                  <div className="input-box">
+                    <div className="form-group label-float">
+                      <input
+                        type="text"
+                        name="text"
+                        placeholder="Type University id"
+                        value={u_id}
+                        onChange={(e) => setUid(e.target.value)}
+                        required
+                      />
+                      <label>University ID</label>
+                    </div>
+                  </div>
+                  <div className="input-box">
+                    <div className="form-group label-float">
+                      <input
+                        type="text"
+                        name="text"
+                        placeholder="Type Phone"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        required
+                      />
+                      <label>Phone </label>
+                    </div>
+                  </div>
+
                   <div>
-                    <div class="btn-box pt-3 pb-4">
-                      {myData[nextField].disable === "true" ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={Handle}
-                            class="theme-btn w-100 mb-4"
-                          >
-                            Yes I Agree!
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          {nextButton && (
-                            <>
-                              <button
-                                type="button"
-                                onClick={Handle}
-                                class="theme-btn w-100"
-                              >
-                                Next
-                              </button>
-                            </>
-                          )}
-                        </>
-                      )}
-                      {submitButton && (
-                        <button
-                          type="button"
-                          onClick={registerUser}
-                          class="theme-btn w-100"
-                        >
-                          Register Account
-                        </button>
-                      )}
+                    <div className="btn-box pt-3 pb-4">
+                      <button
+                        type="button"
+                        onClick={registerUser}
+                        className="theme-btn w-100"
+                      >
+                        Create Account
+                      </button>
                     </div>
                   </div>
                 </form>

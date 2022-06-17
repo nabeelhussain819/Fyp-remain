@@ -1,36 +1,45 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
-const CoursestSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  semesterId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Semes",
+const CourseSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
       required: true,
     },
-  ],
-  code: {
-    type: String,
-    required: true,
+    sectionId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Section",
+        required: true,
+      },
+    ],
+    code: {
+      type: String,
+      required: true,
+    },
+    comment: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
+    studentId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Student",
+        required: false,
+      },
+    ],
+    teacherId: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Teacher",
+        required: false,
+      },
+    ],
   },
-  userId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: false,
-    },
-  ],
-  teacherId: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Teacher",
-      required: false,
-    },
-  ],
-});
-const course = mongoose.model("Course", CoursestSchema);
+  { timestamps: true }
+);
+const course = mongoose.model("Course", CourseSchema);
 
 module.exports = course;

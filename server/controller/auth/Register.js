@@ -1,21 +1,20 @@
-const user = require("../../models/User");
-const teacher = require("../../models/Teacher");
-const session = require("../../models/Session");
-const program = require("../../models/Program");
-const semester = require("../../models/Semester");
-const department = require("../../models/Department");
+const teacher = require("../../Models/Teacher");
+const session = require("../../Models/Session");
+const program = require("../../Models/Program");
+const semester = require("../../Models/Semester");
+const section = require("../../Models/Section");
+const department = require("../../Models/Department");
+const student = require("../../Models/Student");
 
 exports.register = async (req, res, next) => {
   const { email, password, phone, u_id, name } = req.body;
-  console.log(req.body);
-  const existingUserU = await user.findOne({ u_id: u_id });
-  const existingUser = await user.findOne({ email: email });
-  const existingUserPhone = await user.findOne({ phone: phone });
+  const existingUserU = await student.findOne({ u_id: u_id });
+  const existingUser = await student.findOne({ email: email });
+  const existingUserPhone = await student.findOne({ phone: phone });
   var term = req.body.u_id;
-  var student = new RegExp(/[A-Z]{3,}-[0-9]{2,2}[FS]-[0-9]{3,3}/gm);
+  var user = new RegExp(/[A-Z]{3,}-[0-9]{2,2}[FS]-[0-9]{3,3}/gm);
   var re = new RegExp(/[TEC]{3,}-[0-9]{2,2}[FS]-[0-9]{3,3}/gm);
   var emailRegex = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/gm);
-
   if (!email || !password || !phone || !u_id || !name) {
     res.status(400).json({ error: "add all feilds" });
   } else if (password.length < 5) {
@@ -31,7 +30,7 @@ exports.register = async (req, res, next) => {
   } else if (existingUserU) {
     return res
       .status(400)
-      .json({ error: "An account with this U_id already exists." });
+      .json({ error: "An account with this University Id already exists." });
   } else if (existingUserPhone) {
     return res
       .status(400)
@@ -48,17 +47,41 @@ exports.register = async (req, res, next) => {
     const Teacher = new teacher(data);
     await Teacher.save();
     res.status(200).json(Teacher);
-  } else if (student.test(term)) {
-    const User = new user(req.body);
-    await User.save();
-    res.status(200).json(User);
+  } else if (user.test(term)) {
+    const myArray = term.split("-");
+    const userSession = myArray[1][2];
+    const Depart = await department.find({ code: myArray[0] });
+    const Session = await session.find({});
+    const deptCode = Depart.map((data) => data.code);
+    const deptId = Depart.map((data) => data._id);
+    const SessionMaped = Session.map((data) => [data["name"][0]]);
+    const hh = userSession.toLowerCase();
+    console.log(
+      userSession.toLowerCase(),
+      SessionMaped.map((data) => data[0])
+    );
+    if (myArray[0] == deptCode) {
+      const Student = new student(req.body);
+      await Student.save();
+      const studentId = Student._id;
+      const Student1 = await student.findById({ _id: Student._id });
+      Student1.deptId.push(deptId);
+      await Student1.save();
+      const Departs = await department.findById({ _id: deptId });
+      Departs.studentId.push(studentId);
+      await Departs.save();
+
+      res.status(200).json(Student);
+    } else {
+      return res.status(400).json({ error: "ID isnot valid" });
+    }
   } else {
     return res.status(400).json({ error: "ID isnot valid" });
   }
 };
 exports.addDepartment = async (req, res, next) => {
-  const { deptId, userId, teacherId } = req.body;
-  console.log(deptId)
+  console.log(req.body);
+  const { deptId, studentId, teacherId } = req.body;
   if (!deptId) {
     return res
       .status(400)
@@ -72,21 +95,20 @@ exports.addDepartment = async (req, res, next) => {
 
       const Depart = await department.findById({ _id: deptId });
       Depart.teacherId.push(teacherId);
-      await Depart.save()
+      await Depart.save();
     } else {
-      const User = await user.findById({ _id: userId });
-      User.deptId.push(req.body.deptId);
-      await User.save();
+      const Student = await student.findById({ _id: studentId });
+      Student.deptId.push(req.body.deptId);
+      await Student.save();
 
       const Depart = await department.findById({ _id: deptId });
-      Depart.userId.push(userId);
-      await Depart.save()
+      Depart.studentId.push(studentId);
+      await Depart.save();
     }
-
   }
 };
 exports.addProgram = async (req, res, next) => {
-  const { programId, userId, teacherId } = req.body;
+  const { programId, studentId, teacherId } = req.body;
   if (!programId) {
     return res
       .status(400)
@@ -100,39 +122,55 @@ exports.addProgram = async (req, res, next) => {
 
       const Program = await program.findById({ _id: programId });
       Program.teacherId.push(teacherId);
-      await Program.save()
+      await Program.save();
     } else {
-
-      const User = await user.findById({ _id: userId });
-      User.programId.push(programId);
-      await User.save();
+      const Student = await student.findById({ _id: studentId });
+      Student.programId.push(programId);
+      await Student.save();
 
       const Program = await program.findById({ _id: programId });
-      Program.userId.push(userId);
-      await Program.save()
+      Program.studentId.push(studentId);
+      await Program.save();
     }
   }
 };
 exports.addSemester = async (req, res, next) => {
-  const { semesterId, userId, teacherId } = req.body;
+  const { semesterId, studentId, teacherId } = req.body;
   if (!semesterId) {
     return res
       .status(400)
       .json({ error: "An account with this email already exists." });
   } else {
     res.status(200).json({ message: "registerd" });
-    const User = await user.findById({ _id: userId });
-    User.semesterId.push(semesterId);
-    await User.save();
+    const Student = await student.findById({ _id: studentId });
+    Student.semesterId.push(semesterId);
+    await Student.save();
 
     const Semester = await semester.findById({ _id: semesterId });
-    Semester.userId.push(userId);
-    await Semester.save()
+    Semester.studentId.push(studentId);
+    await Semester.save();
+  }
+};
+exports.addSection = async (req, res, next) => {
+  const { sectionId, studentId } = req.body;
+  if (!sectionId) {
+    return res
+      .status(400)
+      .json({ error: "An account with this email already exists." });
+  } else {
+    res.status(200).json({ message: "registerd" });
+    const Student = await student.findById({ _id: studentId });
+    Student.sectionId.push(sectionId);
+    await Student.save();
+
+    const Section = await section.findById({ _id: sectionId });
+    Section.studentId.push(studentId);
+    await Section.save();
   }
 };
 exports.addSession = async (req, res, next) => {
-  const { sessionId, userId, teacherId } = req.body;
-  console.log(req.body)
+  const { sessionId, studentId, teacherId } = req.body;
+
   if (!sessionId) {
     return res
       .status(400)
@@ -143,19 +181,17 @@ exports.addSession = async (req, res, next) => {
       const Teacher = await teacher.findById({ _id: teacherId });
       Teacher.sessionId.push(req.body.sessionId);
       await Teacher.save();
-
       const Session = await session.findById({ _id: sessionId });
       Session.teacherId.push(teacherId);
-      await Session.save()
+      await Session.save();
     } else {
-      const User = await user.findById({ _id: userId });
-      User.sessionId.push(sessionId);
-      await User.save();
+      const Student = await student.findById({ _id: studentId });
+      Student.sessionId.push(sessionId);
+      await Student.save();
+
       const Session = await session.findById({ _id: sessionId });
-      Session.userId.push(userId);
-      await Session.save()
-
+      Session.studentId.push(studentId);
+      await Session.save();
     }
-
   }
 };

@@ -6,11 +6,12 @@ import Dashboard from "../Pages/AdminTeacher/Dashboard/Teacher";
 import Course from "../Pages/AdminTeacher/Index/Course";
 import Department from "../Pages/AdminTeacher/Index/Department";
 import Program from "../Pages/AdminTeacher/Index/Program";
-import Qec from "../Pages/AdminTeacher/Index/Qec";
+import AvailableQec from "../Pages/AdminTeacher/Index/AvailableQec";
 import Semester from "../Pages/AdminTeacher/Index/Semester";
 import Students from "../Pages/AdminTeacher/Index/Students";
 import Teachers from "../Pages/AdminTeacher/Index/Teacher";
 import { Profile } from "../Pages/AdminTeacher/Profile/Profile";
+import Home from "../Pages/Home";
 function Teacher() {
   return (
     <>
@@ -19,6 +20,7 @@ function Teacher() {
         <SideBar />
         <Fragment>
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/department" element={<Department />} />
             <Route path="/program" element={<Program />} />
@@ -27,7 +29,7 @@ function Teacher() {
             <Route path="/course" element={<Course />} />
             <Route path="/teacher" element={<Teachers />} />
             <Route path="/profile" element={<Profile />} />
-            <Route exact path="/qec" element={<Qec />} />
+            <Route exact path="/avaliable-qec" element={<AvailableQec />} />
           </Routes>
         </Fragment>
       </section>

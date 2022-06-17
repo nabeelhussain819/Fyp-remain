@@ -4,11 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import Admin from "./Routes/Admin";
 import Teacher from "./Routes/Teacher";
+import Guest from "./Routes/Guest";
 import User from "./Routes/User";
 import ExtendedRegisterForm from "./Pages/Authentication/ExtendedRegisterForm";
-import Home from "./Pages/Home";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Home from "./Pages/Home";
 
 let token = localStorage.getItem("list");
 let isAdmin = localStorage.getItem("isAdmin");
@@ -19,9 +20,9 @@ function App() {
       <ToastContainer theme="colored" />
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<Home />} />
           {!token ? (
             <>
+              <Route exact path="/*" element={<Guest />} />
               <Route
                 exact
                 path="/extendedForm"
@@ -30,15 +31,15 @@ function App() {
             </>
           ) : isAdmin ? (
             <>
-              <Route exact path="/admin-panel/*" element={<Admin />} />
+              <Route exact path="/*" element={<Admin />} />
             </>
           ) : isTeacher ? (
             <>
-              <Route exact path="/teacher/*" element={<Teacher />} />
+              <Route exact path="/*" element={<Teacher />} />
             </>
           ) : (
             <>
-              <Route exact path="/user/*" element={<User />} />
+              <Route exact path="/*" element={<User />} />
             </>
           )}
         </Routes>

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Modal, Button, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import RegisterModal from "./Register";
 
 function LoginModal() {
   const values = [true];
@@ -12,7 +11,6 @@ function LoginModal() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [on, setOn] = useState(false);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -64,13 +62,13 @@ function LoginModal() {
       localStorage.setItem("code", code);
       localStorage.setItem("id", id);
       if (localStorage.getItem("isAdmin")) {
-        navigate("/admin-panel/dashboard");
+        navigate("/dashboard");
         window.location.reload();
       } else if (localStorage.getItem("isTeacher")) {
-        navigate("/teacher/dashboard");
+        navigate("/dashboard");
         window.location.reload();
       } else {
-        navigate("/user/dashboard");
+        navigate("/dashboard");
         window.location.reload();
       }
     }
@@ -80,7 +78,7 @@ function LoginModal() {
       {values.map((v, idx) => (
         <a
           key={idx}
-          className="me-2 text-white "
+          className="me-2 "
           style={{ textDecoration: "none" }}
           onClick={() => handleShow(v)}
         >
@@ -91,24 +89,24 @@ function LoginModal() {
       ))}
       <Modal
         show={show}
-        className="bg-opacity"
+        className="bg-opacity section-bg3 "
         fullscreen={fullscreen}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
         onHide={() => setShow(false)}
       >
         <Modal.Body>
-          <div class="modal-content border-0">
-            <div class="modal-header text-center">
-              <h2 class="modal-title title ">LOG IN</h2>
-              <p class="font-size-14">Sign In to Your Account</p>
+          <div className="modal-content border-0 ">
+            <div className="modal-header text-center">
+              <h4 className="modal-title">LOG IN</h4>
+              <p className="font-size-14">Sign In to Your Account</p>
             </div>
-            <div class="modal-body">
-              <div class="contact-form-action">
+            <div className="modal-body">
+              <div className="contact-form-action">
                 <form className="form " method="POST" action="">
-                  <div class="input-box">
-                    <label class="label-text">Email Address</label>
-                    <div class="form-group">
+                  <div className="input-box ">
+                    <div className="form-group label-float">
                       <input
-                        class="form-control"
                         type="text"
                         name="text"
                         placeholder="Type your email"
@@ -116,13 +114,12 @@ function LoginModal() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                       />
+                      <label>Email Address</label>
                     </div>
                   </div>
-                  <div class="input-box">
-                    <label class="label-text">Password</label>
-                    <div class="form-group">
+                  <div className="input-box">
+                    <div className="form-group label-float">
                       <input
-                        class="form-control"
                         type="password"
                         name="text"
                         placeholder="Type password"
@@ -130,23 +127,16 @@ function LoginModal() {
                         onChange={(e) => setPassword(e.target.value)}
                         required
                       />
+                      <label>Password</label>
                     </div>
                   </div>
 
-                  <div className="form-check text-center">
-                    <label className="form-check-label">
-                      Don't have any Account ?
-                      <b>
-                        <RegisterModal />
-                      </b>
-                    </label>
-                  </div>
                   <div>
-                    <div class="btn-box pt-3 pb-4">
+                    <div className="btn-box pt-3 pb-4">
                       <button
                         type="button"
                         onClick={loginUser}
-                        class="theme-btn w-100"
+                        className="theme-btn w-100"
                       >
                         Login Account
                       </button>

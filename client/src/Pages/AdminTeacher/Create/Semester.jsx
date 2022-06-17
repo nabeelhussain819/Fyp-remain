@@ -13,7 +13,7 @@ export default function SemesterCreate() {
   console.log(programId);
   const registerSemester = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/createSemester", {
+    const res = await fetch("https://new819.herokuapp.com/create-semester", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -33,7 +33,7 @@ export default function SemesterCreate() {
 
   const getData = async () => {
     const response = await (
-      await fetch("http://localhost:5000/readProgram")
+      await fetch("https://new819.herokuapp.com/programs")
     ).json();
     setProgram(response);
   };
@@ -43,19 +43,19 @@ export default function SemesterCreate() {
 
   return (
     <>
-      <section class=" cta-area subscriber-area section-bg-2  ">
+      <section className=" cta-area subscriber-area section-bg-2  ">
         <div className="hero-box ">
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">
                   <div className="section-heading">
-                    <div class="container">
+                    <div className="container">
                       <h2 className="sec__title font-size-30 text-white">
                         Semester
                       </h2>
                     </div>
-                  </div>{" "}
+                  </div>
                 </div>
               </div>
               <div className="col-lg-6">
@@ -81,7 +81,7 @@ export default function SemesterCreate() {
             </div>
           </div>
           <svg
-            class="hero-svg"
+            className="hero-svg"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 100 10"
             preserveAspectRatio="none"
@@ -90,25 +90,25 @@ export default function SemesterCreate() {
           </svg>
         </div>
       </section>
-      <div class="col-lg-12">
-        <div class="form-box">
-          <div class="form-title-wrap">
-            <h3 class="title">Add Course</h3>
+      <div className="col-lg-12">
+        <div className="form-box">
+          <div className="form-title-wrap">
+            <h3 className="title">Add Course</h3>
           </div>
-          <div class="form-content">
-            <div class="user-profile-action d-flex align-items-center pb-4">
-              <div class="upload-btn-box"></div>
+          <div className="form-content">
+            <div className="user-profile-action d-flex align-items-center pb-4">
+              <div className="upload-btn-box"></div>
             </div>
-            <div class="contact-form-action">
-              <form action="#" class="MultiFile-intercepted">
-                <div class="row">
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Semester Name</label>
-                      <div class="form-group">
-                        <span class="la la-user form-icon"></span>
+            <div className="contact-form-action">
+              <form action="#" className="MultiFile-intercepted">
+                <div className="row">
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Semester Name</label>
+                      <div className="form-group">
+                        <span className="la la-user form-icon"></span>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -116,11 +116,11 @@ export default function SemesterCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Select Program</label>
-                      <div class="form-group">
-                        <span class="la la-map form-icon"></span>
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Select Program</label>
+                      <div className="form-group">
+                        <span className="la la-map form-icon"></span>
                         <select
                           className="form-control p-3"
                           onChange={(e) => setProgramId(e.target.value)}
@@ -139,11 +139,11 @@ export default function SemesterCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-12">
-                    <div class="btn-box">
+                  <div className="col-lg-12">
+                    <div className="btn-box">
                       <button
                         type="submit"
-                        class="theme-btn"
+                        className="theme-btn"
                         onClick={registerSemester}
                       >
                         Add!

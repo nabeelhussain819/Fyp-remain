@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import NavBarLogin from "../../Components/Header/LoginNavbar";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import dept from "../../Assets/dept.jpg";
+import Navbar from "../../Components/Header/Navbar";
 
 export default function ExtendedRegisterForm() {
   const [deptId, setDeptId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [teacherId, setTeacherId] = useState("");
   const [depart, setDepart] = useState([]);
   const [session, setSession] = useState(false);
-
-  const next = async () => {
-    console.log(deptId);
-    const res = await fetch("http://localhost:5000/addDepartment", {
+  const [name, setName] = useState("");
+  function searchData(e) {
+    let data = e.target.value;
+    setName(data);
+  }
+  const second = async (e) => {
+    e.preventDefault();
+    const res = await fetch("https://new819.herokuapp.com/add-department", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         deptId,
-        userId,
+        studentId,
         teacherId,
       }),
     });
@@ -33,64 +37,98 @@ export default function ExtendedRegisterForm() {
       toast.success("Department Added Successfully");
     }
   };
+
+  const filterData = depart.filter((data) => data.name.includes(name));
+  console.log(filterData);
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/departments")
+        await fetch("https://new819.herokuapp.com/departments")
       ).json();
       setDepart(response);
       const Data = localStorage.getItem("teacher");
       const user = localStorage.getItem("user");
-      setUserId(user);
+      setStudentId(user);
       setTeacherId(Data);
     };
     getData();
   }, []);
   return (
     <>
-      {" "}
-      <NavBarLogin />
+      <Navbar />
       {session === true ? (
         <AddSession data={deptId} />
       ) : (
         <>
-          <section class="destination-area padding-top-130px padding-bottom-80px">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                  <div class="section-heading">
-                    <h2 class="sec__title">Departments</h2>
-                    <p class="sec__desc pt-3">Add Your Department Now</p>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="btn-box btn--box text-right">
-                    <button className="theme-btn" onClick={next}>
-                      Add Now!
-                    </button>
+          <section className="breadcrumb-area gradient-bg-gray before-none pb-4 pt-4 section-bg6">
+            <div className="breadcrumb-wrap">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="breadcrumb-content text-center">
+                      <div className="section-heading">
+                        <h2 className="sec__title text-dark">
+                          How Can We Help You Today?
+                        </h2>
+                      </div>
+                      <div className="row">
+                        <div className="col-lg-6 mx-auto">
+                          <div className="contact-form-action pt-4">
+                            <form>
+                              <input
+                                className="form-control"
+                                type="text"
+                                value={name}
+                                placeholder="Search Your Department...."
+                                onChange={searchData}
+                              />
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="row padding-top-50px">
-                {depart.map((data) => {
+            </div>
+          </section>
+          <section className="destination-area padding-top-130px padding-bottom-80px section-bg3">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-12">
+                  <div className="filter-top d-flex align-items-center justify-content-between pb-4">
+                    <div>
+                      <h2 className="sec__title">Departments</h2>
+                      <p className="sec__desc pt-3">Add Your Department Now</p>
+                    </div>
+                    <div className=" d-flex align-items-center">
+                      <button className="theme-btn" onClick={second}>
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row padding-top-50px">
+                {filterData?.map((data) => {
                   return (
-                    <div class="col-lg-4 responsive-column">
-                      <div class="card-item destination-card destination--card">
-                        <div class="card-img">
+                    <div className="col-lg-4 responsive-column">
+                      <div className="card-item destination-card destination--card">
+                        <div className="card-img">
                           <img src={dept} alt="destination-img" />
                         </div>
-                        <div class="card-body d-flex align-items-center justify-content-between">
+                        <div className="card-body d-flex align-items-center justify-content-between">
                           <div>
-                            <h3 class="card-title">
+                            <h3 className="card-title">
                               <a href="tour-details.html">{data.name}</a>
                             </h3>
-                            <p class="card-meta">
+                            <p className="card-meta">
                               {data.teacherId.length} Teachers
                             </p>
                           </div>
                           <div>
                             <button
-                              class="theme-btn theme-btn-small border-0"
+                              className="theme-btn theme-btn-small border-0"
                               onClick={() => setDeptId(data._id)}
                             >
                               Enroll In
@@ -111,18 +149,27 @@ export default function ExtendedRegisterForm() {
 }
 function AddSession(props) {
   const [sessionId, setSessionId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [teacherId, setTeacherId] = useState("");
   const [session, setSession] = useState([]);
   const [program, setProgram] = useState(false);
+  const [name, setName] = useState("");
 
-  const next = async () => {
-    const res = await fetch("http://localhost:5000/addSession", {
+  function searchData(e) {
+    let data = e.target.value;
+    setName(data);
+  }
+  const filterData = session.filter((data) => data.name.includes(name));
+  console.log(filterData);
+
+  const next = async (item) => {
+    setSessionId(item);
+    const res = await fetch("https://new819.herokuapp.com/add-session", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         sessionId,
-        userId,
+        studentId,
         teacherId,
       }),
     });
@@ -139,14 +186,14 @@ function AddSession(props) {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/session")
+        await fetch("https://new819.herokuapp.com/sessions")
       ).json();
       setSession(response);
-      console.log(props.data);
     };
+    console.log(session);
     const Data = localStorage.getItem("teacher");
     const user = localStorage.getItem("user");
-    setUserId(user);
+    setStudentId(user);
     setTeacherId(Data);
     getData();
   }, []);
@@ -156,74 +203,90 @@ function AddSession(props) {
         <Program data={sessionId} />
       ) : (
         <>
-          {" "}
-          <section class="hero-wrapper hero-wrapper3">
-            <div class="hero-box pb-0 hero-bg-3 ripple-bg bg-fixed">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="hero-content pb-5 hero-content-3 text-center">
-                      <div class="section-heading">
-                        <h2 class="sec__title">Select Your Session</h2>
-                        <p class="sec__desc pt-1">
-                          Book incredible things to do around the world.
-                        </p>
+          <section className="breadcrumb-area gradient-bg-gray before-none pb-4 pt-4">
+            <div className="breadcrumb-wrap">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="breadcrumb-content text-center">
+                      <div className="section-heading">
+                        <h2 className="sec__title text-dark">
+                          How Can We Help You Today?
+                        </h2>
                       </div>
-                    </div>
-                    <div class="search-fields-container search-fields-container-shape">
-                      <div class="search-fields-container-inner">
-                        <div class="contact-form-action">
-                          <form action="#" class="row">
-                            <div class="col-lg-12 ">
-                              <div class="input-box">
-                                <label class="label-text">
-                                  Session Available
-                                </label>
-                                <div class="form-group">
-                                  {session.map((data) => {
-                                    return (
-                                      <>
-                                        <div class="form-group mb-3">
-                                          <input
-                                            class="form-control"
-                                            placeholder="Email address"
-                                            value={data.name}
-                                            disabled
-                                          />
-                                          <button
-                                            class="theme-btn theme-btn-small "                                     
-                                            onClick={() =>
-                                              setSessionId(data._id)
-                                            }
-                                          >
-                                            Subscribe
-                                          </button>
-                                        </div>
-                                      </>
-                                    );
-                                  })}
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="btn-box pt-3">
-                          <button class="theme-btn" onClick={next}>
-                            Add Now
-                          </button>
+                      <div className="row">
+                        <div className="col-lg-6 mx-auto">
+                          <div className="contact-form-action pt-4">
+                            <form>
+                              <input
+                                className="form-control"
+                                type="text"
+                                value={name}
+                                placeholder="Search Your Session...."
+                                onChange={searchData}
+                              />
+                            </form>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <svg
-                class="hero-svg"
-                viewBox="0 0 500 150"
-                preserveAspectRatio="none"
-              >
-                <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"></path>
-              </svg>
+            </div>
+          </section>
+          <section className="destination-area padding-top-130px padding-bottom-80px">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-12">
+                  <div className="filter-top d-flex align-items-center justify-content-between pb-4">
+                    <div>
+                      <h2 className="sec__title">Sessions</h2>
+                      <p className="sec__desc pt-3">Add Your Sessions Now</p>
+                    </div>
+                    <div className=" d-flex align-items-center">
+                      <button className="theme-btn" onClick={next}>
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row padding-top-50px">
+                {filterData.map((data) => {
+                  return Object.entries(data.departmentId).map(
+                    ([i, index]) => index._id
+                  ) == props.data ? (
+                    <>
+                      <div className="col-lg-4 responsive-column">
+                        <div className="card-item destination-card destination--card">
+                          <div className="card-img">
+                            <img src={dept} alt="destination-img" />
+                          </div>
+                          <div className="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                              <h3 className="card-title">
+                                <a href="tour-details.html">{data.name}</a>
+                              </h3>
+                              <p className="card-meta">
+                                {data.teacherId.length} Teachers
+                              </p>
+                            </div>
+                            <div>
+                              <button
+                                className="theme-btn theme-btn-small border-0"
+                                onClick={() => setSessionId(data._id)}
+                              >
+                                Enroll In
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : null;
+                })}
+              </div>
             </div>
           </section>
         </>
@@ -233,19 +296,28 @@ function AddSession(props) {
 }
 function Program(props) {
   const [programId, setProgramId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [program, setProgram] = useState([]);
   const [Semester, setSemester] = useState(false);
   const [teacherId, setTeacherId] = useState("");
   const navigate = useNavigate();
+  const [name, setName] = useState("");
 
-  const next = async () => {
-    const res = await fetch("http://localhost:5000/addProgram", {
+  function searchData(e) {
+    let data = e.target.value;
+    setName(data);
+  }
+  const filterData = program.filter((data) => data.name.includes(name));
+  console.log(filterData);
+
+  const next = async (e) => {
+    e.preventDefault();
+    const res = await fetch("https://new819.herokuapp.com/add-program", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         programId,
-        userId,
+        studentId,
         teacherId,
       }),
     });
@@ -267,13 +339,13 @@ function Program(props) {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/readProgram")
+        await fetch("https://new819.herokuapp.com/programs")
       ).json();
       setProgram(response);
     };
     const Data = localStorage.getItem("teacher");
     const user = localStorage.getItem("user");
-    setUserId(user);
+    setStudentId(user);
     setTeacherId(Data);
     getData();
   }, []);
@@ -281,53 +353,91 @@ function Program(props) {
   return (
     <>
       {Semester === true ? (
-        <AddSemester />
+        <AddSemester data={programId} />
       ) : (
         <>
-          <section class="trending-area position-relative  section-padding ">
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col-lg-8">
-                  <div class="section-heading">
-                    <h2 class="sec__title">Programs</h2>
-                    <p class="sec__desc pt-3">Add Your Program Now</p>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="btn-box btn--box text-right">
-                    <button className="theme-btn" onClick={next}>
-                      Add Now!
-                    </button>
+          <section className="breadcrumb-area gradient-bg-gray before-none pt-4">
+            <div className="breadcrumb-wrap">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="breadcrumb-content text-center">
+                      <div className="section-heading">
+                        <h2 className="sec__title text-dark">
+                          How Can We Help You Today?
+                        </h2>
+                      </div>
+                      <div className="row">
+                        <div className="col-lg-6 mx-auto">
+                          <div className="contact-form-action pt-4">
+                            <form>
+                              <input
+                                className="form-control"
+                                type="text"
+                                value={name}
+                                placeholder="Search Your Program...."
+                                onChange={searchData}
+                              />
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="row padding-top-50px">
-                <div class="col-lg-12">
-                  <div class="trending-carousel carousel-action">
-                    {program.map((data) => {
-                      return (
+            </div>
+          </section>
+          <section className="trending-area position-relative  pt-4 ">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-12">
+                  <div className="filter-top d-flex align-items-center justify-content-between pb-4">
+                    <div>
+                      <h2 className="sec__title">Program</h2>
+                      <p className="sec__desc pt-3">Add Your Program Now</p>
+                    </div>
+                    <div className=" d-flex align-items-center">
+                      <button className="theme-btn" onClick={next}>
+                        Next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row padding-top-50px">
+                <div className="col-lg-12">
+                  <div className="trending-carousel carousel-action">
+                    {filterData.map((item) => {
+                      return Object.entries(item.sessionId).map(
+                        ([i, index]) => index._id
+                      ) !== props.data ? (
                         <>
-                          <div class="card-item trending-card mb-3">
-                            <div class="card-img">
-                              <span class="badge">Bestseller</span>
+                          <div className="card-item trending-card mb-3">
+                            <div className="card-img">
+                              <span className="badge">Bestseller</span>
                             </div>
-                            <div class="card-body">
-                              <h3 class="card-title">
-                                <a href="tour-details.html">{data.name}</a>
+                            <div className="card-body">
+                              <h3 className="card-title">
+                                <a href="tour-details.html">{item.name}</a>
                               </h3>
-                              <p class="card-meta">124 E Huron St, New york</p>
-                              <div class="card-rating">
-                                <span class="badge text-white">4.4/5</span>
-                                <span class="review__text">Average</span>
-                                <span class="rating__text">(30 Reviews)</span>
+                              <p className="card-meta">
+                                124 E Huron St, New york
+                              </p>
+                              <div className="card-rating">
+                                <span className="badge text-white">4.4/5</span>
+                                <span className="review__text">Average</span>
+                                <span className="rating__text">
+                                  (30 Reviews)
+                                </span>
                               </div>
-                              <div class="card-price d-flex align-items-center justify-content-between">
+                              <div className="card-price d-flex align-items-center justify-content-between">
                                 <p>
-                                  <span class="price__num">$124.00</span>
+                                  <span className="price__num">$124.00</span>
                                 </p>
                                 <button
-                                  class=" theme-btn"
-                                  onClick={() => setProgramId(data._id)}
+                                  className=" theme-btn"
+                                  onClick={() => setProgramId(item._id)}
                                 >
                                   Enroll Now
                                 </button>
@@ -335,7 +445,7 @@ function Program(props) {
                             </div>
                           </div>
                         </>
-                      );
+                      ) : null;
                     })}
                   </div>
                 </div>
@@ -347,21 +457,171 @@ function Program(props) {
     </>
   );
 }
-function AddSemester() {
-  const [semesterId, setSmesterId] = useState("");
-  const [userId, setUserId] = useState("");
+function AddSemester(props) {
+  const [semesterId, setSemesterId] = useState("");
+  const [studentId, setStudentId] = useState("");
   const [semester, setSemester] = useState([]);
+  const [section, setSection] = useState(false);
   const [teacherId, setTeacherId] = useState("");
-  const navigate = useNavigate();
+  const [name, setName] = useState("");
 
-  const next = async () => {
-    console.log(semesterId);
-    const res = await fetch("http://localhost:5000/addSemester", {
+  function searchData(e) {
+    let data = e.target.value;
+    setName(data);
+  }
+  const filterData = semester.filter((data) => data.name.includes(name));
+  console.log(filterData);
+  const next = async (item) => {
+    setSemesterId(item);
+    const res = await fetch("https://new819.herokuapp.com/add-semester", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         semesterId,
-        userId,
+        studentId,
+        teacherId,
+      }),
+    });
+    const data = await res.json();
+    if (res.status === 400 || !data) {
+      toast.warning("Invalid Credentials");
+    } else if (res.status === 401) {
+      toast.warning("Invalid entry!");
+    } else {
+      toast.success("Semester Added Successfully");
+      setSection(true);
+    }
+  };
+  useEffect(() => {
+    const getData = async () => {
+      const response = await (
+        await fetch("https://new819.herokuapp.com/semesters")
+      ).json();
+      setSemester(response);
+    };
+    const Data = localStorage.getItem("teacher");
+    const user = localStorage.getItem("user");
+    setStudentId(user);
+    setTeacherId(Data);
+    getData();
+  }, []);
+  return (
+    <>
+      {section === true ? (
+        <AddSection data={semesterId} />
+      ) : (
+        <>
+          <section className="breadcrumb-area gradient-bg-gray before-none pt-4">
+            <div className="breadcrumb-wrap">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="breadcrumb-content text-center">
+                      <div className="section-heading">
+                        <h2 className="sec__title text-dark">
+                          How Can We Help You Today?
+                        </h2>
+                      </div>
+                      <div className="row">
+                        <div className="col-lg-6 mx-auto">
+                          <div className="contact-form-action pt-4">
+                            <form>
+                              <input
+                                className="form-control"
+                                type="text"
+                                value={name}
+                                placeholder="Search Your Semester...."
+                                onChange={searchData}
+                              />
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="trending-area position-relative  pt-4 ">
+            <div className="container">
+              <div className="row align-items-center">
+                <div className="col-lg-8">
+                  <div className="section-heading">
+                    <h2 className="sec__title">Semester</h2>
+                    <p className="sec__desc pt-3">Add Your Semester Now</p>
+                  </div>
+                </div>
+              </div>
+              <div className="row padding-top-50px">
+                <div className="col-lg-12">
+                  <div className="trending-carousel carousel-action">
+                    {filterData.map((data) => {
+                      return Object.entries(data.programId).map(
+                        ([i, index]) => {
+                          return index._id;
+                        }
+                      ) == props.data ? (
+                        <>
+                          <div className="card-item trending-card mb-3">
+                            <div className="card-img">
+                              <span className="badge">Bestseller</span>
+                            </div>
+                            <div className="card-body">
+                              <h3 className="card-title">
+                                <a href="tour-details.html">{data.name}</a>
+                              </h3>
+                              <p className="card-meta">
+                                124 E Huron St, New york
+                              </p>
+                              <div className="card-rating">
+                                <span className="badge text-white">4.4/5</span>
+                                <span className="review__text">Average</span>
+                                <span className="rating__text">
+                                  (30 Reviews)
+                                </span>
+                              </div>
+                              <div className="card-price d-flex align-items-center justify-content-between">
+                                <p>
+                                  <span className="price__num">$124.00</span>
+                                </p>
+                                <button
+                                  className=" theme-btn"
+                                  onClick={() => next(data._id)}
+                                >
+                                  Enroll Now
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : null;
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+    </>
+  );
+}
+function AddSection(props) {
+  const [sectionId, setSectionId] = useState("");
+  const [studentId, setStudentId] = useState("");
+  const [section, setSection] = useState([]);
+  const [teacherId, setTeacherId] = useState("");
+  const navigate = useNavigate();
+  console.log(props.data);
+  const next = async (item) => {
+    setSectionId(item);
+    const res = await fetch("https://new819.herokuapp.com/add-section", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        sectionId,
+        studentId,
         teacherId,
       }),
     });
@@ -378,28 +638,27 @@ function AddSemester() {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/semesters")
+        await fetch("https://new819.herokuapp.com/sections")
       ).json();
-      setSemester(response);
-      setUserId(localStorage.getItem("data"));
+      setSection(response);
     };
     const Data = localStorage.getItem("teacher");
     const user = localStorage.getItem("user");
-    setUserId(user);
+    setStudentId(user);
     setTeacherId(Data);
     getData();
   }, []);
   return (
     <>
-      <section class="cta-area cta-bg bg-fixed section-padding text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="section-heading">
-                <h2 class="sec__title text-white font-size-50 line-height-60">
-                  This is the last Step Add Semester
+      <section className="cta-area cta-bg bg-fixed section-padding text-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-heading">
+                <h2 className="sec__title text-white font-size-50 line-height-60">
+                  This is the last Step Add Section
                 </h2>
-                <p class="sec__desc text-white pt-3">
+                <p className="sec__desc text-white pt-3">
                   We will Automatically enroll you in courses
                 </p>
               </div>
@@ -407,28 +666,21 @@ function AddSemester() {
           </div>
         </div>
       </section>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="form-box">
-              <div class="row align-items-center form-title-wrap">
-                <div class="col-lg-8">
-                  <div class="section-heading">
-                    <h2 class="sec__title">Semester</h2>
-                    <p class="sec__desc pt-3">Add Your Semester Now</p>
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="btn-box btn--box text-right">
-                    <button className="theme-btn" onClick={next}>
-                      Add Now!
-                    </button>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="form-box">
+              <div className="row align-items-center form-title-wrap">
+                <div className="col-lg-8">
+                  <div className="section-heading">
+                    <h2 className="sec__title">Section</h2>
+                    <p className="sec__desc pt-3">Add Your Section Now</p>
                   </div>
                 </div>
               </div>
-              <div class="form-content">
-                <div class="table-form table-responsive">
-                  <table class="table">
+              <div className="form-content">
+                <div className="table-form table-responsive">
+                  <table className="table">
                     <thead>
                       <tr>
                         <th scope="col">Name</th>
@@ -438,26 +690,28 @@ function AddSemester() {
                       </tr>
                     </thead>
                     <tbody>
-                      {semester.map((data) => {
-                        return (
+                      {section.map((data) => {
+                        return Object.entries(data.semesterId).map(
+                          ([i, index]) => {
+                            return index._id;
+                          }
+                        ) == props.data ? (
                           <>
                             <tr>
                               <td>
-                                <div class="table-content">
-                                  <h3 class="title">{data.semester}</h3>
+                                <div className="table-content">
+                                  <h3 className="title">{data.name}</h3>
                                 </div>
                               </td>
-                              <td>{data.courseId.length}</td>
+                              <td></td>
                               <td>
-                                <span class="badge badge-success py-1 px-2">
-                                  {data.teacherId.length}
-                                </span>
+                                <span className="badge badge-success py-1 px-2"></span>
                               </td>
                               <td>
-                                <div class="table-content">
+                                <div className="table-content">
                                   <button
-                                    onClick={() => setSmesterId(data._id)}
-                                    class="theme-btn theme-btn-small mr-2"
+                                    onClick={() => next(data._id)}
+                                    className="theme-btn theme-btn-small mr-2"
                                   >
                                     Enroll Now
                                   </button>
@@ -465,7 +719,7 @@ function AddSemester() {
                               </td>
                             </tr>
                           </>
-                        );
+                        ) : null;
                       })}
                     </tbody>
                   </table>
@@ -475,50 +729,6 @@ function AddSemester() {
           </div>
         </div>
       </div>
-      {/* <div className="container">
-        <div className="col-md-12 ml-auto mr-auto">
-          <div className="card card-signup border-0">
-            <h2 className="card-title text-center">SIGN UP</h2>
-            <div className="card-body">
-              <div className="col-md-12">
-                <div className=" text-center ml-4">
-                  <h4 className="mt-3">Add Semester To Your Profile...</h4>
-                </div>
-                <div className="row">
-                  <div className="table-responsive table-sales">
-                    <table className="table">
-                      <tbody>
-                        {semester.map((data) => {
-                          return (
-                            <>
-                              <tr>
-                                <td>
-                                  <div className="flag"></div>
-                                </td>
-                                <td>Semester : {data.semester}</td>
-                                <td className="text-right">
-                                  <button
-                                    onClick={() => setSmesterId(data._id)}
-                                  >
-                                    Enroll In!
-                                  </button>
-                                </td>
-                              </tr>
-                            </>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                  <button className="btnLogin btn-round" onClick={next}>
-                    Enroll In!
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }

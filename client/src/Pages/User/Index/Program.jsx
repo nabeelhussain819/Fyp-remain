@@ -1,12 +1,14 @@
 import React from "react";
 import Program from "../../AdminTeacher/Index/Program";
 
-const Programs = () => {
+function Programs() {
   return (
-    <div className="padding-top-50px">
-      <Program />
-    </div>
+    <>
+      <div>
+        <Program />
+      </div>
+    </>
   );
-};
+}
 
 export default Programs;

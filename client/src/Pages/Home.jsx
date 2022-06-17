@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from "react";
-import NavBarLogin from "../Components/Header/LoginNavbar";
-import bg from "../Assets/bg2.jpg";
-import dimg from "../Assets/dimg.jpg";
-import dimg2 from "../Assets/dimg2.jpg";
-
+import { useNavigate, Link } from "react-router-dom";
+import Carousel from "../Components/UserUtilis/Carousel";
+import { carouselImage } from "../Components/images";
+import {
+  FcBusinessman,
+  FcCollaboration,
+  FcDepartment,
+  FcGraduationCap,
+} from "react-icons/fc";
 const Home = () => {
   const [dept, setDept] = useState([]);
-  const [courses, setCourses] = useState([]);
+  const [program, setProgram] = useState([]);
   const [teacher, setTeacher] = useState([]);
+
+  let navigate = useNavigate();
+
+  const sentDepartment = (data) => {
+    console.log(data);
+  };
+  const sentProgram = (data) => {
+    let path = "../program-details/" + data;
+    navigate(path);
+  };
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/departments")
+        await fetch("https://new819.herokuapp.com/departments")
       ).json();
       setDept(response);
     };
     const getData2 = async () => {
       const response = await (
-        await fetch("http://localhost:5000/courses")
+        await fetch("https://new819.herokuapp.com/programs")
       ).json();
-      setCourses(response);
+      setProgram(response);
     };
     const getData3 = async () => {
       const response = await (
-        await fetch("http://localhost:5000/teacher")
+        await fetch("https://new819.herokuapp.com/teachers")
       ).json();
       setTeacher(response);
     };
@@ -33,87 +47,150 @@ const Home = () => {
   }, []);
   return (
     <>
-      <NavBarLogin />
-      <section class="hero-wrapper  hero-wrapper3">
-        <div class="hero-box hero-bg-3 bg-fixed">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-10 mx-auto responsive--column-l text-center text-light">
-                <h1>Welcome to Student and Teacher evaluation system</h1>
-                <p>we are Here To help you in evaluating your teachers </p>
-              </div>
-            </div>
-          </div>
-          <svg
-            class="hero-svg"
-            viewBox="0 0 500 150"
-            preserveAspectRatio="none"
-          >
-            <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"></path>
-            <section class="cta-area cta-bg bg-fixed section-padding text-center">
-              <div class="container">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="section-heading">
-                      <h2 class="sec__title text-white font-size-50 line-height-60">
-                        Relax with us.We love Our Clients.
-                      </h2>
-                      <p class="sec__desc text-white pt-3">
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur
-                      </p>
-                    </div>
-                    <div class="btn-box padding-top-35px">
-                      <a
-                        href="become-local-expert.html"
-                        class="theme-btn border-0"
-                      >
-                        Become Local Expert
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </svg>
-        </div>
-      </section>
-      <section class="destination-area">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="section-heading">
-                <h2 class="sec__title">Department we have</h2>
-                <p class="sec__desc pt-3">
-                  Department we Have Today Are repestively as follow
+      <Carousel />
+      <section className="funfact-area section-bg4 bg-light padding-top-80px">
+        <div className="container ">
+          <div className="row ">
+            <div className="col-lg-12 ">
+              <div className="section-heading text-center">
+                <h2 className="sec__title">
+                  University's first ever Evaluation Portal
+                </h2>
+                <p className="sec__desc pt-3">
+                  Where You can Evaluate your teacher
                 </p>
               </div>
             </div>
           </div>
-          <div class="row padding-top-50px">
-            {dept.map((data) => {
+          <div className="counter-box mt-5 pb-2 shadow-lg">
+            <div className="row">
+              <div className="col-lg-3 responsive-column">
+                <div className="counter-item d-flex">
+                  <div className="counter-icon flex-shrink-0">
+                    <FcGraduationCap size={42} />
+                  </div>
+                  <div className="counter-content">
+                    <span
+                      className="counter"
+                      data-from="0"
+                      data-to="50000"
+                      data-refresh-interval="5"
+                    >
+                      50000
+                    </span>
+                    <span className="count-symbol">+</span>
+                    <p className="counter__title">Students</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 responsive-column">
+                <div className="counter-item d-flex">
+                  <div className="counter-icon flex-shrink-0">
+                    <FcBusinessman size={42} />
+                  </div>
+                  <div className="counter-content">
+                    <span
+                      className="counter"
+                      data-from="0"
+                      data-to="160"
+                      data-refresh-interval="5"
+                    >
+                      160
+                    </span>
+                    <p className="counter__title">Teachers</p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 responsive-column">
+                <div className="counter-item d-flex">
+                  <div className="counter-icon flex-shrink-0">
+                    <FcDepartment size={42} />
+                  </div>
+                  <div className="counter-content">
+                    <span
+                      className="counter"
+                      data-from="0"
+                      data-to="43"
+                      data-refresh-interval="5"
+                    >
+                      43
+                    </span>
+                    <p className="counter__title">Departments </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 responsive-column">
+                <div className="counter-item d-flex">
+                  <div className="counter-icon flex-shrink-0">
+                    <FcCollaboration size={42} />
+                  </div>
+                  <div className="counter-content">
+                    <span
+                      className="counter"
+                      data-from="0"
+                      data-to="3500000"
+                      data-refresh-interval="5"
+                    >
+                      3500000
+                    </span>
+                    <p className="counter__title">Courses Available</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="destination-area section-bg3 padding-top-130px padding-bottom-80px">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-8">
+              <div className="section-heading">
+                <h2 className="sec__title">Aavailable Department</h2>
+                <p className="sec__desc pt-3">
+                  Morbi convallis bibendum urna ut viverra Maecenas quis
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="btn-box btn--box text-right">
+                <Link to="/department" className="theme-btn">
+                  Discover More
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="row padding-top-50px">
+            {dept.map((item, index) => {
               return (
                 <>
-                  <div class="col-lg-4 responsive-column">
-                    <div class="card-item destination-card destination--card">
-                      <div class="card-img">
-                        <img src={bg} alt="destination-img" />
+                  <div className="col-lg-4 responsive-column ">
+                    <div className="card-item shadow-lg destination-card destination--card">
+                      <div className="card-img">
+                        {carouselImage.map((data, key) => {
+                          return (
+                            key === index && (
+                              <img src={data.image} alt="destination-img" />
+                            )
+                          );
+                        })}
                       </div>
-                      <div class="card-body d-flex align-items-center justify-content-between">
+                      <div className="card-body d-flex align-items-center justify-content-between">
                         <div>
-                          <h3 class="card-title">
-                            <a href="tour-details.html">{data.name}</a>
+                          <h3 className="card-title">
+                            <a href="tour-details.html">{item.name}</a>
                           </h3>
-                          <p class="card-meta">
-                            {data.userId.length} Total Students
+                          <p className="card-meta">
+                            {item.studentId.length} Activities
                           </p>
                         </div>
                         <div>
-                          <a
-                            href="tour-details.html"
-                            class="theme-btn theme-btn-small border-0"
+                          <button
+                            className="theme-btn theme-btn-small border-0"
+                            onClick={() => sentDepartment(item)}
                           >
                             Explore
-                          </a>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -124,263 +201,374 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section class="destination-area section--padding">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-8">
-              <div class="section-heading">
-                <h2 class="sec__title">Top Rating Courses</h2>
-                <p class="sec__desc pt-3">Courses According to there Rating</p>
-              </div>
-            </div>
-          </div>
-          <div class="row padding-top-50px">
-            {courses.slice(0, 3).map((data) => {
-              return (
-                <>
-                  <div class="col-lg-4">
-                    <div class="card-item destination-card">
-                      <div class="card-img">
-                        <img src={dimg2} alt="destination-img" />
-                        <span class="badge">Top Ranked</span>
-                      </div>
-                      <div class="card-body">
-                        <h3 class="card-title">
-                          <a href="tour-details.html">{data.subjects}</a>
-                        </h3>
-                        <div class="card-rating d-flex align-items-center">
-                          <span class="rating__text">(70694 Reviews)</span>
-                        </div>
-                        <div class="card-price d-flex align-items-center justify-content-between">
-                          <p class="tour__text">
-                            {data.userId.length} Students
-                          </p>
-                          <p>
-                            <span class="price__from">Code </span>
-                            <span class="price__num">{data.code}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <section class="cta-area cta-bg bg-fixed section-padding text-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="section-heading">
-                <h2 class="sec__title text-white font-size-50 line-height-60">
-                  Evaluate With Us, make Your comments about Teacher And Courses
+      <section className="cta-area cta-bg bg-fixed section-padding text-center">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-heading">
+                <h2 className="sec__title text-white font-size-50 line-height-60">
+                  Relax with us. We love Our Clients.
                 </h2>
-                <p class="sec__desc text-white pt-3">
-                  You can check your progress Here
+                <p className="sec__desc text-white pt-3">
+                  Nemo enim ipsam voluptatem quia voluptas sit aspernatur
                 </p>
               </div>
-              <div class="btn-box padding-top-35px">
+              <div className="btn-box padding-top-35px">
                 <a
                   href="become-local-expert.html"
-                  class="theme-btn border-0"
-                ></a>
+                  className="theme-btn border-0"
+                >
+                  Become Local Expert
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="blog-area padding-top-50px">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="section-heading text-center">
-                <h2 class="sec__title line-height-55">Best Teachers We Have</h2>
+      <section className="trending-area section-bg  position-relative section-padding ">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-heading text-center">
+                <h2 className="sec__title">Trending Activities</h2>
               </div>
             </div>
           </div>
-          <div class="row padding-top-50px">
-            <div class="col-lg-4 responsive-column">
-              {teacher.map((data) => {
-                return (
-                  <>
-                    <div class="card-item blog-card">
-                      <div class="card-img">
-                        <img src={dimg} alt="blog-img" />
-                        <div class="post-format icon-element">
-                          <i class="la la-photo"></i>
-                        </div>
-                        <div class="card-body">
-                          <div class="post-categories">
-                            <a href="#" class="badge">
-                              {data.programId.name}
-                            </a>
-                          </div>
-                          <h3 class="card-title line-height-26">
-                            <a href="blog-single.html">{data.courseId.name}</a>
-                          </h3>
-                          <p class="card-meta">
-                            <span class="post__date"> 1 January, 2020</span>
-                            <span class="post-dot"></span>
-                            <span class="post__time">5 Mins read</span>
-                          </p>
-                        </div>
+          <div className="row padding-top-50px">
+            {program.map((data, index) => {
+              return (
+                <div className="col-lg-4">
+                  <div className="owl-item active">
+                    <div className="card-item shadow-lg trending-card mb-0 mb-3">
+                      <div className="card-img">
+                        <a href="tour-details.html" className="d-block">
+                          {carouselImage.map((data, key) => {
+                            return (
+                              key === index && (
+                                <img src={data.image} alt="destination-img" />
+                              )
+                            );
+                          })}
+                        </a>
                       </div>
-                      <div class="card-footer d-flex align-items-center justify-content-between">
-                        <div class="author-content d-flex align-items-center">
-                          <div class="author-bio">
-                            <a href="#" class="author__title">
-                              {data.name}
-                            </a>
-                          </div>
+                      <div className="card-body">
+                        <h3 className="card-title">{data.name}</h3>
+                        <p className="card-meta">124 E Huron St, New york</p>
+                        <div className="card-rating">
+                          <span className="badge text-white">4.4/5</span>
+                          <span className="review__text">Students</span>
+                          <span className="rating__text">
+                            ({data.studentId.length})
+                          </span>
+                        </div>
+                        <div className="card-price d-flex align-items-center justify-content-between">
+                          <p>
+                            <span className="price__num">$124.00</span>
+                          </p>
+                          <button
+                            onCLick={() => sentProgram(data)}
+                            className="btn-text border-0 bg-transparent"
+                          >
+                            View details
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </>
-                );
-              })}
-            </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
+        <svg
+          className="hero-svg"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 10"
+          preserveAspectRatio="none"
+        >
+          <path d="M0 10 0 0 A 90 59, 0, 0, 0, 100 0 L 100 10 Z"></path>
+        </svg>
       </section>
-      <section class="hero-wrapper hero-wrapper6">
-        <div className="hero-box  footer-bg bg-fixed text-center">
-          <div className="container">
-            <div class="row">
-              <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                  <h4
-                    class="title curve-shape pb-3 margin-bottom-20px"
-                    data-text="curvs"
-                  >
-                    Company
-                  </h4>
-                  <ul class="list-items list--items">
-                    <li>
-                      <a href="about.html">About us</a>
-                    </li>
-                    <li>
-                      <a href="services.html">Services</a>
-                    </li>
-                    <li>
-                      <a href="#">Jobs</a>
-                    </li>
-                    <li>
-                      <a href="blog-grid.html">News</a>
-                    </li>
-                    <li>
-                      <a href="contact.html">Support</a>
-                    </li>
-                    <li>
-                      <a href="#">Advertising</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                  <h4
-                    class="title curve-shape pb-3 margin-bottom-20px"
-                    data-text="curvs"
-                  >
-                    Other Services
-                  </h4>
-                  <ul class="list-items list--items">
-                    <li>
-                      <a href="#">Investor Relations</a>
-                    </li>
-                    <li>
-                      <a href="#">Trizen.com Rewards</a>
-                    </li>
-                    <li>
-                      <a href="#">Partners</a>
-                    </li>
-                    <li>
-                      <a href="#">List My Hotel</a>
-                    </li>
-                    <li>
-                      <a href="#">All Hotels</a>
-                    </li>
-                    <li>
-                      <a href="#">TV Ads</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                  <h4
-                    class="title curve-shape pb-3 margin-bottom-20px"
-                    data-text="curvs"
-                  >
-                    Other Links
-                  </h4>
-                  <ul class="list-items list--items">
-                    <li>
-                      <a href="#">USA Vacation Packages</a>
-                    </li>
-                    <li>
-                      <a href="#">USA Flights</a>
-                    </li>
-                    <li>
-                      <a href="#">USA Hotels</a>
-                    </li>
-                    <li>
-                      <a href="#">USA Car Hire</a>
-                    </li>
-                    <li>
-                      <a href="#">Create an Account</a>
-                    </li>
-                    <li>
-                      <a href="#">Trizen Reviews</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-3 responsive-column">
-                <div class="footer-item">
-                  <div class="footer-logo padding-bottom-30px">
-                    <a href="index.html" class="foot__logo"></a>
-                  </div>
-                  <p class="footer__desc">
-                    Morbi convallis bibendum urna ut viverra. Maecenas consequat
-                  </p>
-                  <ul class="list-items pt-3">
-                    <li>
-                      3015 Grand Ave, Coconut Grove, Cerrick Way, FL 12345
-                    </li>
-                    <li>+123-456-789</li>
-                    <li>
-                      <a href="#">trizen@yourwebsite.com</a>
-                    </li>
-                  </ul>
-                </div>
+      <section className="faq-area section-bg4  section--padding">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="section-heading text-center">
+                <h2 className="sec__title">Frequently Asked Questions</h2>
               </div>
             </div>
-            <div class="section-block"></div>
-            <div class="row align-items-center">
-              <div class="col-lg-7">
-                <div class="copy-right padding-top-30px">
-                  <p class="copy__desc">
-                    © Copyright Trizen 2020. Made with
-                    <span class="la la-heart"></span> by{" "}
-                    <a href="https://themeforest.net/user/techydevs/portfolio">
-                      TechyDevs
-                    </a>
-                  </p>
+          </div>
+          <div className="row padding-top-60px">
+            <div className="col-lg-7">
+              <div className="accordion accordion-item" id="accordionExample">
+                <div className="card">
+                  <div className="card-header" id="faqHeadingOne">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseOne"
+                        aria-expanded="true"
+                        aria-controls="faqCollapseOne"
+                      >
+                        <span>What do I need to hire a car?</span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseOne"
+                    className="collapse show"
+                    aria-labelledby="faqHeadingOne"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Ab accusamus aliquid at, aut cumque cupiditate
+                        delectus dignissimos
+                      </p>
+                      <ul className="list-items py-2">
+                        <li>Mus accumsan venenatis hac</li>
+                        <li>Curabitur per quis parturient vel ut</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="faqHeadingTwo">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseTwo"
+                        aria-expanded="false"
+                        aria-controls="faqCollapseTwo"
+                      >
+                        <span>How old do I have to be to rent a car?</span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseTwo"
+                    className="collapse"
+                    aria-labelledby="faqHeadingTwo"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="faqHeadingThree">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseThree"
+                        aria-expanded="false"
+                        aria-controls="faqCollapseThree"
+                      >
+                        <span>Can I book a hire car for someone else?</span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseThree"
+                    className="collapse"
+                    aria-labelledby="faqHeadingThree"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="faqHeadingFour">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseFour"
+                        aria-expanded="false"
+                        aria-controls="faqCollapseFour"
+                      >
+                        <span>How do I find the cheapest car hire deal?</span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseFour"
+                    className="collapse"
+                    aria-labelledby="faqHeadingFour"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="faqHeadingFive">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseFive"
+                        aria-expanded="false"
+                        aria-controls="faqCollapseFive"
+                      >
+                        <span>
+                          What should I look for when I’m choosing a car?
+                        </span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseFive"
+                    className="collapse"
+                    aria-labelledby="faqHeadingFive"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="card">
+                  <div className="card-header" id="faqHeadingSix">
+                    <h2 className="mb-0">
+                      <button
+                        className="btn btn-link d-flex align-items-center justify-content-between"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#faqCollapseSix"
+                        aria-expanded="false"
+                        aria-controls="faqCollapseSix"
+                      >
+                        <span>Are all fees included in the rental price?</span>
+                        <i className="la la-minus"></i>
+                        <i className="la la-plus"></i>
+                      </button>
+                    </h2>
+                  </div>
+                  <div
+                    id="faqCollapseSix"
+                    className="collapse"
+                    aria-labelledby="faqHeadingSix"
+                    data-parent="#accordionExample"
+                  >
+                    <div className="card-body">
+                      <p>
+                        There are many variations of passages of Lorem Ipsum
+                        available, but the majority have suffered alteration in
+                        some form, by injected humour, or randomised words which
+                        don't look even slightly believable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="accordion-help-text pt-2">
+                <p className="font-size-14 font-weight-regular">
+                  Any questions? Just visit our{" "}
+                  <a href="#" className="color-text">
+                    Help center
+                  </a>{" "}
+                  or{" "}
+                  <a href="#" className="color-text">
+                    Contact Us
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className="col-lg-5">
+              <div className="faq-forum pl-4">
+                <div className="form-box border">
+                  <div className="form-title-wrap">
+                    <h3 className="">Still have question?</h3>
+                  </div>
+                  <div className="form-content">
+                    <div className="contact-form-action">
+                      <form method="post">
+                        <div className="input-box ">
+                          <div className="form-group label-float">
+                            <input
+                              type="text"
+                              name="text"
+                              placeholder="Your name"
+                            />
+                            <label>name</label>
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="form-group label-float">
+                            <input
+                              type="email"
+                              name="email"
+                              placeholder="Email address"
+                            />
+                            <label>Email address</label>
+                          </div>
+                        </div>
+                        <div className="input-box">
+                          <div className="form-group">
+                            <textarea
+                              className="message-control fancybox-share__input"
+                              name="message"
+                              placeholder="Write message"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div className="btn-box">
+                          <button type="button" className="theme-btn">
+                            Send Message{" "}
+                            <i className="la la-arrow-right ml-1"></i>
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <svg
-            class="hero-svg"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-          >
-            <path d="M761.9,40.6L643.1,24L333.9,93.8L0.1,1H0v99h1000V1"></path>
-          </svg>{" "}
         </div>
       </section>
     </>

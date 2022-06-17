@@ -6,13 +6,15 @@ import SearchDepartment from "../../../Components/Search/Department";
 
 export default function DepartmentCreate() {
   const [name, setName] = useState([]);
+  const [code, setCode] = useState([]);
   const registerDepartment = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/createDepart", {
+    const res = await fetch("http://localhost:5000/create-department", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
         name,
+        code,
       }),
     });
     const data = await res.json();
@@ -26,14 +28,14 @@ export default function DepartmentCreate() {
   };
   return (
     <>
-      <section class=" cta-area subscriber-area section-bg-2  ">
+      <section className=" cta-area subscriber-area section-bg-2  ">
         <div className="hero-box ">
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">
                   <div className="section-heading">
-                    <div class="container">
+                    <div className="container">
                       <h2 className="sec__title font-size-30 text-white">
                         Departments{" "}
                       </h2>
@@ -64,7 +66,7 @@ export default function DepartmentCreate() {
             </div>
           </div>
           <svg
-            class="hero-svg"
+            className="hero-svg"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 100 10"
             preserveAspectRatio="none"
@@ -73,25 +75,25 @@ export default function DepartmentCreate() {
           </svg>
         </div>
       </section>
-      <div class="col-lg-12">
-        <div class="form-box">
-          <div class="form-title-wrap">
-            <h3 class="title">Add Department</h3>
+      <div className="col-lg-12">
+        <div className="form-box">
+          <div className="form-title-wrap">
+            <h3 className="title">Add Department</h3>
           </div>
-          <div class="form-content">
-            <div class="user-profile-action d-flex align-items-center pb-4">
-              <div class="upload-btn-box"></div>
+          <div className="form-content">
+            <div className="user-profile-action d-flex align-items-center pb-4">
+              <div className="upload-btn-box"></div>
             </div>
-            <div class="contact-form-action">
-              <form action="#" class="MultiFile-intercepted">
-                <div class="row">
-                  <div class="col-lg-12 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Department Name</label>
-                      <div class="form-group">
-                        <span class="la la-user form-icon"></span>
+            <div className="contact-form-action">
+              <form action="#" className="MultiFile-intercepted">
+                <div className="row">
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Department Name</label>
+                      <div className="form-group">
+                        <span className="la la-user form-icon"></span>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           value={name}
                           onChange={(e) => setName(e.target.value)}
@@ -99,8 +101,22 @@ export default function DepartmentCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-12">
-                    <div class="btn-box">
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Department Code</label>
+                      <div className="form-group">
+                        <span className="la la-user form-icon"></span>
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={code}
+                          onChange={(e) => setCode(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-12">
+                    <div className="btn-box">
                       <button
                         type="submit"
                         className="theme-btn"

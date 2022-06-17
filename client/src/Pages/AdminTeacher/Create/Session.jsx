@@ -9,7 +9,7 @@ export default function SessionCreate() {
 
   const registerSession = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:5000/createSession", {
+    const res = await fetch("https://new819.herokuapp.com/create-session", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -30,7 +30,7 @@ export default function SessionCreate() {
   useEffect(() => {
     const getData = async () => {
       const response = await (
-        await fetch("http://localhost:5000/departments")
+        await fetch("https://new819.herokuapp.com/departments")
       ).json();
       setDepart(response);
     };
@@ -38,14 +38,14 @@ export default function SessionCreate() {
   }, []);
   return (
     <>
-      <section class=" cta-area section-bg-2 subscriber-area ">
+      <section className=" cta-area section-bg-2 subscriber-area ">
         <div className="hero-box ">
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-6">
                 <div className="breadcrumb-content">
                   <div className="section-heading">
-                    <div class="container">
+                    <div className="container">
                       <h2 className="sec__title font-size-30 text-white">
                         Sessions{" "}
                       </h2>
@@ -76,7 +76,7 @@ export default function SessionCreate() {
             </div>
           </div>
           <svg
-            class="hero-svg"
+            className="hero-svg"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1000 100"
             preserveAspectRatio="none"
@@ -85,23 +85,23 @@ export default function SessionCreate() {
           </svg>{" "}
         </div>
       </section>
-      <div class="col-lg-12">
-        <div class="form-box">
-          <div class="form-title-wrap">
-            <h3 class="title">Add Session</h3>
+      <div className="col-lg-12">
+        <div className="form-box">
+          <div className="form-title-wrap">
+            <h3 className="title">Add Session</h3>
           </div>
-          <div class="form-content">
-            <div class="user-profile-action d-flex align-items-center pb-4">
-              <div class="upload-btn-box"></div>
+          <div className="form-content">
+            <div className="user-profile-action d-flex align-items-center pb-4">
+              <div className="upload-btn-box"></div>
             </div>
-            <div class="contact-form-action">
-              <form action="#" class="MultiFile-intercepted">
-                <div class="row">
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Select Session</label>
-                      <div class="form-group">
-                        <span class="la la-map form-icon"></span>
+            <div className="contact-form-action">
+              <form action="#" className="MultiFile-intercepted">
+                <div className="row">
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Select Session</label>
+                      <div className="form-group">
+                        <span className="la la-map form-icon"></span>
                         <select
                           className="form-control p-3"
                           value={name}
@@ -118,11 +118,11 @@ export default function SessionCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-6 responsive-column">
-                    <div class="input-box">
-                      <label class="label-text">Select Department</label>
-                      <div class="form-group">
-                        <span class="la la-map form-icon"></span>
+                  <div className="col-lg-6 responsive-column">
+                    <div className="input-box">
+                      <label className="label-text">Select Department</label>
+                      <div className="form-group">
+                        <span className="la la-map form-icon"></span>
                         <select
                           className="form-control p-3"
                           value={departmentId}
@@ -142,11 +142,11 @@ export default function SessionCreate() {
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-12">
-                    <div class="btn-box">
+                  <div className="col-lg-12">
+                    <div className="btn-box">
                       <button
                         type="submit"
-                        class="theme-btn"
+                        className="theme-btn"
                         onClick={registerSession}
                       >
                         Add!

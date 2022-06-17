@@ -2,17 +2,20 @@ import React from "react";
 
 const NavigationBar = () => {
   return (
-    <div class="single-content-navbar-wrap menu " id="single-content-navbar">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="single-content-nav" id="single-content-nav">
+    <div
+      className="single-content-navbar-wrap menu "
+      id="single-content-navbar"
+    >
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="single-content-nav" id="single-content-nav">
               <ul>
                 <li>
                   <a
                     data-scroll="description"
                     href="#description"
-                    class="scroll-link active"
+                    className="scroll-link active"
                   >
                     Description
                   </a>
@@ -21,18 +24,18 @@ const NavigationBar = () => {
                   <a
                     data-scroll="itinerary"
                     href="#itinerary"
-                    class="scroll-link"
+                    className="scroll-link"
                   >
                     Itinerary
                   </a>
                 </li>
                 <li>
-                  <a data-scroll="photo" href="#photo" class="scroll-link">
+                  <a data-scroll="photo" href="#photo" className="scroll-link">
                     Photo
                   </a>
                 </li>
                 <li>
-                  <a data-scroll="faq" href="#faq" class="scroll-link">
+                  <a data-scroll="faq" href="#faq" className="scroll-link">
                     FAQ
                   </a>
                 </li>
@@ -40,13 +43,17 @@ const NavigationBar = () => {
                   <a
                     data-scroll="location-map"
                     href="#location-map"
-                    class="scroll-link"
+                    className="scroll-link"
                   >
                     Map
                   </a>
                 </li>
                 <li>
-                  <a data-scroll="reviews" href="#reviews" class="scroll-link">
+                  <a
+                    data-scroll="reviews"
+                    href="#reviews"
+                    className="scroll-link"
+                  >
                     Reviews
                   </a>
                 </li>
