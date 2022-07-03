@@ -29,7 +29,7 @@ function Admin() {
         <Navbar />
         <Fragment>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<AdminDashboard />} />
             <Route path="/dashboard" element={<AdminDashboard />} />
             <Route path="/program" element={<Program />} />
             <Route path="/semester" element={<Semester />} />

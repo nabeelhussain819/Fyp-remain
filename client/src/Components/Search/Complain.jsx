@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaThList, FaBorderNone } from "react-icons/fa";
 
 function SearchComplain({ searchData }) {
   let navigate = useNavigate();
@@ -32,12 +33,23 @@ function SearchComplain({ searchData }) {
           </p>
         </div>
         <div className="">
-          <button className="theme-btn" onClick={() => setGrid(false)}>
-            Table
-          </button>
-          <button className="theme-btn ml-2" onClick={() => setGrid(true)}>
-            Grid
-          </button>
+          {localStorage.getItem("isAdmin") ? null : (
+            <>
+              {" "}
+              <button
+                className="border-0 bg-light p-1"
+                onClick={() => setGrid(true)}
+              >
+                <FaBorderNone size={22} />
+              </button>
+              <button
+                className="border-0 bg-light p-1"
+                onClick={() => setGrid(false)}
+              >
+                <FaThList size={22} />
+              </button>
+            </>
+          )}
         </div>
       </div>
       {grid === true ? (

@@ -4,7 +4,6 @@ exports.readSemes = async (req, res) => {
   semes
     .find({})
     .populate("programId")
-    .populate("sectionId")
     .populate("studentId")
     .populate("teacherId")
     .exec((err, data) => {
@@ -13,4 +12,13 @@ exports.readSemes = async (req, res) => {
       }
       res.json(data);
     });
+};
+exports.deleteSemester = async (req, res, next) => {
+  const Semes = await semes.findById({ _id: req.body.id });
+  if (!Semes) {
+    res.status(400).json({ error: "add all feilds" });
+  } else {
+    Semes.delete();
+    res.status(200).json({ message: "Done" });
+  }
 };

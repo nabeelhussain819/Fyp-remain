@@ -21,3 +21,12 @@ exports.createSession = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+exports.deleteSession = async (req, res, next) => {
+  const Sessions = await sessions.findById({ _id: req.body.id });
+  if (!Sessions) {
+    res.status(400).json({ error: "add all feilds" });
+  } else {
+    Sessions.delete();
+    res.status(200).json({ message: "Done" });
+  }
+};

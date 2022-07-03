@@ -6,10 +6,10 @@ const CourseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    sectionId: [
+    semesterId: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Section",
+        ref: "Semes",
         required: true,
       },
     ],

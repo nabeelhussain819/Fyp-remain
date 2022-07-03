@@ -7,10 +7,6 @@ const ProgramSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
-      type: String,
-      required: true,
-    },
     sessionId: [
       {
         type: Schema.Types.ObjectId,

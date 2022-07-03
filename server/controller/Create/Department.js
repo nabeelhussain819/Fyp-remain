@@ -7,7 +7,8 @@ exports.createDept = async (req, res, next) => {
     teacherId: req.body.teacherId,
     code: req.body.code,
   };
-  if (!data) {
+  console.log(req.body);
+  if (!data || !req.body.code) {
     res.status(400).json({ error: "add all feilds" });
   }
   depart.create(data, (error, index) => {
@@ -25,5 +26,14 @@ exports.getDepartment = async (req, res, next) => {
     res.status(400).json({ error: "add all feilds" });
   } else {
     res.json(department);
+  }
+};
+exports.deleteDepartment = async (req, res, next) => {
+  const department = await depart.findById({ _id: req.body.id });
+  if (!department) {
+    res.status(400).json({ error: "add all feilds" });
+  } else {
+    department.delete();
+    res.status(200).json({ message: "Done" });
   }
 };

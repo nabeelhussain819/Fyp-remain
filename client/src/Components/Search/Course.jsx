@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  FaThList,
+  FaBorderNone,
+  FaEye,
+  FaTrashAlt,
+  FaPen,
+} from "react-icons/fa";
+
 function SearchCourse({ searchData }) {
   let navigate = useNavigate();
   const [courses, setCourses] = useState([]);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const filterData = courses.filter(
     (data) => data.name.includes(searchData) || data.code.includes(searchData)
   );
@@ -31,12 +39,23 @@ function SearchCourse({ searchData }) {
           </p>
         </div>
         <div className="">
-          <button className="theme-btn" onClick={() => setGrid(false)}>
-            Table
-          </button>
-          <button className="theme-btn ml-2" onClick={() => setGrid(true)}>
-            Grid
-          </button>
+          {localStorage.getItem("isAdmin") ? null : (
+            <>
+              {" "}
+              <button
+                className="border-0 bg-light p-1"
+                onClick={() => setGrid(true)}
+              >
+                <FaBorderNone size={22} />
+              </button>
+              <button
+                className="border-0 bg-light p-1"
+                onClick={() => setGrid(false)}
+              >
+                <FaThList size={22} />
+              </button>
+            </>
+          )}
         </div>
       </div>
       {grid === true ? (
@@ -105,7 +124,7 @@ function SearchCourse({ searchData }) {
                         <td>Course Name</td>
                         <td className="text-right">Code</td>
                         <td className="text-right">Teacher</td>
-                        <td className="text-right"></td>
+                        <td className="text-center">Action</td>
                       </tr>
                     </thead>
                     <tbody>
@@ -116,26 +135,37 @@ function SearchCourse({ searchData }) {
                               <td>
                                 <div className="flag"></div>
                               </td>
-                              <td>{data.subjects}</td>
+                              <td>{data.name}</td>
                               <td className="text-right">{data.code}</td>
                               <td className="text-right">
                                 {data.teacherId.name}
                               </td>
-                              <td className="text-right">
+                              <td className="text-center">
                                 <button
                                   onClick={() => handleSent(data)}
-                                  className="theme-btn theme-btn-sm mr-2"
+                                  className="border-0 bg-transparent pr-4"
                                 >
-                                  more
+                                  <FaEye size={22} className="text-dark" />
                                 </button>
-                              </td>
-                              <td className="text-right">
-                                <button
-                                  onClick={() => handleSent(data)}
-                                  className="theme-btn theme-btn-sm mr-2"
-                                >
-                                  Add Qec
-                                </button>
+                                {localStorage.getItem("isAdmin") && (
+                                  <>
+                                    <button
+                                      onClick={() => handleSent(data)}
+                                      className="border-0 bg-transparent pr-4"
+                                    >
+                                      <FaPen size={22} className="text-dark" />
+                                    </button>
+                                    <button
+                                      onClick={() => handleSent(data)}
+                                      className="border-0 bg-transparent "
+                                    >
+                                      <FaTrashAlt
+                                        size={22}
+                                        className="text-dark"
+                                      />
+                                    </button>
+                                  </>
+                                )}
                               </td>
                             </tr>
                           </>

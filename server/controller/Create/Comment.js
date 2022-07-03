@@ -76,3 +76,69 @@ exports.semesterComment = async (req, res, next) => {
     }
   });
 };
+exports.getDeptComment = async (req, res, next) => {
+  Comment.find({})
+    .populate("departmentId")
+    .populate("studentId")
+    .exec((err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.json(data);
+    });
+};
+
+exports.getSemComment = async (req, res, next) => {
+  Comment3.find({})
+    .populate("semesterId")
+    .populate("studentId")
+    .exec((err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.json(data);
+    });
+};
+exports.getTechComment = async (req, res, next) => {
+  Comment2.find({})
+    .populate("teacherId")
+    .populate("studentId")
+    .exec((err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.json(data);
+    });
+};
+exports.getCourseComment = async (req, res, next) => {
+  Comment1.find({})
+    .populate("courseId")
+    .populate("studentId")
+    .exec((err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.json(data);
+    });
+};
+exports.deleteComments = async (req, res, next) => {
+  const comment1 = await Comment1.findById({ _id: req.body.id });
+  const comment = await Comment.findById({ _id: req.body.id });
+  const comment2 = await Comment2.findById({ _id: req.body.id });
+  const comment3 = await Comment3.findById({ _id: req.body.id });
+  if (comment) {
+    comment.delete();
+    res.status(200).json({ message: "Done" });
+  } else if (comment1) {
+    comment1.delete();
+    res.status(200).json({ message: "Done" });
+  } else if (comment2) {
+    comment2.delete();
+    res.status(200).json({ message: "Done" });
+  } else if (comment3) {
+    comment3.delete();
+    res.status(200).json({ message: "Done" });
+  } else {
+    res.status(400).json({ error: "notFound" });
+  }
+};

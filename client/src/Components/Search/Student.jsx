@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import { FaThList, FaBorderNone } from "react-icons/fa";
 function SearchStudent({ searchData }) {
   const [user, setUser] = useState([]);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const filterData = user.filter((data) => data.name.includes(searchData));
   console.log(filterData);
   useEffect(() => {
@@ -25,12 +26,23 @@ function SearchStudent({ searchData }) {
             </p>
           </div>
           <div className="">
-            <button className="theme-btn" onClick={() => setGrid(true)}>
-              Table
-            </button>
-            <button className="theme-btn ml-2" onClick={() => setGrid(false)}>
-              Grid
-            </button>
+            {localStorage.getItem("isAdmin") ? null : (
+              <>
+                {" "}
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(true)}
+                >
+                  <FaBorderNone size={22} />
+                </button>
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(false)}
+                >
+                  <FaThList size={22} />
+                </button>
+              </>
+            )}
           </div>
         </div>
         {grid === true ? (

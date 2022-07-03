@@ -8,10 +8,10 @@ const SemesterSchema = new Schema(
       required: true,
       unique: true,
     },
-    sectionId: [
+    courseId: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Section",
+        ref: "Course",
         required: false,
       },
     ],

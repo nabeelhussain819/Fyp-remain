@@ -11,20 +11,27 @@ const {
   addSession,
   addSection,
 } = require("../Controller/Auth/Register");
-const { createCourse } = require("../Controller/Create/Course");
+const { createCourse, deleteCourse } = require("../Controller/Create/Course");
 const {
   createDept,
   getDepartment,
+  deleteDepartment,
 } = require("../Controller/Create/Department");
-const { createProgram } = require("../Controller/Create/Program");
+const {
+  createProgram,
+  deleteProgram,
+} = require("../Controller/Create/Program");
 const { createSection } = require("../Controller/Create/Section");
 const { createSemes } = require("../Controller/Create/Semester");
-const { createSession } = require("../Controller/Create/Session");
+const {
+  createSession,
+  deleteSession,
+} = require("../Controller/Create/Session");
 const { readCourse } = require("../Controller/Index/Course");
 const { readDept } = require("../Controller/Index/Department");
 const { readProgram } = require("../Controller/Index/Program");
 const { section } = require("../Controller/Index/Section");
-const { readSemes } = require("../Controller/Index/Semester");
+const { readSemes, deleteSemester } = require("../Controller/Index/Semester");
 const { session } = require("../Controller/Index/Session");
 const { student } = require("../Controller/Index/Student");
 const { teacher } = require("../Controller/Index/Teacher");
@@ -36,12 +43,23 @@ const {
   courseComplain,
   programComplain,
   semesterComplain,
+  getDeptComplain,
+  getSemComplain,
+  getCourseComplain,
+  getTechComplain,
+  getProgComplain,
+  deleteComplains,
 } = require("../Controller/Create/Complain");
 const {
   departComment,
   teacherComment,
   courseComment,
   semesterComment,
+  getTechComment,
+  getSemComment,
+  getDeptComment,
+  getCourseComment,
+  deleteComments,
 } = require("../Controller/Create/Comment");
 
 var storage = multer.diskStorage({
@@ -79,36 +97,49 @@ router.route("/commend").post(Commend);
 // for sessions
 router.route("/sessions").get(session);
 router.route("/create-session").post(createSession);
+router.route("/delete-sessions").post(deleteSession);
 //for department
 router.route("/create-department").post(createDept);
+router.route("/delete-departments").post(deleteDepartment);
 router.route("/departments").get(readDept);
 router.route("/get-depart").post(getDepartment);
 // for semester
 router.route("/create-semester").post(createSemes);
-
+router.route("/delete-semesters").post(deleteSemester);
 router.route("/semesters").get(readSemes);
 // for course
 router.route("/create-course").post(createCourse);
+router.route("/delete-courses").post(deleteCourse);
 router.route("/courses").get(readCourse);
 // for program
 // router.route("/create-program", upload.single("image")).post(createProgram);
 router.route("/programs").get(readProgram);
-
-router.route("/create-program", upload.single("image")).post(createProgram);
+router.route("/delete-programs").post(deleteProgram);
+router.route("/create-program").post(createProgram);
 // for section
 router.route("/create-section").post(createSection);
 router.route("/sections").get(section);
 // for Complain
-router.route("/depart-complain").post(departComplain);
-router.route("/teacher-complain").post(teacherComplain);
-router.route("/course-complain").post(courseComplain);
-router.route("/program-complain").post(programComplain);
-router.route("/semester-complain").post(semesterComplain);
-router.route("/complain").get(section);
+router.route("/complain-departments").post(departComplain);
+router.route("/complain-teachers").post(teacherComplain);
+router.route("/complian-courses").post(courseComplain);
+router.route("/complain-programs").post(programComplain);
+router.route("/complain-semesters").post(semesterComplain);
+router.route("/complains-departments").get(getDeptComplain);
+router.route("/complains-semesters").get(getSemComplain);
+router.route("/complains-courses").get(getCourseComplain);
+router.route("/complains-teachers").get(getTechComplain);
+router.route("/complains-programs").get(getProgComplain);
+router.route("/delete-complains").post(deleteComplains);
 // for Comment
-router.route("/depart-comment").post(departComment);
-router.route("/teacher-comment").post(teacherComment);
-router.route("/course-comment").post(courseComment);
-router.route("/semester-comment").post(semesterComment);
+router.route("/comment-departments").post(departComment);
+router.route("/comment-teachers").post(teacherComment);
+router.route("/comment-courses").post(courseComment);
+router.route("/comment-semesters").post(semesterComment);
+router.route("/comments-departments").get(getDeptComment);
+router.route("/comments-semesters").get(getSemComment);
+router.route("/comments-courses").get(getCourseComment);
+router.route("/comments-teachers").get(getTechComment);
+router.route("/delete-comments").post(deleteComments);
 
 module.exports = router;

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image from "../../Assets/department.jpg";
-import { FaThList, FaBorderNone } from "react-icons/fa";
+import {
+  FaThList,
+  FaBorderNone,
+  FaEye,
+  FaTrashAlt,
+  FaPen,
+} from "react-icons/fa";
 
 function SearchDepartment({ searchData }) {
   let navigate = useNavigate();
   const [dept, setDept] = useState([]);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const filterData = dept.filter((data) => data.name.includes(searchData));
 
   const handleSent = (data) => {
@@ -35,18 +41,23 @@ function SearchDepartment({ searchData }) {
             </p>
           </div>
           <div className="">
-            <button
-              className="border-0 bg-light p-1"
-              onClick={() => setGrid(true)}
-            >
-              <FaBorderNone size={22} />
-            </button>
-            <button
-              className="border-0 bg-light p-1"
-              onClick={() => setGrid(false)}
-            >
-              <FaThList size={22} />
-            </button>
+            {localStorage.getItem("isAdmin") ? null : (
+              <>
+                {" "}
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(true)}
+                >
+                  <FaBorderNone size={22} />
+                </button>
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(false)}
+                >
+                  <FaThList size={22} />
+                </button>
+              </>
+            )}
           </div>
         </div>
         {grid === true ? (
@@ -114,6 +125,7 @@ function SearchDepartment({ searchData }) {
                               <td>Department Name</td>
                               <td className="text-right">Total Teacher</td>
                               <td className="text-right">Total Students</td>
+                              <td className="text-center">Action</td>
                             </tr>
                             <tbody>
                               {filterData.map((data) => {
@@ -130,13 +142,38 @@ function SearchDepartment({ searchData }) {
                                       <td className="text-right">
                                         {data.studentId.length}
                                       </td>
-                                      <td className="text-right">
+                                      <td className="text-center">
                                         <button
-                                          className="theme-btn theme-btn-small mr-2"
                                           onClick={() => handleSent(data)}
+                                          className="border-0 bg-transparent pr-4"
                                         >
-                                          see Details
+                                          <FaEye
+                                            size={22}
+                                            className="text-dark"
+                                          />
                                         </button>
+                                        {localStorage.getItem("isAdmin") && (
+                                          <>
+                                            <button
+                                              onClick={() => handleSent(data)}
+                                              className="border-0 bg-transparent pr-4"
+                                            >
+                                              <FaPen
+                                                size={22}
+                                                className="text-dark"
+                                              />
+                                            </button>
+                                            <button
+                                              onClick={() => handleSent(data)}
+                                              className="border-0 bg-transparent "
+                                            >
+                                              <FaTrashAlt
+                                                size={22}
+                                                className="text-dark"
+                                              />
+                                            </button>
+                                          </>
+                                        )}
                                       </td>
                                     </tr>
                                   </>

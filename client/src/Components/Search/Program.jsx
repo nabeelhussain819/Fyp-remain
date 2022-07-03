@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaThList, FaBorderNone } from "react-icons/fa";
+import {
+  FaThList,
+  FaBorderNone,
+  FaEye,
+  FaTrashAlt,
+  FaPen,
+} from "react-icons/fa";
+
 function SearchProgram({ searchData }) {
   const [program, setProgram] = useState([]);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   let navigate = useNavigate();
   const filterData = program.filter((data) => data.name.includes(searchData));
   const handleSent = (data) => {
@@ -31,18 +38,23 @@ function SearchProgram({ searchData }) {
             </p>
           </div>
           <div className="">
-            <button
-              className="border-0 bg-light p-1"
-              onClick={() => setGrid(true)}
-            >
-              <FaBorderNone size={22} />
-            </button>
-            <button
-              className="border-0 bg-light p-1"
-              onClick={() => setGrid(false)}
-            >
-              <FaThList size={22} />
-            </button>
+            {localStorage.getItem("isAdmin") ? null : (
+              <>
+                {" "}
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(true)}
+                >
+                  <FaBorderNone size={22} />
+                </button>
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(false)}
+                >
+                  <FaThList size={22} />
+                </button>
+              </>
+            )}
           </div>
         </div>
         {grid === true ? (
@@ -110,7 +122,9 @@ function SearchProgram({ searchData }) {
                             <th scope="col" className="text-right">
                               userId
                             </th>
-                            <th scope="col" className="text-right"></th>
+                            <th scope="col" className="text-center">
+                              Action
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
@@ -126,13 +140,35 @@ function SearchProgram({ searchData }) {
                                   <td className="text-right">
                                     {data.studentId.length}
                                   </td>
-                                  <td className="text-right">
+                                  <td className="text-center">
                                     <button
                                       onClick={() => handleSent(data)}
-                                      className="theme-btn theme-btn-small mr-2"
+                                      className="border-0 bg-transparent pr-4"
                                     >
-                                      See more
+                                      <FaEye size={22} className="text-dark" />
                                     </button>
+                                    {localStorage.getItem("isAdmin") && (
+                                      <>
+                                        <button
+                                          onClick={() => handleSent(data)}
+                                          className="border-0 bg-transparent pr-4"
+                                        >
+                                          <FaPen
+                                            size={22}
+                                            className="text-dark"
+                                          />
+                                        </button>
+                                        <button
+                                          onClick={() => handleSent(data)}
+                                          className="border-0 bg-transparent "
+                                        >
+                                          <FaTrashAlt
+                                            size={22}
+                                            className="text-dark"
+                                          />
+                                        </button>
+                                      </>
+                                    )}
                                   </td>
                                 </tr>
                               </>

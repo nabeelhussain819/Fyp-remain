@@ -1,4 +1,4 @@
-const section = require("../../Models/Section");
+const semester = require("../../Models/Semester");
 const course = require("../../Models/Course");
 
 exports.createCourse = async (req, res) => {
@@ -6,7 +6,7 @@ exports.createCourse = async (req, res) => {
   try {
     const data = {
       name: req.body.name,
-      sectionId: req.body.sectionId,
+      semesterId: req.body.semesterId,
       teacherId: req.body.teacherId,
       studentId: req.body.studentId,
       comment: req.body.comment,
@@ -14,11 +14,20 @@ exports.createCourse = async (req, res) => {
     };
     const Course = new course(data);
     await Course.save();
-    const Section = await section.findById({ _id: req.body.sectionId });
-    Section.courseId.push(Course._id);
-    await Section.save();
+    const Semester = await semester.findById({ _id: req.body.semesterId });
+    Semester.courseId.push(Course._id);
+    await Semester.save();
     res.status(200).json({ success: true });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
+  }
+};
+exports.deleteCourse = async (req, res, next) => {
+  const Course = await course.findById({ _id: req.body.id });
+  if (!Course) {
+    res.status(400).json({ error: "add all feilds" });
+  } else {
+    Course.delete();
+    res.status(200).json({ message: "Done" });
   }
 };

@@ -9,7 +9,6 @@ exports.createProgram = async (req, res) => {
       name: req.body.name,
       departmentId: req.body.departmentId,
       sessionId: req.body.sessionId,
-      image: req.body.image,
     };
 
     const Program = await new program(data);
@@ -25,5 +24,14 @@ exports.createProgram = async (req, res) => {
     res.status(200).json({ success: true });
   } catch (err) {
     console.log(err);
+  }
+};
+exports.deleteProgram = async (req, res, next) => {
+  const Program = await program.findById({ _id: req.body.id });
+  if (!Program) {
+    res.status(400).json({ error: "add all feilds" });
+  } else {
+    Program.delete();
+    res.status(200).json({ message: "Done" });
   }
 };

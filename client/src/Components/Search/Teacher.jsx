@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { FaThList, FaBorderNone } from "react-icons/fa";
 function SearchTeacher({ searchData }) {
   let navigate = useNavigate();
   const [teacher, setTeacher] = useState([]);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   const filterData = teacher.filter((data) => data.name.includes(searchData));
   const handleSent = (data) => {
     console.log(data._id);
@@ -33,12 +34,23 @@ function SearchTeacher({ searchData }) {
             </p>
           </div>
           <div className="">
-            <button className="theme-btn" onClick={() => setGrid(true)}>
-              Grid
-            </button>
-            <button className="theme-btn ml-2" onClick={() => setGrid(false)}>
-              Table
-            </button>
+            {localStorage.getItem("isAdmin") ? null : (
+              <>
+                {" "}
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(true)}
+                >
+                  <FaBorderNone size={22} />
+                </button>
+                <button
+                  className="border-0 bg-light p-1"
+                  onClick={() => setGrid(false)}
+                >
+                  <FaThList size={22} />
+                </button>
+              </>
+            )}
           </div>
         </div>
         {grid === true ? (
